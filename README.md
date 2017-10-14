@@ -31,6 +31,10 @@
 - vConsole
 - Charles
 
+## 注意事项
+
+- better-scroll 在轮播图中使用会多拷贝俩图片以便loop
+
 ## 预览
 
 ``` bash
