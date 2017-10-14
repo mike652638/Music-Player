@@ -9,6 +9,11 @@
         </div>
       </slider>
     </div>
+    <div class="recommend-list">
+      <div class="list-wrap">
+        <h1 class="title">热门歌单推荐</h1>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -40,5 +45,17 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-
+  .recommend {
+    .recommend-list {
+      .list-wrap {
+        .title {
+          height: 65px;
+          line-height: 65px;
+          text-align: center;
+          font-size: 14px;
+          color: #ffcd32;
+        }
+      }
+    }
+  }
 </style>
