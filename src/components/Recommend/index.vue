@@ -14,6 +14,7 @@
         <div class="list-wrap">
           <h1 class="title">热门歌单推荐</h1>
           <ul class="content">
+            
             <li class="content-item" v-for="i in songList" :key="i.id">
               <div class="list-pic">
                 <img :src="i.imgurl" alt="" width="60" height="60">
@@ -26,6 +27,9 @@
           </ul>
         </div>
       </div>
+      <div class="content-loading-wrap">
+        <loading :show="!songList.length" />
+      </div>
     </div>
   </div>
 </template>
@@ -33,6 +37,7 @@
 import { getRecommend, getMusicList } from 'api/recommend'
 import * as config from 'api/config'
 import Slider from 'containers/Slider'
+import Loading from 'containers/loading'
 import BScroll from 'better-scroll'
 import axios from 'axios'
 export default {
@@ -40,7 +45,7 @@ export default {
   data() {
     return {
       picData: [],
-      songList: []
+      songList: [],
     }
   },
   created() {
@@ -60,7 +65,7 @@ export default {
     getRecommendMusicList() {
       getMusicList(config.musicListUrl, config.musicListParam).then((res) => {
         if (res.data.code === config.ERR_OK) {
-          this.songList = res.data.data.list
+          this.songList = res.data.data.list 
           this.initScroll()
         }
       })
@@ -78,7 +83,8 @@ export default {
     }
   },
   components: {
-    Slider
+    Slider,
+    Loading
   }
 }
 </script>
@@ -128,6 +134,9 @@ export default {
         }
       }
     }
+  }
+  .content-loading-wrap {
+    margin-top: 20px;
   }
 }
 </style>

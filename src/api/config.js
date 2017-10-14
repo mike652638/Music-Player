@@ -28,7 +28,7 @@ export const musicListParam = {
   categoryId: 10000000,
   sortId: 5,
   sin: 0,
-  ein: 29
+  ein: 30
 }
 
 export const ERR_OK = 0
