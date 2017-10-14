@@ -98,6 +98,9 @@ export default {
         this.slider.goToPage(page, 0, 400)
       }, this.interval)
     }
+  },
+  destroyed() {
+    clearTimeout(this.timer)
   }
 }
 </script>
