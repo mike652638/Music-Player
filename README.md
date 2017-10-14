@@ -3,7 +3,7 @@
 
 [参考](https://github.com/yxuecheng/vue-music-webapp)
 
-[项目演示地址:](https://bxm0927.github.io/vue-music-webapp/dist/)
+[项目演示地址:](https://yxuecheng.github.io/vue-music/dist/)
 ![图片预览](http://oph264zoo.bkt.clouddn.com/17-8-11/52879457.jpg)
 
 
