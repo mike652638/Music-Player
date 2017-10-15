@@ -2,7 +2,7 @@
 # 移动端音乐 WebApp
 
 [参考](https://github.com/yxuecheng/vue-music-webapp)
-[项目演示地址:](https://yxuecheng.github.io/vue-music/dist/)
+[项目演示地址:](https://yxuecheng.github.io/vueMusic/dist/)
 
 ## 技术栈
 
