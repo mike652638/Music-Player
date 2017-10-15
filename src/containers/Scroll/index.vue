@@ -30,6 +30,17 @@ export default {
     },
     refresh() {
       this.scroll.refresh()
+    },
+    scrollTo() {
+      this.scroll.scrollTo.apply(this.scroll, arguments)
+    },
+    scrollToElement() {
+      this.scroll.scrollToElement.apply(this.scroll, arguments)
+    },
+    onScroll() {
+      this.scroll.on('scroll', () => {
+        console.log(1)
+      })
     }
   },
   watch: {

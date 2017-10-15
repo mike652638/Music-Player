@@ -68,6 +68,8 @@ export default {
         if (res.data.code === config.ERR_OK) {
           this.songList = res.data.data.list
         }
+      }).then((error) => {
+        this.songList = require('../../../static/recommand.json')
       })
     },
     loadImage() {

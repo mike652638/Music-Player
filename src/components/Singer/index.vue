@@ -1,31 +1,22 @@
 <template>
   <div class="singer">
-    <scroll class="scoroll-wrapper" :data="singerList">
-      <ul class="singer-wrap">
-        <ul class="item" v-for="i in singerList" :key="i.id">
-          <h2 class="title">{{i.title}}</h2>
-          <li class="item-wrap" v-for="j in i.items" :key="j.id">
-            <img class="avatar" v-lazy="j.avatar" alt="" width="50" height="50" />
-            <p class="name">{{j.name}}</p>
-          </li>
-        </ul>
-      </ul>
-    </scroll>
-    <loading :show="!singerList.length"/>
+    <list-view :data="singerList" />
+    <loading :show="!singerList.length" />
   </div>
 </template>
 <script>
 import { getSingerList } from 'api/singer'
 import * as config from 'api/config'
-import Scroll from 'containers/Scroll'
 import Loading from 'containers/Loading'
+import ListView from 'containers/ListView'
 const HOT_NAME = '热门'
 const HOT_LENGTH = 10
 export default {
   name: 'singer',
   data() {
     return {
-      singerList: []
+      singerList: [],
+      current: '热门'
     }
   },
   created() {
@@ -86,44 +77,12 @@ export default {
     }
   },
   components: {
-    Scroll,
-    Loading
+    Loading,
+    ListView
   }
 }
 </script>
 <style lang="less" scoped>
-.singer,
-.scoroll-wrapper {
-  position: fixed;
-  top: 88px;
-  bottom: 0px;
-  right: 0;
-  left: 0;
-  overflow: hidden;
-  .singer-wrap {
-    .item {
-      .title {
-        height: 30px;
-        line-height: 30px;
-        padding-left: 20px;
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.5);
-        background: #333;
-      }
-      .item-wrap {
-        display: flex;
-        padding: 20px 0 0 30px;
-        align-items: center;
-        .avatar {
-          border-radius: 50%;
-        }
-        .name {
-          margin-left: 20px;
-          color: rgba(255, 255, 255, 0.5);
-          font-size: 14px;
-        }
-      }
-    }
-  }
+.singer {
 }
 </style>
