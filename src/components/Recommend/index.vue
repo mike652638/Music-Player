@@ -27,11 +27,12 @@
             </ul>
           </div>
         </div>
-        <div class="content-loading-wrap">
-          <loading :show="!songList.length" />
-        </div>
+        
       </div>
     </scroll>
+    <div class="content-loading-wrap">
+      <loading :show="!songList.length"/>
+    </div>
   </div>
 </template>
 <script>
