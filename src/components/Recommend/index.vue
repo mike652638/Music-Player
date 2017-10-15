@@ -1,43 +1,46 @@
 <template>
-  <div class="recommend" ref="scrollWrap">
-    <div class="scroll-wrap">
-      <div class="slider-wrap" v-if="picData.length">
-        <slider>
-          <div class="pic-list" v-for="i in picData" :key="i.id">
-            <a :href="i.linkUrl">
-              <img :src="i.picUrl" alt="">
-            </a>
+  <div class="recommend">
+    <scroll class="scroll-wrapper" :data="songList">
+      <div>
+        <div class="slider-wrap" v-if="picData.length">
+          <slider>
+            <div class="pic-list" v-for="i in picData" :key="i.id">
+              <a :href="i.linkUrl">
+                <img :src="i.picUrl" alt="">
+              </a>
+            </div>
+          </slider>
+        </div>
+        <div class="recommend-list">
+          <div class="list-wrap">
+            <h1 class="title">热门歌单推荐</h1>
+            <ul class="content">
+
+              <li class="content-item" v-for="i in songList" :key="i.id">
+                <div class="list-pic">
+                  <img :src="i.imgurl" alt="" width="60" height="60">
+                </div>
+                <div class="list-content">
+                  <h2 class="name">{{i.creator.name}}</h2>
+                  <p class="dissname">{{i.dissname}}</p>
+                </div>
+              </li>
+            </ul>
           </div>
-        </slider>
-      </div>
-      <div class="recommend-list">
-        <div class="list-wrap">
-          <h1 class="title">热门歌单推荐</h1>
-          <ul class="content">
-            
-            <li class="content-item" v-for="i in songList" :key="i.id">
-              <div class="list-pic">
-                <img :src="i.imgurl" alt="" width="60" height="60">
-              </div>
-              <div class="list-content">
-                <h2 class="name">{{i.creator.name}}</h2>
-                <p class="dissname">{{i.dissname}}</p>
-              </div>
-            </li>
-          </ul>
+        </div>
+        <div class="content-loading-wrap">
+          <loading :show="!songList.length" />
         </div>
       </div>
-      <div class="content-loading-wrap">
-        <loading :show="!songList.length" />
-      </div>
-    </div>
+    </scroll>
   </div>
 </template>
 <script>
 import { getRecommend, getMusicList } from 'api/recommend'
 import * as config from 'api/config'
 import Slider from 'containers/Slider'
-import Loading from 'containers/loading'
+import Loading from 'containers/Loading'
+import Scroll from 'containers/Scroll'
 import BScroll from 'better-scroll'
 import axios from 'axios'
 export default {
@@ -51,51 +54,40 @@ export default {
   created() {
     this.getRecommendPic()
     this.getRecommendMusicList()
-    this.initScroll()
   },
   methods: {
     getRecommendPic() {
       getRecommend(config.recommendUrl, config.commonParam, config.recommendCptions).then((res) => {
         if (res.code === config.ERR_OK) {
           this.picData = res.data.slider
-          this.initScroll()
         }
       })
     },
     getRecommendMusicList() {
       getMusicList(config.musicListUrl, config.musicListParam).then((res) => {
         if (res.data.code === config.ERR_OK) {
-          this.songList = res.data.data.list 
-          this.initScroll()
+          this.songList = res.data.data.list
         }
-      })
-    },
-    initScroll() {
-      this.$nextTick(() => {
-        if (this.slider) {
-          this.slider.refresh()
-          return
-        }
-        this.slider = new BScroll(this.$refs.scrollWrap, {
-          click: true
-        })
       })
     }
   },
   components: {
     Slider,
-    Loading
+    Loading,
+    Scroll
   }
 }
 </script>
 <style lang="less" scoped>
 .recommend {
-  position: fixed;
-  overflow: hidden;
-  top: 88px;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  .scroll-wrapper {
+    position: fixed;
+    overflow: hidden;
+    top: 88px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
   .recommend-list {
     .list-wrap {
       .title {
