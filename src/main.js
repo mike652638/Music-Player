@@ -4,6 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import fastclick from 'fastclick'
+import vueLazyLoad from 'vue-lazyload'
+Vue.use(vueLazyLoad, {
+  loading: require('common/img/default.png')
+})
 import 'common/less/index.less'
 
 fastclick.attach(document.body)

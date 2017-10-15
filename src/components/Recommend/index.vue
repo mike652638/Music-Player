@@ -1,12 +1,12 @@
 <template>
   <div class="recommend">
-    <scroll class="scroll-wrapper" :data="songList">
+    <scroll ref="scrollWrap" class="scroll-wrapper" :data="songList">
       <div>
         <div class="slider-wrap" v-if="picData.length">
           <slider>
             <div class="pic-list" v-for="i in picData" :key="i.id">
               <a :href="i.linkUrl">
-                <img :src="i.picUrl" alt="">
+                <img class="needsclick" @load="loadImage" :src="i.picUrl" alt="">
               </a>
             </div>
           </slider>
@@ -15,10 +15,9 @@
           <div class="list-wrap">
             <h1 class="title">热门歌单推荐</h1>
             <ul class="content">
-
               <li class="content-item" v-for="i in songList" :key="i.id">
                 <div class="list-pic">
-                  <img :src="i.imgurl" alt="" width="60" height="60">
+                  <img v-lazy="i.imgurl" alt="" width="60" height="60">
                 </div>
                 <div class="list-content">
                   <h2 class="name">{{i.creator.name}}</h2>
@@ -69,6 +68,14 @@ export default {
           this.songList = res.data.data.list
         }
       })
+    },
+    loadImage() {
+      if (!this.checkLoad) {
+        this.checkLoad = true
+      } else {
+        return
+      }
+      this.$refs.scrollWrap.refresh()
     }
   },
   components: {
