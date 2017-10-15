@@ -27,11 +27,11 @@
             </ul>
           </div>
         </div>
-        
+
       </div>
     </scroll>
     <div class="content-loading-wrap">
-      <loading :show="!songList.length"/>
+      <loading :show="!songList.length" />
     </div>
   </div>
 </template>
@@ -67,9 +67,11 @@ export default {
       getMusicList(config.musicListUrl, config.musicListParam).then((res) => {
         if (res.data.code === config.ERR_OK) {
           this.songList = res.data.data.list
+        } else {
+          setTimeout(() => {
+            this.songList = require('../../../static/recommand.json').data.list
+          }, 2000)
         }
-      }).then((error) => {
-        this.songList = require('../../../static/recommand.json')
       })
     },
     loadImage() {
