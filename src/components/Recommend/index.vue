@@ -67,11 +67,12 @@ export default {
       getMusicList(config.musicListUrl, config.musicListParam).then((res) => {
         if (res.data.code === config.ERR_OK) {
           this.songList = res.data.data.list
-        } else {
-          setTimeout(() => {
-            this.songList = require('../../../static/recommand.json').data.list
-          }, 2000)
         }
+      }).catch((error) => {
+        console.log('代理失败，请求假数据')
+        setTimeout(() => {
+          this.songList = require('../../../static/recommand.json').data.list
+        }, 2000)
       })
     },
     loadImage() {
