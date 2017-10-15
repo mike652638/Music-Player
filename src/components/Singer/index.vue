@@ -11,12 +11,14 @@
         </ul>
       </ul>
     </scroll>
+    <loading :show="!singerList.length"/>
   </div>
 </template>
 <script>
 import { getSingerList } from 'api/singer'
 import * as config from 'api/config'
 import Scroll from 'containers/Scroll'
+import Loading from 'containers/Loading'
 const HOT_NAME = '热门'
 const HOT_LENGTH = 10
 export default {
@@ -84,7 +86,8 @@ export default {
     }
   },
   components: {
-    Scroll
+    Scroll,
+    Loading
   }
 }
 </script>
