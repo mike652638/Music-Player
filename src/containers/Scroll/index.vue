@@ -15,6 +15,14 @@ export default {
     data: {
       type: Array,
       default: null
+    },
+    listenScroll: {
+      type: Boolean,
+      default: false
+    },
+    probeType: {
+      type: Number,
+      default: 1
     }
   },
   mounted() {
@@ -25,8 +33,15 @@ export default {
   methods: {
     _initScroll() {
       this.scroll = new BScroll(this.$refs.wrapper, {
-        click: this.click
+        click: this.click,
+        probeType: this.probeType,
       })
+      if (this.listenScroll) {
+        let _this = this
+        this.scroll.on('scroll', (pos) => {
+          _this.$emit('scroll', pos)
+        })
+      }
     },
     refresh() {
       this.scroll.refresh()
@@ -36,11 +51,6 @@ export default {
     },
     scrollToElement() {
       this.scroll.scrollToElement.apply(this.scroll, arguments)
-    },
-    onScroll() {
-      this.scroll.on('scroll', () => {
-        console.log(1)
-      })
     }
   },
   watch: {

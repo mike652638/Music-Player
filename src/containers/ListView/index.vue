@@ -1,6 +1,6 @@
 <template>
   <div class="list-view">
-    <scroll ref="scrollWrap" class="scoroll-wrapper" :data="data">
+    <scroll ref="scrollWrap" class="scoroll-wrapper" :data="data" :listenScroll="true" :probeType="3" @scroll="scroll">
       <ul class="singer-wrap">
         <ul v-show="i.items.length>0" class="item" v-for="(i, index) in data" :key="i.id" ref="scrollItem">
           <h2 class="title">{{i.title}}</h2>
@@ -16,8 +16,8 @@
         <li v-show="i.items.length>0" class="item" :class="{'active': current === index}" @touchmove.stop.prevent="touchMove($event, index)" @touchstart="select($event, index)" v-for="(i, index) in data" :key="i.id">{{i.title.substr(0, 1)}}</li>
       </ul>
     </div>
-    <div class="current">
-      <p class="current-text"></p>
+    <div v-show="scrollNegative" class="current">
+      <p class="current-text">{{listArr[current]}}</p>
     </div>
   </div>
 </template>
@@ -28,7 +28,9 @@ export default {
   name: 'listView',
   data() {
     return {
-      current: 0
+      current: 0,
+      listArr: [],
+      scrollNegative: false
     }
   },
   props: {
@@ -51,8 +53,36 @@ export default {
       // 偏移数
       let num = (e.touches[0].pageY - this.touch.y) / ANCHOOR_HEIGHT | 0
       let currentIndex = this.touch.index + num
-      this.$refs.scrollWrap.scrollToElement(this.$refs.scrollItem[currentIndex], 0)
+      this.$refs.scrollWrap.scrollToElement(this.$refs.scrollItem[currentIndex], 10)
       this.current = currentIndex
+    },
+    scroll(pos) {
+      if (!this.heightArr.length) {
+        return
+      }
+      this.scrollY = - pos.y
+      if (this.scrollY < 0) {
+        this.scrollNegative = false
+      } else {
+        this.scrollNegative = true        
+      }
+      this.heightArr.filter((el, index, arr) => {
+        if (el <= this.scrollY && this.scrollY <= arr[index + 1]) {
+          this.current = index
+          return
+        }
+      })
+    },
+    calculateHeight() {
+      this.heightArr = [0]
+      void [].forEach.call(this.$refs.scrollItem, (el, index, arr) => {
+        this.heightArr.push(el.clientHeight + this.heightArr[index])
+      })
+    },
+    calculateListArr() {
+      this.data.forEach((el, index) => {
+        this.listArr.push(el.title)
+      })
     }
   },
   components: {
@@ -60,8 +90,11 @@ export default {
   },
   watch: {
     data() {
-      this.$refs.scrollWrap.refresh()
-      this.$refs.scrollWrap.onScroll()
+      this.$nextTick(() => {
+        this.calculateListArr()
+        this.$refs.scrollWrap.refresh()
+        this.calculateHeight()
+      })
     }
   }
 }
@@ -78,7 +111,7 @@ export default {
     height: 100%;
     .singer-wrap {
       .item {
-        margin-bottom: 5px;
+        padding-bottom: 15px;
         .title {
           height: 30px;
           line-height: 30px;
@@ -100,22 +133,6 @@ export default {
             font-size: 14px;
           }
         }
-      }
-    }
-    .current {
-      position: relative;
-      width: 100%;
-      .current-text {
-        position: absolute;
-        width: 100%;
-        z-index: 2;
-        height: 30px;
-        line-height: 30px;
-        padding-left: 20px;
-        font-size: 12px;
-        color: rgba(255, 255, 255, .5);
-        background: #333;
-        top: -1px;
       }
     }
   }
@@ -140,6 +157,20 @@ export default {
       &.active {
         color: #ffcd32;
       }
+    }
+  }
+  .current {
+    position: absolute;
+    top: -1px;
+    width: 100%;
+    .current-text {
+      z-index: 2;
+      height: 30px;
+      line-height: 30px;
+      padding-left: 20px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, .5);
+      background: #333;
     }
   }
 }
