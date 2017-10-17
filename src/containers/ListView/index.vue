@@ -4,7 +4,7 @@
       <ul class="singer-wrap">
         <ul v-show="i.items.length>0" class="item" v-for="(i, index) in data" :key="i.id" ref="scrollItem">
           <h2 class="title">{{i.title}}</h2>
-          <li class="item-wrap" v-for="j in i.items" :key="j.id">
+          <li @click="selectItem(j)" class="item-wrap" v-for="j in i.items" :key="j.id">
             <img class="avatar" v-lazy="j.avatar" alt="" width="50" height="50" />
             <p class="name">{{j.name}}</p>
           </li>
@@ -48,6 +48,9 @@ export default {
       this.touch.y = e.touches[0].pageY
       this.touch.index = index
       this.$refs.scrollWrap.scrollToElement(this.$refs.scrollItem[index], 0)
+    },
+    selectItem(item) {
+      this.$emit('selectItem', item)
     },
     touchMove(e, index) {
       // 偏移数

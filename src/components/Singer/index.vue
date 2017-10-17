@@ -1,7 +1,8 @@
 <template>
   <div class="singer">
-    <list-view :data="singerList" />
+    <list-view :data="singerList" @selectItem="currentClick"/>
     <loading :show="!singerList.length" />
+    <router-view></router-view>
   </div>
 </template>
 <script>
@@ -74,6 +75,11 @@ export default {
         return a.title.charCodeAt(0) - b.title.charCodeAt(0)
       })
       return hot.concat(ret)
+    },
+    currentClick(singer) {
+      this.$router.push({
+        path: `/singer/${singer.id}`,
+      })
     }
   },
   components: {

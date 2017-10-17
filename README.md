@@ -8,7 +8,7 @@
 
 - Vue
 - vue-router
-- vuex
+- vuex 使用场景，多个组件之间的数据共享，路由间复杂数据传递
 - vue-lazyload
 - better-scroll
 - less
