@@ -10,6 +10,7 @@ import { getSingerList } from 'api/singer'
 import * as config from 'api/config'
 import Loading from 'containers/Loading'
 import ListView from 'containers/ListView'
+import { mapMutations } from 'vuex'
 const HOT_NAME = '热门'
 const HOT_LENGTH = 10
 export default {
@@ -41,7 +42,7 @@ export default {
       data.map((el, index) => {
         if (index < HOT_LENGTH) {
           let singerInfo = {
-            id: el.Fsinger_id,
+            id: el.Fsinger_mid,
             name: el.Fsinger_name,
             avatar: `https://y.gtimg.cn/music/photo_new/T001R300x300M000${el.Fsinger_mid}.jpg?max_age=2592000`
           }
@@ -80,7 +81,11 @@ export default {
       this.$router.push({
         path: `/singer/${singer.id}`,
       })
-    }
+      this.setSinger(singer)
+    },
+    ...mapMutations({
+      setSinger: 'SET_SINGER'
+    })
   },
   components: {
     Loading,
@@ -89,6 +94,4 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.singer {
-}
 </style>
