@@ -1,48 +1,49 @@
 <template>
   <transition name="fade">
     <div class="singer-detail">
-      <music-list :data="singerDetail"/>
+      <music-list :data="singerDetail" />
     </div>
   </transition>
 </template>
 <script>
-import { mapGetters } from 'vuex'
-import { getSingerDetail } from 'api/singer'
-import * as config from 'api/config'
-import MusicList from 'containers/MusicList'
-import { createSong } from 'common/js/song'
+import { mapGetters } from "vuex";
+import { getSingerDetail } from "api/singer";
+import * as config from "api/config";
+import MusicList from "components/MusicList";
+import { createSong } from "common/js/song";
 export default {
-  name: 'scrollDetail',
+  name: "scrollDetail",
   data() {
     return {
       singerDetail: {}
-    }
+    };
   },
   computed: {
-    ...mapGetters([
-      'singer'
-    ])
+    ...mapGetters(["singer"])
   },
   created() {
-    this._getDetail()
+    this._getDetail();
   },
   methods: {
     _getDetail() {
       if (!this.singer.id) {
-        this.$router.push('/singer')
-        return
+        this.$router.push("/singer");
+        return;
       }
       let data = Object.assign({}, config.singerDetailParam, {
         singermid: this.singer.id
-      })
-      getSingerDetail(config.singerDetailUrl, data, config.singetDetailOpts).then((res) => {
+      });
+      getSingerDetail(
+        config.singerDetailUrl,
+        data,
+        config.singetDetailOpts
+      ).then(res => {
         if (res.code === config.ERR_OK) {
-          this.singerDetail = res.data
-          console.log(this.singerDetail)
+          this.singerDetail = res.data;
         } else {
-          console.log(`歌手详情失败, 返回歌手列表哦`)
+          console.log(`歌手详情失败, 返回歌手列表哦`);
         }
-      })
+      });
     },
     _normallizeSongs(data) {
       // let arr = []
@@ -53,7 +54,7 @@ export default {
   components: {
     MusicList
   }
-}
+};
 </script>
 <style lang="less" scoped>
 .singer-detail {
@@ -64,13 +65,14 @@ export default {
   top: 0;
   z-index: 3;
   background: #222;
-  &.fade-enter-active,
-  &.fade.leave-to {
-    transition: all .5s;
-  }
-  &.fade-enter,
-  &.fade-leave {
-    transform: translate3d(100%, 0, 0);
-  }
+  overflow: hidden;
+}
+.fade-enter-active,
+.fade.leave-to {
+  transition: all 0.5s;
+}
+.fade-enter,
+.fade-leave {
+  transform: translate3d(100%, 0, 0);
 }
 </style>

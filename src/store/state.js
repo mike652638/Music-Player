@@ -1,4 +1,5 @@
 const state = {
-  singer: {}
+  singer: {},
+  topFixed: false
 }
 export default state
