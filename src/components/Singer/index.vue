@@ -2,7 +2,7 @@
   <div class="singer">
     <list-view :data="singerList" @selectItem="currentClick" />
     <loading :show="!singerList.length" />
-    <router-view></router-view>
+    <router-view></router-view>   
   </div>
 </template>
 <script>
@@ -82,7 +82,7 @@ export default {
       return hot.concat(ret);
     },
     currentClick(singer) {
-      this.setSinger(singer)
+      this.setSinger(singer);
       this.$router.push({
         path: `/singer/${singer.id}`
       });

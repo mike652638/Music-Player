@@ -1,8 +1,6 @@
 <template>
-  <transition name="fade">
-    <div class="singer-detail">
-      <music-list :data="singerDetail" />
-    </div>
+  <transition name="slide">
+    <music-list class="singer-detail" :data="singerDetail" />
   </transition>
 </template>
 <script>
@@ -27,7 +25,7 @@ export default {
   methods: {
     _getDetail() {
       if (!this.singer.id) {
-        this.$router.push("/singer");
+        this.$router.push("/singer")
         return;
       }
       let data = Object.assign({}, config.singerDetailParam, {
@@ -66,13 +64,14 @@ export default {
   z-index: 3;
   background: #222;
   overflow: hidden;
-}
-.fade-enter-active,
-.fade.leave-to {
-  transition: all 0.5s;
-}
-.fade-enter,
-.fade-leave {
-  transform: translate3d(100%, 0, 0);
+  &.slide-enter-active,
+  &.slide-leave-active {
+    transition: all 0.5s;
+  }
+  &.slide-enter,
+  &.slide-leave-to {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
 }
 </style>
