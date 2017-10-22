@@ -22,7 +22,7 @@ export default {
     },
     probeType: {
       type: Number,
-      default: 1
+      default: 2
     }
   },
   mounted() {

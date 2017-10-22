@@ -1,16 +1,22 @@
 <template>
   <div class="music-list">
-    <div class="back" @click="goBack">
+    <div class="back" :class="active" @click="goBack">
       <i class="icon-back"></i>
     </div>
-    <h2 class="title">{{data.singer_name}}</h2>
-    <div class="bg-image" :style="bgImage"></div>
-    <song-list :songs="data.list" />
+    <h2 class="title" :class="active">{{data.singer_name}}</h2>
+    <div class="bg-image" :class="{'active': topFixed}" :style="bgImage">
+      <div class="filter"></div>
+    </div>
+    <Scroll class="scroll-wrap" ref="Scroll" :listenScroll="true" @scroll="scroll">
+      <song-list :songs="data.list" />
+    </Scroll>
+    <loading :show="showLoading" />
   </div>
 </template>
 <script>
+import Loading from "containers/Loading"
+import Scroll from "containers/Scroll"
 import SongList from "containers/SongList"
-import { mapGetters } from "vuex"
 export default {
   name: "MusicList",
   props: {
@@ -21,24 +27,52 @@ export default {
       }
     }
   },
-  created() {},
+  data() {
+    return {
+      scrollY: 0,
+      showLoading: true
+    };
+  },
   computed: {
-    ...mapGetters(["topFixed"]),
     bgImage() {
       if (!this.data.singer_mid) {
         return;
       }
       return `background-image: url(https://y.gtimg.cn/music/photo_new/T001R300x300M000${this
-        .data.singer_mid}.jpg?max_age=2592000)`
+        .data.singer_mid}.jpg?max_age=2592000)`;
+    },
+    topFixed() {
+      console.log(this.scrollY)
+      if (this.scrollY > 250) {
+        return true
+      } else {
+        return false
+      }
+    },
+    active() {
+      return !this.topFixed
     }
   },
   methods: {
     goBack() {
-      this.$router.back()
+      this.$router.back();
+    },
+    scroll(pos) {
+      this.scrollY = -pos.y;
+    }
+  },
+  watch: {
+    data() {
+      this.$nextTick(() => {
+        this.$refs.Scroll.refresh()
+        this.showLoading = false        
+      });
     }
   },
   components: {
-    SongList
+    SongList,
+    Scroll,
+    Loading
   }
 };
 </script>
@@ -49,11 +83,23 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
+  .scroll-wrap {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 290px;
+    z-index: 100;
+    background: #222;
+  }
   .back {
     position: absolute;
     top: 0;
     left: 6px;
     z-index: 100;
+    &.active {
+      z-index: 101;
+    }
     .icon-back {
       display: block;
       padding: 10px;
@@ -81,9 +127,17 @@ export default {
     width: 100%;
     padding-top: 70%;
     background-size: cover;
+    .filter {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(7, 17, 27, 0.4);
+    }
     &.active {
-      padding-top: 40px;
-      z-index: 10000;
+      padding-top: 10%;
+      z-index: 120;
     }
   }
 }

@@ -6,13 +6,13 @@
   </div>
 </template>
 <script>
-import { getSingerList } from "api/singer";
-import * as config from "api/config";
-import Loading from "containers/Loading";
-import ListView from "containers/ListView";
-import { mapMutations } from "vuex";
-const HOT_NAME = "热门";
-const HOT_LENGTH = 10;
+import { getSingerList } from "api/singer"
+import * as config from "api/config"
+import ListView from "containers/ListView"
+import Loading from "containers/Loading"
+import { mapMutations } from "vuex"
+const HOT_NAME = "热门"
+const HOT_LENGTH = 10
 export default {
   name: "singer",
   data() {

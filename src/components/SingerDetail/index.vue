@@ -4,11 +4,11 @@
   </transition>
 </template>
 <script>
-import { mapGetters } from "vuex";
-import { getSingerDetail } from "api/singer";
-import * as config from "api/config";
-import MusicList from "components/MusicList";
-import { createSong } from "common/js/song";
+import { mapGetters } from "vuex"
+import { getSingerDetail } from "api/singer"
+import * as config from "api/config"
+import MusicList from "components/MusicList"
+import { createSong } from "common/js/song"
 export default {
   name: "scrollDetail",
   data() {
