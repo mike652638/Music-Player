@@ -25,8 +25,9 @@
 
 ## 已完成
 
-- 推荐页：轮播图，推荐歌单列表，loading状态，页面滚动，图片懒加载（better-scroll，vue-lazyload，jsonp，axios）
-- 歌手页：歌手列表展示，左右联动，快速入口
+- /recommand 推荐页：轮播图，推荐歌单列表（局部滚动），loading组件，图片懒加载（better-scroll，vue-lazyload，jsonp，axios）
+- /singer歌手页列表：歌手列表展示，左右联动，快速入口（类似通讯录）
+- /singer/singerdetail 歌手详情页,局部滚动，视差
 
 ## 调试工具 
 
