@@ -30,7 +30,6 @@ export default {
 </script>
 <style lang="less" scoped>
 .song-list {
-  background: #222;
   padding: 20px 30px;
   .item {
     height: 64px;

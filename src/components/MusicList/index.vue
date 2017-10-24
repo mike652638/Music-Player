@@ -1,22 +1,27 @@
 <template>
   <div class="music-list">
-    <div class="back" :class="active" @click="goBack">
+    <div class="back"  @click="goBack">
       <i class="icon-back"></i>
     </div>
-    <h2 class="title" :class="active">{{data.singer_name}}</h2>
-    <div class="bg-image" :class="{'active': topFixed}" :style="bgImage">
+    <h2 class="title" >{{data.singer_name}}</h2>
+    <div ref="bgImage"class="bg-image" :style="bgImage">
       <div class="filter"></div>
     </div>
-    <Scroll class="scroll-wrap" ref="Scroll" :listenScroll="true" @scroll="scroll">
+    <div class="bg-layer" ref="bgLayer">
+    </div>
+    <Scroll class="scroll-wrap" ref="Scroll" :listen-scroll="true" :probe-type="3" @scroll="scroll">
       <song-list :songs="data.list" />
     </Scroll>
-    <loading :show="showLoading" />
+    <div class="load-wrap">
+      <loading :show="showLoading" />      
+    </div>
   </div>
 </template>
 <script>
 import Loading from "containers/Loading"
 import Scroll from "containers/Scroll"
 import SongList from "containers/SongList"
+const RESERVE_HEIGHT = 40
 export default {
   name: "MusicList",
   props: {
@@ -36,21 +41,10 @@ export default {
   computed: {
     bgImage() {
       if (!this.data.singer_mid) {
-        return;
+        return
       }
       return `background-image: url(https://y.gtimg.cn/music/photo_new/T001R300x300M000${this
-        .data.singer_mid}.jpg?max_age=2592000)`;
-    },
-    topFixed() {
-      console.log(this.scrollY)
-      if (this.scrollY > 250) {
-        return true
-      } else {
-        return false
-      }
-    },
-    active() {
-      return !this.topFixed
+        .data.singer_mid}.jpg?max_age=2592000)`
     }
   },
   methods: {
@@ -58,7 +52,7 @@ export default {
       this.$router.back();
     },
     scroll(pos) {
-      this.scrollY = -pos.y;
+      this.scrollY = pos.y
     }
   },
   watch: {
@@ -67,7 +61,18 @@ export default {
         this.$refs.Scroll.refresh()
         this.showLoading = false        
       });
+    },
+    scrollY(newY) {
+      let translateHeight = -newY
+      if (translateHeight > this.imageHeight) {
+        translateHeight = this.imageHeight - RESERVE_HEIGHT
+      } 
+      this.$refs.bgLayer.style.transform = `translate3d(0, ${-translateHeight}px, 0)`
     }
+  },
+  mounted() {
+    this.imageHeight = this.$refs.bgImage.clientHeight
+    this.$refs.Scroll.$el.style.top = `${this.imageHeight}px`
   },
   components: {
     SongList,
@@ -88,7 +93,6 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
-    top: 290px;
     z-index: 100;
     background: #222;
   }
@@ -97,9 +101,6 @@ export default {
     top: 0;
     left: 6px;
     z-index: 100;
-    &.active {
-      z-index: 101;
-    }
     .icon-back {
       display: block;
       padding: 10px;
@@ -135,10 +136,11 @@ export default {
       height: 100%;
       background: rgba(7, 17, 27, 0.4);
     }
-    &.active {
-      padding-top: 10%;
-      z-index: 120;
-    }
+  }
+  .bg-layer {
+    position: relative;
+    height: 100%;
+    background: #222;
   }
 }
 </style>
