@@ -72,10 +72,11 @@ export default {
       }
       let translateHeight = -newY;
       if (translateHeight > this.imageHeight - RESERVE_HEIGHT) {
-        translateHeight = this.imageHeight - RESERVE_HEIGHT;
-        this.topFixed = true;
+        translateHeight = this.imageHeight - RESERVE_HEIGHT
+        this.$refs.bgImage.style.zIndex = 111    
+        this.topFixed = true
       } else {
-        this.topFixed = false;
+        this.topFixed = false
       }
 
       this.$refs.bgLayer.style.transform = `translate3d(0, ${-translateHeight}px, 0)`;
