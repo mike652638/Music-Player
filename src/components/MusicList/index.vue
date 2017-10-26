@@ -5,7 +5,7 @@
     </div>
     <h2 class="title" >{{data.singer_name}}</h2>
     <div ref="bgImage" class="bg-image" :class="{'active': topFixed}" :style="bgImage">
-      <div ref="playRef" v-show="data.list.length > 0" class="play-wrapper">
+      <div ref="playRef" v-show="playShow" class="play-wrapper">
         <div class="play">
           <i class="icon-play"></i>
           <span class="text">随机播放全部</span>
@@ -24,10 +24,10 @@
   </div>
 </template>
 <script>
-import Loading from "containers/Loading";
-import Scroll from "containers/Scroll";
-import SongList from "containers/SongList";
-const RESERVE_HEIGHT = 40;
+import Loading from "containers/Loading"
+import Scroll from "containers/Scroll"
+import SongList from "containers/SongList"
+const RESERVE_HEIGHT = 40
 export default {
   name: "MusicList",
   props: {
@@ -42,16 +42,18 @@ export default {
     return {
       scrollY: 0,
       showLoading: true,
-      topFixed: false
-    };
+      topFixed: false,
+      playShow: false
+    }
   },
   computed: {
     bgImage() {
       if (!this.data.singer_mid) {
         return;
       }
+
       return `background-image: url(https://y.gtimg.cn/music/photo_new/T001R300x300M000${this
-        .data.singer_mid}.jpg?max_age=2592000)`;
+        .data.singer_mid}.jpg?max_age=2592000)`
     }
   },
   methods: {
@@ -65,9 +67,10 @@ export default {
   watch: {
     data() {
       this.$nextTick(() => {
-        this.$refs.Scroll.refresh();
-        this.showLoading = false;
-      });
+        this.$refs.Scroll.refresh()
+        this.showLoading = false
+        this.playShow = true
+      })
     },
     scrollY(newY) {
       if (newY > 0) {
