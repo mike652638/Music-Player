@@ -5,6 +5,12 @@
     </div>
     <h2 class="title" >{{data.singer_name}}</h2>
     <div ref="bgImage" class="bg-image" :class="{'active': topFixed}" :style="bgImage">
+      <div ref="playRef" v-show="data.length > 0" class="play-wrapper">
+        <div class="play">
+          <i class="icon-play"></i>
+          <span class="text">随机播放全部</span>
+        </div>
+      </div>
       <div class="filter"></div>
     </div>
     <div class="bg-layer" ref="bgLayer">
@@ -65,18 +71,20 @@ export default {
     },
     scrollY(newY) {
       if (newY > 0) {
-        this.$refs.bgImage.style.transform = `scale(${(newY + this.imageHeight) / this.imageHeight})`;
+        this.$refs.bgImage.style.transform = `scale(${(newY +
+          this.imageHeight) /
+          this.imageHeight})`;
         this.$refs.bgImage.style.zIndex = 101;
-      } else if(`${(newY + this.imageHeight) / this.imageHeight}` <= 1){
+      } else if (`${(newY + this.imageHeight) / this.imageHeight}` <= 1) {
         this.$refs.bgImage.style.zIndex = 0;
       }
       let translateHeight = -newY;
       if (translateHeight > this.imageHeight - RESERVE_HEIGHT) {
-        translateHeight = this.imageHeight - RESERVE_HEIGHT
-        this.$refs.bgImage.style.zIndex = 111    
-        this.topFixed = true
+        translateHeight = this.imageHeight - RESERVE_HEIGHT;
+        this.$refs.bgImage.style.zIndex = 111;
+        this.topFixed = true;
       } else {
-        this.topFixed = false
+        this.topFixed = false;
       }
 
       this.$refs.bgLayer.style.transform = `translate3d(0, ${-translateHeight}px, 0)`;
@@ -94,6 +102,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+@import '~common/less/const.less';
 .music-list {
   position: fixed;
   top: 0;
@@ -140,6 +149,34 @@ export default {
     width: 100%;
     padding-top: 70%;
     background-size: cover;
+    .play-wrapper {
+      position: absolute;
+      bottom: 20px;
+      z-index: 50;
+      width: 100%;
+      .play {
+        box-sizing: border-box;
+        width: 135px;
+        padding: 7px 0;
+        margin: 0 auto;
+        text-align: center;
+        border: 1px solid @color-theme;
+        color: @color-theme;
+        border-radius: 100px;
+        font-size: 0;
+        .icon-play {
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 6px;
+          font-size: @font-size-medium-x;
+        }
+        .text {
+          display: inline-block;
+          vertical-align: middle;
+          font-size: @font-size-small;
+        }
+      }
+    }
     &.active {
       padding-top: 10%;
     }
