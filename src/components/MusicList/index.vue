@@ -5,7 +5,7 @@
     </div>
     <h2 class="title" >{{data.singer_name}}</h2>
     <div ref="bgImage" class="bg-image" :class="{'active': topFixed}" :style="bgImage">
-      <div ref="playRef" v-show="playShow" class="play-wrapper">
+      <div ref="playRef" v-show="!topFixed" class="play-wrapper">
         <div class="play">
           <i class="icon-play"></i>
           <span class="text">随机播放全部</span>
@@ -24,10 +24,10 @@
   </div>
 </template>
 <script>
-import Loading from "containers/Loading"
-import Scroll from "containers/Scroll"
-import SongList from "containers/SongList"
-const RESERVE_HEIGHT = 40
+import Loading from "containers/Loading";
+import Scroll from "containers/Scroll";
+import SongList from "containers/SongList";
+const RESERVE_HEIGHT = 40;
 export default {
   name: "MusicList",
   props: {
@@ -43,17 +43,15 @@ export default {
       scrollY: 0,
       showLoading: true,
       topFixed: false,
-      playShow: false
-    }
+    };
   },
   computed: {
     bgImage() {
       if (!this.data.singer_mid) {
         return;
       }
-
       return `background-image: url(https://y.gtimg.cn/music/photo_new/T001R300x300M000${this
-        .data.singer_mid}.jpg?max_age=2592000)`
+        .data.singer_mid}.jpg?max_age=2592000)`;
     }
   },
   methods: {
@@ -69,25 +67,24 @@ export default {
       this.$nextTick(() => {
         this.$refs.Scroll.refresh()
         this.showLoading = false
-        this.playShow = true
       })
     },
     scrollY(newY) {
       if (newY > 0) {
         this.$refs.bgImage.style.transform = `scale(${(newY +
           this.imageHeight) /
-          this.imageHeight})`;
-        this.$refs.bgImage.style.zIndex = 101;
+          this.imageHeight})`
+        this.$refs.bgImage.style.zIndex = 101
       } else if (`${(newY + this.imageHeight) / this.imageHeight}` <= 1) {
-        this.$refs.bgImage.style.zIndex = 0;
+        this.$refs.bgImage.style.zIndex = 0
       }
       let translateHeight = -newY;
       if (translateHeight > this.imageHeight - RESERVE_HEIGHT) {
-        translateHeight = this.imageHeight - RESERVE_HEIGHT;
-        this.$refs.bgImage.style.zIndex = 111;
-        this.topFixed = true;
+        translateHeight = this.imageHeight - RESERVE_HEIGHT
+        this.$refs.bgImage.style.zIndex = 111
+        this.topFixed = true
       } else {
-        this.topFixed = false;
+        this.topFixed = false
       }
 
       this.$refs.bgLayer.style.transform = `translate3d(0, ${-translateHeight}px, 0)`;
@@ -105,7 +102,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-@import '~common/less/const.less';
+@import "~common/less/const.less";
 .music-list {
   position: fixed;
   top: 0;

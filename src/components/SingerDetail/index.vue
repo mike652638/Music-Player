@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <music-list class="singer-detail" :data="singerDetail" />
+    <music-list v-if="singer.id" class="singer-detail" :data="singerDetail" />
   </transition>
 </template>
 <script>
@@ -20,13 +20,13 @@ export default {
     ...mapGetters(["singer"])
   },
   created() {
-    this._getDetail();
+    this._getDetail()
   },
   methods: {
     _getDetail() {
       if (!this.singer.id) {
         this.$router.push("/singer")
-        return;
+        return
       }
       let data = Object.assign({}, config.singerDetailParam, {
         singermid: this.singer.id
