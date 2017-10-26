@@ -5,7 +5,7 @@
     </div>
     <h2 class="title" >{{data.singer_name}}</h2>
     <div ref="bgImage" class="bg-image" :class="{'active': topFixed}" :style="bgImage">
-      <div ref="playRef" v-show="data.length > 0" class="play-wrapper">
+      <div ref="playRef" v-show="data.list.length > 0" class="play-wrapper">
         <div class="play">
           <i class="icon-play"></i>
           <span class="text">随机播放全部</span>
