@@ -24,10 +24,12 @@
   </div>
 </template>
 <script>
-import Loading from "containers/Loading";
-import Scroll from "containers/Scroll";
-import SongList from "containers/SongList";
-const RESERVE_HEIGHT = 40;
+import Loading from "containers/Loading"
+import Scroll from "containers/Scroll"
+import SongList from "containers/SongList"
+import { prefixStyle } from 'common/js/dom'
+let transform = prefixStyle('transform')
+const RESERVE_HEIGHT = 40
 export default {
   name: "MusicList",
   props: {
@@ -71,7 +73,7 @@ export default {
     },
     scrollY(newY) {
       if (newY > 0) {
-        this.$refs.bgImage.style.transform = `scale(${(newY +
+        this.$refs.bgImage.style[transform] = `scale(${(newY +
           this.imageHeight) /
           this.imageHeight})`
         this.$refs.bgImage.style.zIndex = 101
@@ -87,7 +89,7 @@ export default {
         this.topFixed = false
       }
 
-      this.$refs.bgLayer.style.transform = `translate3d(0, ${-translateHeight}px, 0)`;
+      this.$refs.bgLayer.style[transform] = `translate3d(0, ${-translateHeight}px, 0)`;
     }
   },
   mounted() {
