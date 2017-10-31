@@ -26,5 +26,7 @@ let vender = (() => {
   }
 })()
 export function prefixStyle(style) {
-  return `${vender}${style.charAt(0).toUpperCase()}${style.substr(1)}`
+  if (style === 'transform') {
+    return `${vender}${style.charAt(0).toUpperCase()}${style.substr(1)}`
+  }
 }

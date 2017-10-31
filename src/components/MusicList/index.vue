@@ -6,7 +6,7 @@
     <h2 class="title" >{{data.singer_name}}</h2>
     <div ref="bgImage" class="bg-image" :class="{'active': topFixed}" :style="bgImage">
       <div ref="playRef" v-show="!topFixed" class="play-wrapper">
-        <div class="play">
+        <div class="play" @click="playSongs">
           <i class="icon-play"></i>
           <span class="text">随机播放全部</span>
         </div>
@@ -16,18 +16,19 @@
     <div class="bg-layer" ref="bgLayer">
     </div>
     <Scroll class="scroll-wrap" ref="Scroll" :listen-scroll="true" :probe-type="3" @scroll="scroll">
-      <song-list :songs="data.list" />
+      <song-list :songs="data.list" @select="selectItem"/>
     </Scroll>
     <div class="load-wrap">
-      <loading :show="showLoading" />      
+      <loading :show="showLoading" />
     </div>
   </div>
 </template>
 <script>
-import Loading from "containers/Loading"
 import Scroll from "containers/Scroll"
+import Loading from "containers/Loading"
 import SongList from "containers/SongList"
 import { prefixStyle } from 'common/js/dom'
+import { mapActions } from 'vuex'
 let transform = prefixStyle('transform')
 const RESERVE_HEIGHT = 40
 export default {
@@ -44,8 +45,8 @@ export default {
     return {
       scrollY: 0,
       showLoading: true,
-      topFixed: false,
-    };
+      topFixed: false
+    }
   },
   computed: {
     bgImage() {
@@ -62,7 +63,18 @@ export default {
     },
     scroll(pos) {
       this.scrollY = pos.y;
-    }
+    },
+    playSongs() {
+    },
+    selectItem(item, index) {
+      this.selectPlay({
+        list: this.data.list,
+        index
+      })
+    },
+    ...mapActions([
+      'selectPlay'
+    ])
   },
   watch: {
     data() {
