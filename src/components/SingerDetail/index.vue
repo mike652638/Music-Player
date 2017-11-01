@@ -30,7 +30,7 @@ export default {
       }
       let data = Object.assign({}, config.singerDetailParam, {
         singermid: this.singer.id
-      });
+      })
       getSingerDetail(
         config.singerDetailUrl,
         data,
