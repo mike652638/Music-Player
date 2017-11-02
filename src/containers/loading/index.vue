@@ -20,6 +20,7 @@ export default {
 <style lang="less" scoped>
 .loading {
   .loading-wrap {
+    z-index: 10000000;
     top: 50%;
     left: 50%;
     transform: translateY(-50%);
