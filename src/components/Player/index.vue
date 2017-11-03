@@ -1,10 +1,10 @@
 <template>
-  <div v-if="currentSong" class="player" v-show="playList.length > 0">
+  <div class="player" v-show="playList.length > 0">
     <transition name="normal"
                 @enter="enter"
                 @after-enter="afterEnter"
                 @leave="leave"
-                @after-leave="afterLeave"
+                @after-leave="afterLeave">
     >
       <div class="normal-player" v-show="fullScreen">
         <div class="background">
@@ -14,8 +14,8 @@
           <div class="back" @click="back">
             <i class="icon-back"></i>
           </div>
-          <p class="title">{{currentSong.musicData.songname}}</p>
-          <p class="subtitle">{{currentSong.musicData.singer[0].name}}</p>
+          <p class="title" v-if="currentSong">{{currentSong.musicData.songname}}</p>
+          <p class="subtitle" v-if="currentSong">{{currentSong.musicData.singer[0].name}}</p>
         </div>
         <div class="middle">
           <div class="middle-l" ref="middleL">
@@ -76,15 +76,14 @@
           <img :src="bgImg" width="40" height="40">
         </div>
         <div class="text">
-          <p class="name">{{currentSong.musicData.songname}}</p>
-          <p class="desc">{{currentSong.musicData.singer[0].name}}</p>
+          <p class="name" v-if="currentSong">{{currentSong.musicData.songname}}</p>
+          <p class="desc" v-if="currentSong">{{currentSong.musicData.singer[0].name}}</p>
         </div>
         <div class="control">
           <!-- <my-progress-circle :percent="percent" :radius="32">
             <i @click.stop="togglePlaying" :class="playing ? 'icon-pause-mini' : 'icon-play-mini'" class="icon-mini"></i>
           </my-progress-circle> -->
         </div>
-
         <div class="control">
           <i class="icon-playlist"></i>
         </div>
@@ -96,6 +95,8 @@
 import { mapGetters, mapMutations } from 'vuex'
 import Scroll from 'containers/Scroll'
 import animations from 'create-keyframe-animation'
+import { prefixStyle } from 'common/js/dom'
+let transform = prefixStyle('transform')
 export default {
   name: 'player',
   data() {
@@ -108,12 +109,15 @@ export default {
       'currentSong'
     ]),
     bgImg() {
-      if (this.currentSong.musicData.albummid) {
+      if (this.currentSong) {
         return `https://y.gtimg.cn/music/photo_new/T002R300x300M000${this.currentSong.musicData.albummid}.jpg?max_age=2592000`
       }
     }
   },
   methods: {
+    ...mapMutations({
+      setFullScreen: 'SET_FULL_SCREEN'
+    }),
     back() {
       this.setFullScreen(false)
     },
@@ -138,25 +142,25 @@ export default {
         animation,
         presets: {
           duration: 400,
-          easing: 'linear'
+          easing: 'linear',
+          delay: 100
         }
       })
       animations.runAnimation(this.$refs.cdWrapper, 'move', done)
     },
     afterEnter() {
       animations.unregisterAnimation('move')   
-      this.$refs.cdWrapper.style.transform = ''
       this.$refs.cdWrapper.style.animation = ''      
     },
     leave(el, done) {
-      this.$refs.cdWrapper.style.transition = 'all 0.4s'
+      this.$refs.cdWrapper.style.transition = 'all 0.4s ease'
       const {x, y, scale} = this._getPosAndScale()
-      this.$refs.cdWrapper.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`
-      // this.$refs.cdWrapper.addEventListener('transitionEnd', done)
+      this.$refs.cdWrapper.style[transform] = `translate3d(${x}px, ${y}px, 0) scale(${scale})`
+      this.$refs.cdWrapper.addEventListener('transitionend', done)
     },
     afterLeave() {
-      // this.$refs.cdWrapper.style.transform = ''
-      // this.$refs.cdWrapper.style.transition = ''      
+      this.$refs.cdWrapper.style[transform] = ''
+      this.$refs.cdWrapper.style.transition = ''      
     },
     _getPosAndScale() {
       const targetWidth = 40
@@ -170,10 +174,7 @@ export default {
       return {
         x, y, scale
       }
-    },
-    ...mapMutations({
-      setFullScreen: 'SET_FULL_SCREEN'
-    })
+    }
 
   },
   components: {
@@ -394,16 +395,10 @@ export default {
       }
       &.normal-enter-active, &.normal-leave-active {
         transition: all 0.4s;
-        .top, .bottom {
-          // transition: all 0.4s cubic-bezier(0,.71,.05,.95);
-        }
       }
       &.normal-enter, &.normal-leave-to {
         opacity: 0;
         transform: translate3d(0, 100%, 0);
-        .top, .bottom {
-          // transition: translate3d(0, -100px, 0);
-        }
       }
     }
     .mini-player {
