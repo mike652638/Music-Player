@@ -39,12 +39,11 @@
 					</div>
 					<div class="progress-wrapper">
 						<span class="time time-l">{{formate(currentTime)}}</span>
-
 						<!-- 进度条组件 -->
 						<div class="progress-bar-wrapper">
+							<process></process>
 							<!-- <my-progress-bar :percent="percent" @percentChange="percentChange"></my-progress-bar> -->
 						</div>
-
 						<span class="time time-r" v-if="currentSong">{{formate(currentSong.musicData.interval)}}</span>
 					</div>
 					<div class="operators">
@@ -93,6 +92,7 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import Scroll from 'containers/Scroll'
+import Process from 'containers/Process'
 import animations from 'create-keyframe-animation'
 import { prefixStyle } from 'common/js/dom'
 let transform = prefixStyle('transform')
@@ -259,7 +259,8 @@ export default {
 		}
 	},
 	components: {
-		Scroll
+		Scroll,
+		Process
 	}
 }
 </script>

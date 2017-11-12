@@ -25,7 +25,7 @@ export default {
   methods: {
     _getDetail() {
       if (!this.singer.id) {
-        this.$router.push("/singer")
+        this.$router.push('/singer')
         return
       }
       let data = Object.assign({}, config.singerDetailParam, {
@@ -44,9 +44,6 @@ export default {
       });
     },
     _normallizeSongs(data) {
-      // let arr = []
-      // arr.push(createSong(data))
-      // return arr
     }
   },
   components: {
