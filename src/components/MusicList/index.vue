@@ -65,6 +65,7 @@ export default {
       this.scrollY = pos.y;
     },
     playSongs() {
+      
     },
     selectItem(item, index) {
       this.selectPlay({

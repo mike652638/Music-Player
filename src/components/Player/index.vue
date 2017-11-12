@@ -38,14 +38,14 @@
 						<span class="dot"></span>
 					</div>
 					<div class="progress-wrapper">
-						<span class="time time-l"></span>
+						<span class="time time-l">{{formate(currentTime)}}</span>
 
 						<!-- 进度条组件 -->
 						<div class="progress-bar-wrapper">
 							<!-- <my-progress-bar :percent="percent" @percentChange="percentChange"></my-progress-bar> -->
 						</div>
 
-						<span class="time time-r"></span>
+						<span class="time time-r" v-if="currentSong">{{formate(currentSong.musicData.interval)}}</span>
 					</div>
 					<div class="operators">
 						<div class="icon i-left">
@@ -86,7 +86,7 @@
 				</div>
 			</div>
 		</transition>
-		<audio ref="audio" v-if="currentSong" :src="`http://ws.stream.qqmusic.qq.com/${currentSong.musicData.songid}.m4a?fromtag=46`"></audio>
+		<audio ref="audio" v-if="currentSong" @timeupdate="updatetime" @error="error" @canplay="ready" :src="`http://ws.stream.qqmusic.qq.com/${currentSong.musicData.songid}.m4a?fromtag=46`"></audio>
 	</div>
 
 </template>
@@ -99,7 +99,10 @@ let transform = prefixStyle('transform')
 export default {
 	name: 'player',
 	data() {
-		return {}
+		return {
+			songReady: false,
+			currentTime: 0
+		}
 	},
 	computed: {
 		playIcon() {
@@ -129,6 +132,61 @@ export default {
 		},
 		open() {
 			this.setFullScreen(true)
+		},
+		togglePlay() {
+			this.setPlayState(!this.playing)
+		},
+		prev() {
+			if (!this.songReady) {
+				return
+			}
+			let playListLength = this.playList.length
+			this.setPlayState(false)
+			let index = this.currentIndex - 1
+			if (index < 0) {
+				index = playListLength - 1
+			}
+			this.setCurrentIndex(index)
+			this.setPlayState(true)
+			this.songReady = false
+		},
+		next() {
+			if (!this.songReady) {
+				return
+			}
+			let playListLength = this.playList.length
+			this.setPlayState(false)
+			let index = this.currentIndex + 1
+			if (index >= playListLength) {
+				index = 0
+			}
+			this.setCurrentIndex(index)
+			this.setPlayState(true)
+			this.songReady = false
+		},
+		ready() {
+			this.songReady = true
+		},
+		error() {
+			this.songReady = true
+		},
+		updatetime(e) {
+			this.currentTime = e.target.currentTime
+		},
+		formate(interval) {
+			// 向下取整
+			interval = interval | 0
+			const minute = this._pad(interval / 60 | 0)
+			const second = this._pad(interval % 60)
+			return `${minute}:${second}`
+		},
+		_pad(num, n = 2){
+			let len = num.toString().length
+			while(len < n) {
+				num = '0' + num
+				len ++
+			}
+			return num
 		},
 		enter(el, done) {
 			const { x, y, scale } = this._getPosAndScale()
@@ -180,30 +238,12 @@ export default {
 			return {
 				x, y, scale
 			}
-		},
-		togglePlay() {
-			this.setPlayState(!this.playing)
-		},
-		prev() {
-			let playListLength = this.playList.length
-			this.setPlayState(false)			
-			let index = this.currentIndex - 1
-			if (index <= 0) {
-				index = playListLength - 1
-			}
-			this.setCurrentIndex(index)
-			this.setPlayState(true)
-		},
-		next() {
-			let playListLength = this.playList.length
-			this.setPlayState(false)			
-			let index = this.currentIndex + 1
-			if (index >= playListLength) {
-				index = 0
-			}
-			this.setCurrentIndex(index)
-			this.setPlayState(true)
 		}
+	},
+	filters: {
+		// formatTime(interval) {
+		// 	this.formate(interval)
+		// }
 	},
 	watch: {
 		currentSong() {
