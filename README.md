@@ -29,7 +29,7 @@
 
 - /recommand 推荐页：轮播图，推荐歌单列表（局部滚动），loading组件，图片懒加载（better-scroll，vue-lazyload，jsonp，axios）
 - /singer歌手页列表：歌手列表展示，左右联动，快速入口（类似通讯录）
-- /singer/singerdetail 歌手详情页,局部滚动，视差，音乐播放器min，max，播放，暂停
+- /singer/singerdetail 歌手详情页,局部滚动，视差，音乐播放器min，max，播放，暂停，进度条，拖动
 ## 调试工具 
 
 - vConsole

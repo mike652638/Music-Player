@@ -41,7 +41,7 @@
 						<span class="time time-l">{{formate(currentTime)}}</span>
 						<!-- 进度条组件 -->
 						<div class="progress-bar-wrapper">
-							<process></process>
+							<process :percent="percent" @percentChange="percentChange"></process>
 							<!-- <my-progress-bar :percent="percent" @percentChange="percentChange"></my-progress-bar> -->
 						</div>
 						<span class="time time-r" v-if="currentSong">{{formate(currentSong.musicData.interval)}}</span>
@@ -119,6 +119,12 @@ export default {
 			if (this.currentSong) {
 				return `https://y.gtimg.cn/music/photo_new/T002R300x300M000${this.currentSong.musicData.albummid}.jpg?max_age=2592000`
 			}
+		},
+		percent() {
+			if (!this.currentSong) {
+				return
+			}
+			return this.currentTime / this.currentSong.musicData.interval
 		}
 	},
 	methods: {
@@ -238,6 +244,9 @@ export default {
 			return {
 				x, y, scale
 			}
+		},
+		percentChange(percent) {
+			this.$refs.audio.currentTime = this.currentSong.musicData.interval * percent
 		}
 	},
 	filters: {
