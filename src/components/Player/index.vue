@@ -39,10 +39,8 @@
 					</div>
 					<div class="progress-wrapper">
 						<span class="time time-l">{{formate(currentTime)}}</span>
-						<!-- 进度条组件 -->
 						<div class="progress-bar-wrapper">
 							<process :percent="percent" @percentChange="percentChange"></process>
-							<!-- <my-progress-bar :percent="percent" @percentChange="percentChange"></my-progress-bar> -->
 						</div>
 						<span class="time time-r" v-if="currentSong">{{formate(currentSong.musicData.interval)}}</span>
 					</div>
@@ -76,9 +74,9 @@
 					<p class="desc" v-if="currentSong">{{currentSong.musicData.singer[0].name}}</p>
 				</div>
 				<div class="control">
-					<!-- <my-progress-circle :percent="percent" :radius="32"> -->
-					<i @click.stop="togglePlay" :class="playing ? 'icon-pause-mini' : 'icon-play-mini'" class="icon-mini"></i>
-					<!-- </my-progress-circle> -->
+					<progress-circle :percent="percent" :radius="32">
+						<i @click.stop="togglePlay" :class="playing ? 'icon-pause-mini' : 'icon-play-mini'" class="icon-mini"></i>
+					</progress-circle>
 				</div>
 				<div class="control">
 					<i class="icon-playlist"></i>
@@ -93,6 +91,7 @@
 import { mapGetters, mapMutations } from 'vuex'
 import Scroll from 'containers/Scroll'
 import Process from 'containers/Process'
+import ProgressCircle from 'containers/ProgressCircle'
 import animations from 'create-keyframe-animation'
 import { prefixStyle } from 'common/js/dom'
 let transform = prefixStyle('transform')
@@ -269,7 +268,8 @@ export default {
 	},
 	components: {
 		Scroll,
-		Process
+		Process,
+		ProgressCircle
 	}
 }
 </script>
@@ -558,7 +558,7 @@ export default {
 				font-size: 32px;
 				position: absolute;
 				left: 0;
-				top: -14px;
+				top: 0;
 			}
 		}
 	}
