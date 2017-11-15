@@ -45,8 +45,8 @@
 						<span class="time time-r" v-if="currentSong">{{formate(currentSong.musicData.interval)}}</span>
 					</div>
 					<div class="operators">
-						<div class="icon i-left">
-							<i class="icon-sequence"></i>
+						<div class="icon i-left" @click="changeMode">
+							<i :class="iconMode"></i>
 						</div>
 						<div class="icon i-left" @click="prev">
 							<i class="icon-prev"></i>
@@ -88,12 +88,14 @@
 
 </template>
 <script>
+import { playMode } from 'common/js/config'
 import { mapGetters, mapMutations } from 'vuex'
 import Scroll from 'containers/Scroll'
 import Process from 'containers/Process'
 import ProgressCircle from 'containers/ProgressCircle'
 import animations from 'create-keyframe-animation'
 import { prefixStyle } from 'common/js/dom'
+import { shuffle } from 'common/js/util'
 let transform = prefixStyle('transform')
 export default {
 	name: 'player',
@@ -104,34 +106,61 @@ export default {
 		}
 	},
 	computed: {
-		playIcon() {
-			return this.playing ? 'icon-pause' : 'icon-play'
-		},
 		...mapGetters([
 			'fullScreen',
 			'playList',
 			'currentSong',
 			'playing',
-			'currentIndex'
+			'currentIndex',
+			'mode',
+			'sequenceList'
 		]),
 		bgImg() {
 			if (this.currentSong) {
 				return `https://y.gtimg.cn/music/photo_new/T002R300x300M000${this.currentSong.musicData.albummid}.jpg?max_age=2592000`
 			}
 		},
+		playIcon() {
+			return this.playing ? 'icon-pause' : 'icon-play'
+		},
 		percent() {
 			if (!this.currentSong) {
 				return
 			}
 			return this.currentTime / this.currentSong.musicData.interval
+		},
+		iconMode() {
+			return this.mode === playMode.sequence ? 'icon-sequence' : this.mode === playMode.loop ? 'icon-loop' : 'icon-random'
 		}
 	},
 	methods: {
 		...mapMutations({
 			setFullScreen: 'SET_FULL_SCREEN',
 			setPlayState: 'SET_PLAYING_STATE',
-			setCurrentIndex: 'SET_CURRENT_INDEX'
+			setCurrentIndex: 'SET_CURRENT_INDEX',
+			setPlayMode: 'SET_PLAY_MODE',
+			setPlayList: 'SET_PLAY_LIST'
 		}),
+		changeMode(){
+			const mode = (this.mode + 1) % 3
+			this.setPlayMode(mode)
+			let list = null
+			if (mode === playMode.random) {
+				list = shuffle(this.sequenceList)
+			} else if (mode == playMode.sequence){
+				list = this.sequenceList
+			} else {
+				list = [this.sequenceList[this.currentIndex]]
+			}
+			this.resetCurrentIndex(list)
+			this.setPlayList(list)			
+		},
+		resetCurrentIndex(list) {
+			let index = list.findIndex((item) => {
+				return item.index == this.currentSong.index
+			})
+			this.setCurrentIndex(index)
+		},
 		back() {
 			this.setFullScreen(false)
 		},
@@ -254,7 +283,10 @@ export default {
 		// }
 	},
 	watch: {
-		currentSong() {
+		currentSong(newSong, old = -1) {
+			if (newSong.index === old.index) {
+				return
+			}
 			this.$nextTick(() => {
 				this.$refs.audio.play()
 			})
