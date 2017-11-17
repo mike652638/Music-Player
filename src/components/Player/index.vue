@@ -83,7 +83,7 @@
 				</div>
 			</div>
 		</transition>
-		<audio ref="audio" v-if="currentSong" @timeupdate="updatetime" @error="error" @canplay="ready" :src="`http://ws.stream.qqmusic.qq.com/${currentSong.musicData.songid}.m4a?fromtag=46`"></audio>
+		<audio ref="audio" v-if="currentSong" @timeupdate="updatetime" @error="error" @canplay="ready" @ended="end" :src="`http://ws.stream.qqmusic.qq.com/${currentSong.musicData.songid}.m4a?fromtag=46`"></audio>
 	</div>
 
 </template>
@@ -141,19 +141,19 @@ export default {
 			setPlayMode: 'SET_PLAY_MODE',
 			setPlayList: 'SET_PLAY_LIST'
 		}),
-		changeMode(){
+		changeMode() {
 			const mode = (this.mode + 1) % 3
 			this.setPlayMode(mode)
 			let list = null
 			if (mode === playMode.random) {
 				list = shuffle(this.sequenceList)
-			} else if (mode == playMode.sequence){
+			} else if (mode == playMode.sequence) {
 				list = this.sequenceList
 			} else {
 				list = [this.sequenceList[this.currentIndex]]
 			}
 			this.resetCurrentIndex(list)
-			this.setPlayList(list)			
+			this.setPlayList(list)
 		},
 		resetCurrentIndex(list) {
 			let index = list.findIndex((item) => {
@@ -174,6 +174,9 @@ export default {
 			if (!this.songReady) {
 				return
 			}
+			if (this.mode === playMode.loop) {
+				this.loop()
+			}
 			let playListLength = this.playList.length
 			this.setPlayState(false)
 			let index = this.currentIndex - 1
@@ -187,6 +190,9 @@ export default {
 		next() {
 			if (!this.songReady) {
 				return
+			}
+			if (this.mode === playMode.loop) {
+				this.loop()
 			}
 			let playListLength = this.playList.length
 			this.setPlayState(false)
@@ -214,11 +220,11 @@ export default {
 			const second = this._pad(interval % 60)
 			return `${minute}:${second}`
 		},
-		_pad(num, n = 2){
+		_pad(num, n = 2) {
 			let len = num.toString().length
-			while(len < n) {
+			while (len < n) {
 				num = '0' + num
-				len ++
+				len++
 			}
 			return num
 		},
@@ -275,6 +281,17 @@ export default {
 		},
 		percentChange(percent) {
 			this.$refs.audio.currentTime = this.currentSong.musicData.interval * percent
+		},
+		end() {
+			if (this.mode === playMode.loop) {
+				this.loop()
+			} else {
+				this.next()
+			}
+		},
+		loop() {
+			this.$refs.audio.currentTime = 0
+			this.$refs.audio.play()
 		}
 	},
 	filters: {
