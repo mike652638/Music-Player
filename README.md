@@ -1,7 +1,7 @@
 
 # 移动端音乐 WebApp
 
-[项目演示地址:](https://yxuecheng.github.io/vueMusic/dist/)
+[项目演示地址:](https://yxuecheng.github.io/Music-Player/dist/#/recommend)
 
 最近晚上还有周末都加班，先放一放没完成~
 
