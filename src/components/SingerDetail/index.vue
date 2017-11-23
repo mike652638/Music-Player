@@ -1,7 +1,7 @@
 <template>
-  <transition name="slide">
-    <music-list v-if="singer.id" class="singer-detail" :data="singerDetail" />
-  </transition>
+ <transition name="slide">
+  <music-list v-if="singer.id" class="singer-detail" :data="singerDetail" />
+ </transition>
 </template>
 <script>
 import { mapGetters } from "vuex"
@@ -53,22 +53,22 @@ export default {
 </script>
 <style lang="less" scoped>
 .singer-detail {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  z-index: 3;
-  background: #222;
-  overflow: hidden;
-  &.slide-enter-active,
-  &.slide-leave-active {
-    transition: all 0.5s;
-  }
-  &.slide-enter,
-  &.slide-leave-to {
-    opacity: 0;
-    transform: translate3d(100%, 0, 0);
-  }
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	z-index: 3;
+	background: #222;
+	overflow: hidden;
+	&.slide-enter-active,
+	&.slide-leave-active {
+		transition: all 0.5s;
+	}
+	&.slide-enter,
+	&.slide-leave-to {
+		opacity: 0;
+		transform: translate3d(100%, 0, 0);
+	}
 }
 </style>

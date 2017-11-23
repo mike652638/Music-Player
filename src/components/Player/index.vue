@@ -90,19 +90,22 @@
 <script>
 import { playMode } from 'common/js/config'
 import { mapGetters, mapMutations } from 'vuex'
+import { getLyric } from '../../api/song'
 import Scroll from 'containers/Scroll'
 import Process from 'containers/Process'
 import ProgressCircle from 'containers/ProgressCircle'
 import animations from 'create-keyframe-animation'
 import { prefixStyle } from 'common/js/dom'
 import { shuffle } from 'common/js/util'
+import {Base64} from 'js-base64'
 let transform = prefixStyle('transform')
 export default {
 	name: 'player',
 	data() {
 		return {
 			songReady: false,
-			currentTime: 0
+			currentTime: 0,
+			liric: ''
 		}
 	},
 	computed: {
@@ -306,6 +309,12 @@ export default {
 			}
 			this.$nextTick(() => {
 				this.$refs.audio.play()
+			})
+			getLyric(newSong.musicData.songmid).then((res) => {
+				if (+res.retcode === 0) {
+					this.lyric = Base64.decode(res.lyric)
+					console.log(this.lyric)
+				}
 			})
 		},
 		playing(newPlay) {
