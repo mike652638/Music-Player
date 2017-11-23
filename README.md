@@ -39,7 +39,7 @@
 * /singer/singerdetail 歌手详情页 , 局部滚动，视差，音乐播放器有的功能都有（迷你
 	播放器使用了 svg 模拟播放进度）
 
-	    	## 调试工具
+## 调试工具
 
 * vConsole
 * Charles
