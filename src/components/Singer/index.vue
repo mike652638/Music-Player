@@ -1,6 +1,6 @@
 <template>
   <div class="singer">
-    <list-view :data="singerList" @selectItem="currentClick" />
+    <list-view :data="singerList" @selectItem="currentClick" ref="listView"/>
     <loading :show="!singerList.length" />
     <router-view></router-view>   
   </div>
@@ -11,10 +11,13 @@ import * as config from "api/config"
 import ListView from "containers/ListView"
 import Loading from "containers/Loading"
 import { mapMutations } from "vuex"
+import {playlistMixin} from 'common/js/mixin'
+
 const HOT_NAME = "热门"
 const HOT_LENGTH = 10
 export default {
   name: "singer",
+  mixins: [playlistMixin],
   data() {
     return {
       singerList: [],
@@ -89,7 +92,13 @@ export default {
     },
     ...mapMutations({
       setSinger: "SET_SINGER"
-    })
+    }),
+    handlePlayList(playList) {
+      const bottom = playList.length > 0 ? '60px' : ''
+      this.$refs.listView.$el.style.bottom = bottom
+      this.$refs.listView.refresh()
+      console.log(bottom)
+    }
   },
   components: {
     Loading,

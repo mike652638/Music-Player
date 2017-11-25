@@ -1,7 +1,7 @@
 <template>
-  <div class="scroll-wrap" ref="wrapper">
-    <slot></slot>
-  </div>
+ <div class="scroll-wrap" ref="wrapper">
+  <slot></slot>
+ </div>
 </template>
 <script>
 import BScroll from 'better-scroll'
@@ -44,7 +44,7 @@ export default {
       }
     },
     refresh() {
-      this.scroll.refresh()
+      this.scroll && this.scroll.refresh()
     },
     scrollTo() {
       this.scroll.scrollTo.apply(this.scroll, arguments)

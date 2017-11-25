@@ -43,6 +43,9 @@ export default {
     this.touch = {}
   },
   methods: {
+    refresh() {
+      this.$refs.scrollWrap.refresh()
+    },
     select(e, index) {
       this.current = index
       this.touch.y = e.touches[0].pageY
