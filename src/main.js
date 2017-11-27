@@ -10,7 +10,7 @@ import store from './store'
 import 'common/less/index.less'
 
 Vue.use(vueLazyLoad, {
-  loading: require('common/img/default.png')
+	loading: require('common/img/default.png')
 })
 Vue.use(Vuex)
 
@@ -19,10 +19,10 @@ fastclick.attach(document.body)
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  store,
-  // template: '<App/>',
-  // components: { App },
-  render: h => h(App)
+	el: '#app',
+	router,
+	store,
+	// template: '<App/>',
+	// components: { App },
+	render: h => h(App)
 })

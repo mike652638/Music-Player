@@ -29,7 +29,7 @@ import Loading from "containers/Loading"
 import SongList from "containers/SongList"
 import { prefixStyle } from 'common/js/dom'
 import { mapActions } from 'vuex'
-import {playlistMixin} from 'common/js/mixin'
+import { playlistMixin } from 'common/js/mixin'
 let transform = prefixStyle('transform')
 const RESERVE_HEIGHT = 40
 export default {

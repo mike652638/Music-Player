@@ -1,12 +1,12 @@
 <template>
-  <div id="app">
-    <m-header></m-header>
-    <m-tab></m-tab>
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
-    <player></player>
-  </div>
+ <div id="app">
+  <m-header></m-header>
+  <m-tab></m-tab>
+  <keep-alive>
+   <router-view></router-view>
+  </keep-alive>
+  <player></player>
+ </div>
 </template>
 
 <script>
@@ -24,4 +24,5 @@ export default {
 </script>
 
 <style>
+
 </style>

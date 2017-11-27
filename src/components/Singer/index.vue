@@ -1,9 +1,9 @@
 <template>
-  <div class="singer">
-    <list-view :data="singerList" @selectItem="currentClick" ref="listView"/>
-    <loading :show="!singerList.length" />
-    <router-view></router-view>   
-  </div>
+ <div class="singer">
+  <list-view :data="singerList" @selectItem="currentClick" ref="listView" />
+  <loading :show="!singerList.length" />
+  <router-view></router-view>
+ </div>
 </template>
 <script>
 import { getSingerList } from "api/singer"
@@ -11,7 +11,7 @@ import * as config from "api/config"
 import ListView from "containers/ListView"
 import Loading from "containers/Loading"
 import { mapMutations } from "vuex"
-import {playlistMixin} from 'common/js/mixin'
+import { playlistMixin } from 'common/js/mixin'
 
 const HOT_NAME = "热门"
 const HOT_LENGTH = 10

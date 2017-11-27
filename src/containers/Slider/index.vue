@@ -1,13 +1,13 @@
 <template>
-  <div class="slider" ref="slider">
-    <div class="slider-group clearfix" ref="sliderGroup">
-      <slot></slot>
-    </div>
-    <div class="dots">
-      <span class="dots-item" v-for="(i, index) in dots" :key="i" :class="{'active': currentIndex === index}">
-      </span>
-    </div>
+ <div class="slider" ref="slider">
+  <div class="slider-group clearfix" ref="sliderGroup">
+   <slot></slot>
   </div>
+  <div class="dots">
+   <span class="dots-item" v-for="(i, index) in dots" :key="i" :class="{'active': currentIndex === index}">
+   </span>
+  </div>
+ </div>
 </template>
 <script>
 import BScroll from 'better-scroll'
@@ -106,34 +106,34 @@ export default {
 </script>
 <style lang="less" scoped>
 .slider {
-  overflow: hidden;
-  position: relative;
-  .slider-group {
-    .pic-list {
-      float: left;
-      img {
-        width: 100%;
-      }
-    }
-  }
-  .dots {
-    position: absolute;
-    bottom: 8px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    .dots-item {
-      display: inline-block;
-      margin: 0 5px;
-      border-radius: 4px;
-      width: 8px;
-      height: 8px;
-      background-color: hsla(0, 0%, 100%, .5);
-      &.active {
-        width: 20px;
-        background-color: hsla(0, 0%, 100%, .8);
-      }
-    }
-  }
+	overflow: hidden;
+	position: relative;
+	.slider-group {
+		.pic-list {
+			float: left;
+			img {
+				width: 100%;
+			}
+		}
+	}
+	.dots {
+		position: absolute;
+		bottom: 8px;
+		left: 0;
+		right: 0;
+		text-align: center;
+		.dots-item {
+			display: inline-block;
+			margin: 0 5px;
+			border-radius: 4px;
+			width: 8px;
+			height: 8px;
+			background-color: hsla(0, 0%, 100%, 0.5);
+			&.active {
+				width: 20px;
+				background-color: hsla(0, 0%, 100%, 0.8);
+			}
+		}
+	}
 }
 </style>
