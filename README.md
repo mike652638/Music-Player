@@ -1,6 +1,6 @@
 # 移动端音乐 WebApp
 
-[项目演示地址:](https://yxuecheng.github.io/Music-Player/dist/#/recommend)
+[项目演示地址:](https://forzeny.github.io/Music-Player/dist/#/recommend)
 
 ## 平台
 
@@ -51,7 +51,7 @@ QQ音乐
 ## 预览
 
 ```bash
-$ git clone hhttps://github.com/yxuecheng/Music-Player.git
+$ git clone hhttps://github.com/forzeny/Music-Player.git
 $ npm install
 $ npm run dev
 ```

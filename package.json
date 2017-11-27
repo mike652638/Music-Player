@@ -2,7 +2,7 @@
   "name": "Music-Player",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "yxuecheng <4661042@qq.com>",
+  "author": "forzeny <4661042@qq.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

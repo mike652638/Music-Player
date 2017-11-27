@@ -1,7 +1,6 @@
 <template>
 	<div class="player" v-show="playList.length > 0">
 		<transition name="normal" @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
-			>
 			<div class="normal-player" v-show="fullScreen">
 				<div class="background">
 					<img :src="bgImg" width="100%" height="100%">
