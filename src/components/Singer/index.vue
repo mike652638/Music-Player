@@ -97,7 +97,6 @@ export default {
       const bottom = playList.length > 0 ? '60px' : ''
       this.$refs.listView.$el.style.bottom = bottom
       this.$refs.listView.refresh()
-      console.log(bottom)
     }
   },
   components: {
