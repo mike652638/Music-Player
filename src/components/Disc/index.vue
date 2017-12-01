@@ -37,7 +37,11 @@ export default {
         param: 'jsonpCallback',
       }).then((res) => {
         if (res.code === ERR_OK) {
-          this.songs = this._normalizeSongs(res.cdlist[0].songlist)
+          console.info(`需要代理`)
+          setTimeout(() => {
+            this.$router.push('/recommend')
+          }, 1000)
+          return
         }
       })
     },
