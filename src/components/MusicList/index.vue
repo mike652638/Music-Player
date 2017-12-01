@@ -208,7 +208,7 @@ export default {
 			}
 		}
 		&.active {
-			padding-top: 10%;
+			padding-top: 15%;
 		}
 		.filter {
 			position: absolute;
