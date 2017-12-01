@@ -3,8 +3,8 @@
   <div class="back" @click="goBack">
    <i class="icon-back"></i>
   </div>
-  <h2 class="title">{{data.singer_name}}</h2>
-  <div ref="bgImage" class="bg-image" :class="{'active': topFixed}" :style="bgImage">
+  <h2 class="title">{{title}}</h2>
+  <div ref="bgImage" class="bg-image" :class="{'active': topFixed}" :style="bgStyle">
    <div ref="playRef" v-show="!topFixed" class="play-wrapper">
     <div class="play" @click="playSongs">
      <i class="icon-play"></i>
@@ -16,7 +16,7 @@
   <div class="bg-layer" ref="bgLayer">
   </div>
   <Scroll class="scroll-wrap" ref="Scroll" :listen-scroll="true" :probe-type="3" @scroll="scroll">
-   <song-list :songs="data.list" @select="selectItem" />
+   <song-list :songs="songs" @select="selectItem" />
   </Scroll>
   <div class="load-wrap">
    <loading :show="showLoading" />
@@ -36,11 +36,19 @@ export default {
   name: "MusicList",
   mixins: [playlistMixin],
   props: {
-    data: {
-      type: Object,
+    songs: {
+      type: Array,
       default() {
-        return {};
+        return []
       }
+    },
+    bgImage: {
+      type: String,
+      default: ''
+    },
+    title: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -51,12 +59,8 @@ export default {
     }
   },
   computed: {
-    bgImage() {
-      if (!this.data.singer_mid) {
-        return;
-      }
-      return `background-image: url(https://y.gtimg.cn/music/photo_new/T001R300x300M000${this
-        .data.singer_mid}.jpg?max_age=2592000)`;
+    bgStyle() {
+      return `background-image:url(${this.bgImage})`
     }
   },
   methods: {
@@ -68,12 +72,12 @@ export default {
     },
     playSongs() {
       this.randomPlay({
-        list: this.data.list
+        list: this.songs
       })
     },
     selectItem(item, index) {
       this.selectPlay({
-        list: this.data.list,
+        list: this.songs,
         index
       })
     },
@@ -88,7 +92,7 @@ export default {
     }
   },
   watch: {
-    data() {
+    songs() {
       this.$nextTick(() => {
         this.$refs.Scroll.refresh()
         this.showLoading = false
@@ -134,6 +138,7 @@ export default {
 	bottom: 0;
 	left: 0;
 	right: 0;
+	background: #222;
 	.scroll-wrap {
 		position: fixed;
 		bottom: 0;

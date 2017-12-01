@@ -1,6 +1,6 @@
 <template>
  <transition name="slide">
-  <music-list v-if="singer.id" class="singer-detail" :data="singerDetail" />
+  <music-list v-if="singer.id" class="singer-detail" :title="singerDetail.singer_name" :bgImage="bgImage" :songs="songs"/>
  </transition>
 </template>
 <script>
@@ -17,7 +17,16 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["singer"])
+    ...mapGetters(["singer"]),
+    bgImage() {
+      if(!this.singerDetail.singer_mid) {
+        return
+      }
+      return `https://y.gtimg.cn/music/photo_new/T001R300x300M000${this.singerDetail.singer_mid}.jpg?max_age=2592000`
+    },
+    songs() {
+      return this.singerDetail.list
+    }
   },
   created() {
     this._getDetail()
@@ -43,7 +52,7 @@ export default {
         }
       });
     },
-    _normallizeSongs(data) {
+    _normallizeSongs(data) { 
     }
   },
   components: {
