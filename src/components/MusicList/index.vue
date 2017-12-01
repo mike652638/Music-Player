@@ -149,7 +149,7 @@ export default {
 	}
 	.back {
 		position: absolute;
-		top: 0;
+		top: 15px;
 		left: 6px;
 		z-index: 121;
 		.icon-back {
@@ -161,7 +161,7 @@ export default {
 	}
 	.title {
 		position: absolute;
-		top: 0;
+		top: 15px;
 		left: 10%;
 		z-index: 121;
 		width: 80%;

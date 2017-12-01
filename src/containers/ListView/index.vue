@@ -108,7 +108,7 @@ export default {
 <style lang="less" scoped>
 .list-view {
 	position: fixed;
-	top: 88px;
+	top: 59px;
 	bottom: 0px;
 	right: 0;
 	left: 0;

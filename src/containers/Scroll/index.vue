@@ -32,6 +32,9 @@ export default {
   },
   methods: {
     _initScroll() {
+      if (!this.$refs.wrapper) {
+        return
+      }
       this.scroll = new BScroll(this.$refs.wrapper, {
         click: this.click,
         probeType: this.probeType,

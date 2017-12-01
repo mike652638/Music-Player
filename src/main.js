@@ -10,7 +10,7 @@ import store from './store'
 import 'common/less/index.less'
 
 Vue.use(vueLazyLoad, {
-	loading: require('common/img/default.png')
+	loading: require('common/img/default.jpeg')
 })
 Vue.use(Vuex)
 

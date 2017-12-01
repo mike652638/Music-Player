@@ -447,6 +447,8 @@ export default {
 			filter: blur(20px);
 		}
 		.top {
+			position: relative;
+			top: 15px;
 			.back {
 				position: absolute;
 				top: 0;

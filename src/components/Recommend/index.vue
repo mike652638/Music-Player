@@ -15,7 +15,7 @@
      <div class="list-wrap">
       <h1 class="title">热门歌单推荐</h1>
       <ul class="content">
-       <li class="content-item" v-for="i in songList" :key="i.id">
+       <li @click="selectItem(i)" class="content-item" v-for="i in songList" :key="i.id">
         <div class="list-pic">
          <img v-lazy="i.imgurl" alt="" width="60" height="60">
         </div>
@@ -27,12 +27,12 @@
       </ul>
      </div>
     </div>
-
    </div>
   </scroll>
   <div class="content-loading-wrap">
    <loading :show="!songList.length" />
   </div>
+  <router-view></router-view>
  </div>
 </template>
 <script>
@@ -44,6 +44,7 @@ import Scroll from 'containers/Scroll'
 import BScroll from 'better-scroll'
 import axios from 'axios'
 import { playlistMixin } from 'common/js/mixin'
+import { mapMutations } from "vuex"
 
 export default {
   name: 'recommend',
@@ -90,7 +91,16 @@ export default {
         return
       }
       this.$refs.scrollWrap.refresh()
-    }
+    },
+    selectItem(item) {
+      this.$router.push({
+        path: `/recommend/${item.dissid}`
+      })
+      this.setDisc(item)
+    },
+    ...mapMutations({
+      setDisc: 'SET_DISC'
+    })
   },
   components: {
     Slider,
@@ -104,7 +114,7 @@ export default {
 	.scroll-wrapper {
 		position: fixed;
 		overflow: hidden;
-		top: 88px;
+		top: 59px;
 		left: 0;
 		right: 0;
 		bottom: 0;
