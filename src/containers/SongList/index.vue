@@ -1,7 +1,7 @@
 <template>
 	<div class="song-list">
 		<ul class="songs-wrap">
-			<li v-show="!songs.length" class="item" style="text-align: center">空空如也</li>
+			<li v-show="!songs.length" class="item" style="text-align: center; color: #000;">空空如也</li>
 			<li @click="selectItem(i, index)" v-for="(i, index) in songs" :key="i.id" class="item" :class="{'rank-wrap': rank}">
 				<div class="rank" :class="getRank(index)" v-show="rank">
 					<span class="icon">{{index + 1}}</span>
