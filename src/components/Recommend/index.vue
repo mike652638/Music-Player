@@ -112,6 +112,7 @@ export default {
 <style lang="less" scoped>
 .recommend {
 	.scroll-wrapper {
+		background: #fff;
 		position: fixed;
 		overflow: hidden;
 		top: 59px;
@@ -126,7 +127,7 @@ export default {
 				line-height: 65px;
 				text-align: center;
 				font-size: 14px;
-				color: #ffcd32;
+				color: #31c27c;
 			}
 			.content {
 				.content-item {
@@ -146,12 +147,12 @@ export default {
 							line-height: 20px;
 							font-size: 14px;
 							margin-bottom: 10px;
-							color: #fff;
+							color: #000;
 						}
 						.dissname {
 							line-height: 20px;
 							font-size: 14px;
-							color: rgba(255, 255, 255, 0.3);
+							color: #000;
 						}
 					}
 				}

@@ -52,7 +52,7 @@ export default {
     },
     rank: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   data() {
@@ -142,14 +142,14 @@ export default {
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background: #222;
+	background: #f4f4f4;
 	.scroll-wrap {
 		position: fixed;
 		bottom: 0;
 		left: 0;
 		right: 0;
 		z-index: 100;
-		background: #222;
+		background: #f4f4f4;
 	}
 	.back {
 		position: absolute;
@@ -160,7 +160,7 @@ export default {
 			display: block;
 			padding: 10px;
 			font-size: 22px;
-			color: #ffcd32;
+			color: #31c27c;
 		}
 	}
 	.title {
@@ -194,8 +194,8 @@ export default {
 				padding: 7px 0;
 				margin: 0 auto;
 				text-align: center;
-				border: 1px solid @color-theme;
-				color: @color-theme;
+				border: 1px solid #31c27c;
+				color: #31c27c;
 				border-radius: 100px;
 				font-size: 0;
 				.icon-play {
@@ -220,13 +220,12 @@ export default {
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: rgba(7, 17, 27, 0.4);
 		}
 	}
 	.bg-layer {
 		position: relative;
 		height: 100%;
-		background: #222;
+		background: #f4f4f4;
 	}
 }
 </style>

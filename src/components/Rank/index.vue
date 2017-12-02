@@ -105,13 +105,13 @@ export default {
 				padding: 0 20px;
 				height: 100px;
 				overflow: hidden;
-				background: @color-highlight-background;
-				color: @color-text-d;
+				background:#fff;
+				color: #000;
 				font-size: @font-size-small;
 				.song {
 					line-height: 26px;
 					.singername {
-						color: rgba(255, 255, 255, 0.2);
+						color: #000;
 					}
 				}
 			}

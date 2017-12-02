@@ -79,7 +79,7 @@ export default {
 		.progress {
 			position: absolute;
 			height: 100%;
-			background: @color-theme;
+			background: #000;
 		}
 
 		.progress-btn-wrapper {
@@ -98,7 +98,7 @@ export default {
 				height: 16px;
 				border: 3px solid @color-text;
 				border-radius: 50%;
-				background: @color-theme;
+				background: #000;
 			}
 		}
 	}

@@ -49,11 +49,11 @@ export default {
 		transform-origin: center;
 		&.progress-background {
 			transform: scale(0.9);
-			stroke: @color-theme-d;
+			stroke: #000;
 		}
 		&.progress-bar {
 			transform: scale(0.9) rotate(-90deg);
-			stroke: @color-theme;
+			stroke: #fff;
 		}
 	}
 }

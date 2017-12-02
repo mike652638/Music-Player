@@ -73,7 +73,7 @@ export default {
 	bottom: 0;
 	top: 0;
 	z-index: 3;
-	background: #222;
+	background: #f4f4f4;
 	overflow: hidden;
 	&.slide-enter-active,
 	&.slide-leave-active {

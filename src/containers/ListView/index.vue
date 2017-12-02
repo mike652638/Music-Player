@@ -123,8 +123,8 @@ export default {
 					line-height: 30px;
 					padding-left: 20px;
 					font-size: 12px;
-					color: rgba(255, 255, 255, 0.5);
-					background: #333;
+					background: rgba(255, 255, 255, 0.5);
+					color: #333;
 				}
 				.item-wrap {
 					display: flex;
@@ -135,7 +135,7 @@ export default {
 					}
 					.name {
 						margin-left: 20px;
-						color: rgba(255, 255, 255, 0.5);
+						color: #000;
 						font-size: 14px;
 					}
 				}
@@ -153,15 +153,14 @@ export default {
 		padding: 20px 0;
 		border-radius: 10px;
 		text-align: center;
-		background: rgba(0, 0, 0, 0.3);
 		font-family: Helvetica;
 		.item {
 			padding: 3px;
 			line-height: 1;
-			color: hsla(0, 0%, 100%, 0.5);
+			color: #000;
 			font-size: 12px;
 			&.active {
-				color: #ffcd32;
+				color: #31c27c;
 			}
 		}
 	}
@@ -175,8 +174,8 @@ export default {
 			line-height: 30px;
 			padding-left: 20px;
 			font-size: 12px;
-			color: rgba(255, 255, 255, 0.5);
-			background: #333;
+			background: rgba(255, 255, 255, 0.5);
+			color: #333;
 		}
 	}
 }

@@ -68,7 +68,7 @@
 			</div>
 		</transition>
 		<transition name="min">
-			<div @click="open" v-show="!fullScreen" class="mini-player">
+			<div @click="open" v-show="!fullScreen" class="mini-player" :style="bgStyle">
 				<div class="icon">
 					<img :src="bgImg" width="40" height="40">
 				</div>
@@ -134,6 +134,9 @@ export default {
 				return
 			}
 			return this.currentSong.image
+		},
+		bgStyle() {
+			return `background-image: url(${this.bgImg})`
 		},
 		url() {
 			return this.currentSong.url
@@ -472,7 +475,7 @@ export default {
 					display: block;
 					padding: 9px;
 					font-size: 22px;
-					color: #ffcd32;
+					color: #31c27c;
 					-webkit-transform: rotate(-90deg);
 					transform: rotate(-90deg);
 				}
@@ -626,9 +629,9 @@ export default {
 				align-items: center;
 				.icon {
 					flex: 1;
-					color: @color-theme;
+					color: #31c27c;
 					&.disable {
-						color: @color-theme-d;
+						color: #31c27c;
 					}
 					i {
 						font-size: 30px;
@@ -722,7 +725,7 @@ export default {
 			.icon-pause-mini,
 			.icon-playlist {
 				font-size: 30px;
-				color: @color-theme-d;
+				color: #31c27c;
 			}
 			.icon-mini {
 				font-size: 32px;
