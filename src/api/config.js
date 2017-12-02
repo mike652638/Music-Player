@@ -85,5 +85,8 @@ export const commonParams = {
   notice: 0,
   format: 'jsonp'
 }
+export const options = {
+  param: 'jsonpCallback'
+}
 // 成功状态码
 export const ERR_OK = 0

@@ -9,8 +9,8 @@
 					<div class="back" @click="back">
 						<i class="icon-back"></i>
 					</div>
-					<p class="title" v-if="currentSong">{{currentSong.musicData.songname}}</p>
-					<p class="subtitle" v-if="currentSong">{{currentSong.musicData.singer[0].name}}</p>
+					<p class="title" v-html="currentSong.name"></p>
+					<p class="subtitle" v-html="currentSong.singer"></p>
 				</div>
 				<div class="middle" @touchstart.prevent="touchStart" @touchmove.prevent="touchMove" @touchend.prevent="touchEnd">
 					<div class="middle-l" ref="middleL">
@@ -45,7 +45,7 @@
 						<div class="progress-bar-wrapper">
 							<process :percent="percent" @percentChange="percentChange"></process>
 						</div>
-						<span class="time time-r" v-if="currentSong">{{formate(currentSong.musicData.interval)}}</span>
+						<span class="time time-r">{{formate(currentSong.duration)}}</span>
 					</div>
 					<div class="operators">
 						<div class="icon i-left" @click="changeMode">
@@ -73,8 +73,8 @@
 					<img :src="bgImg" width="40" height="40">
 				</div>
 				<div class="text">
-					<p class="name" v-if="currentSong">{{currentSong.musicData.songname}}</p>
-					<p class="desc" v-if="currentSong">{{currentSong.musicData.singer[0].name}}</p>
+					<p class="name" v-html="currentSong.name"></p>
+					<p class="desc" v-html="currentSong.singer"></p>
 				</div>
 				<div class="control">
 					<progress-circle :percent="percent" :radius="32">
@@ -86,7 +86,7 @@
 				</div>
 			</div>
 		</transition>
-		<audio ref="audio" v-if="currentSong" @timeupdate="updatetime" @error="error" @canplay="ready" @ended="end" :src="`http://ws.stream.qqmusic.qq.com/${currentSong.musicData.songid}.m4a?fromtag=46`"></audio>
+		<audio ref="audio" @timeupdate="updatetime" @error="error" @canplay="ready" @ended="end" :src="url"></audio>
 	</div>
 
 </template>
@@ -130,9 +130,13 @@ export default {
 			'sequenceList'
 		]),
 		bgImg() {
-			if (this.currentSong) {
-				return `https://y.gtimg.cn/music/photo_new/T002R300x300M000${this.currentSong.musicData.albummid}.jpg?max_age=2592000`
+			if (!this.currentSong) {
+				return
 			}
+			return this.currentSong.image
+		},
+		url() {
+			return this.currentSong.url
 		},
 		playIcon() {
 			return this.playing ? 'icon-pause' : 'icon-play'
@@ -141,7 +145,7 @@ export default {
 			if (!this.currentSong) {
 				return
 			}
-			return this.currentTime / this.currentSong.musicData.interval
+			return this.currentTime / this.currentSong.duration
 		},
 		iconMode() {
 			return this.mode === playMode.sequence ? 'icon-sequence' : this.mode === playMode.loop ? 'icon-loop' : 'icon-random'
@@ -171,7 +175,7 @@ export default {
 		},
 		resetCurrentIndex(list) {
 			let index = list.findIndex((item) => {
-				return item.index == this.currentSong.index
+				return item.id == this.currentSong.id
 			})
 			this.setCurrentIndex(index)
 		},
@@ -236,11 +240,11 @@ export default {
 		updatetime(e) {
 			this.currentTime = e.target.currentTime
 		},
-		formate(interval) {
+		formate(duration) {
 			// 向下取整
-			interval = interval | 0
-			const minute = this._pad(interval / 60 | 0)
-			const second = this._pad(interval % 60)
+			duration = duration | 0
+			const minute = this._pad(duration / 60 | 0)
+			const second = this._pad(duration % 60)
 			return `${minute}:${second}`
 		},
 		_pad(num, n = 2) {
@@ -303,9 +307,9 @@ export default {
 			}
 		},
 		percentChange(percent) {
-			this.$refs.audio.currentTime = this.currentSong.musicData.interval * percent
+			this.$refs.audio.currentTime = this.currentSong.duration * percent
 			if (this.currentLyric) {
-				this.currentLyric.seek(this.currentSong.musicData.interval * percent * 1000)
+				this.currentLyric.seek(this.currentSong.duration * percent * 1000)
 			}
 		},
 		end() {
@@ -321,6 +325,21 @@ export default {
 			if (this.currentLyric) {
 				this.currentLyric.seek(0)
 			}
+		},
+		getLyric() {
+			this.currentSong.getLyric().then((lyric) => {
+				if (this.currentSong.lyric !== lyric) {
+					return
+				}
+				this.currentLyric = new Lyric(lyric, this.handleLylic)
+				if (this.playing) {
+					this.currentLyric.play()
+				}
+			}).catch(() => {
+				this.currentLyric = null
+				this.playingLyric = ''
+				this.currentLineNum = 0
+			})
 		},
 		handleLylic({ lineNum, txt }) {
 			this.currentLineNum = lineNum
@@ -382,34 +401,25 @@ export default {
 			this.$refs.middleL.style[transitionDuration] = `${time}ms`
 		}
 	},
-	filters: {
-		// formatTime(interval) {
-		// 	this.formate(interval)
-		// }
-	},
 	watch: {
-		currentSong(newSong, old = -1) {
-			if (newSong.index === old.index) {
-				return
-			}
-			this.$nextTick(() => {
+		currentSong(newSong, oldSong) {
+			if (!newSong.id) {
+          return
+        }
+        if (newSong.id === oldSong.id) {
+          return
+        }
+        if (this.currentLyric) {
+          this.currentLyric.stop()
+          this.currentTime = 0
+          this.playingLyric = ''
+          this.currentLineNum = 0
+        }
+			clearTimeout(this.timer)
+			this.timer = setTimeout(() => {
 				this.$refs.audio.play()
-			})
-			if (this.currentLyric) {
-				this.currentLyric.stop()
-			}
-			getLyric(newSong.musicData.songmid).then((res) => {
-				if (+res.retcode === 0) {
-					this.currentLyric = new Lyric(Base64.decode(res.lyric), this.handleLylic)
-					if (this.playing) {
-						this.currentLyric.play()
-					}
-				}
-			}).catch(() => {
-				this.currentLyric = null
-				this.playLyric = `暂无歌词`
-				this.currentLineNum = 0
-			})
+				this.getLyric()
+			}, 1000)
 		},
 		playing(newPlay) {
 			this.$nextTick(() => {

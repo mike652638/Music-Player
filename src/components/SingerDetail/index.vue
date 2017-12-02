@@ -1,6 +1,6 @@
 <template>
  <transition name="slide">
-  <music-list v-if="singer.id" class="singer-detail" :title="singerDetail.singer_name" :bgImage="bgImage" :songs="songs"/>
+  <music-list v-if="singer.id" class="singer-detail" :title="title" :bgImage="bgImage" :songs="songs" />
  </transition>
 </template>
 <script>
@@ -13,20 +13,17 @@ export default {
   name: "scrollDetail",
   data() {
     return {
-      singerDetail: {}
+      songs: []
     }
   },
   computed: {
     ...mapGetters(["singer"]),
-    bgImage() {
-      if(!this.singerDetail.singer_mid) {
-        return
-      }
-      return `https://y.gtimg.cn/music/photo_new/T001R300x300M000${this.singerDetail.singer_mid}.jpg?max_age=2592000`
+    title() {
+      return this.singer.name
     },
-    songs() {
-      return this.singerDetail.list
-    }
+    bgImage() {
+      return this.singer.avatar
+    },
   },
   created() {
     this._getDetail()
@@ -46,13 +43,21 @@ export default {
         config.singetDetailOpts
       ).then(res => {
         if (res.code === config.ERR_OK) {
-          this.singerDetail = res.data;
+          this.songs = this._normalizeSongs(res.data.list);
         } else {
           console.log(`歌手详情失败, 返回歌手列表哦`);
         }
       });
     },
-    _normallizeSongs(data) { 
+    _normalizeSongs(list) {
+      let ret = []
+      list.forEach((item) => {
+        let { musicData } = item
+        if (musicData.songid && musicData.albummid) {
+          ret.push(createSong({ musicData }))
+        }
+      })
+      return ret
     }
   },
   components: {

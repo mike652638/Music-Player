@@ -3,8 +3,8 @@
   <ul class="songs-wrap">
    <li @click="selectItem(i, index)" v-for="(i, index) in songs" :key="i.id" class="item">
     <div class="content">
-     <p class="name">{{i.musicData.songname}}</p>
-     <p class="desc">{{i.musicData.singer[0].name}} - {{i.musicData.albumname}}</p>
+     <p class="name">{{i.name}}</p>
+     <p class="desc">{{i.singer[0].name}} - {{i.album}}</p>
     </div>
    </li>
   </ul>

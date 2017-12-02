@@ -31,7 +31,7 @@ import { prefixStyle } from 'common/js/dom'
 import { mapActions } from 'vuex'
 import { playlistMixin } from 'common/js/mixin'
 let transform = prefixStyle('transform')
-const RESERVE_HEIGHT = 40
+const RESERVE_HEIGHT = 55
 export default {
   name: "MusicList",
   mixins: [playlistMixin],
