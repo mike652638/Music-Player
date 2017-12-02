@@ -32,6 +32,9 @@
 									{{line.txt}}
 								</p>
 							</div>
+							<div v-else>
+								<p class="text">暂无歌词</p>
+							</div>
 						</div>
 					</scroll>
 				</div>
@@ -113,7 +116,7 @@ export default {
 			currentLyric: null,
 			currentLineNum: 0,
 			currentShow: 'cd',
-			playLyric: ''
+			playLyric: '暂无歌词'
 		}
 	},
 	created() {
@@ -571,7 +574,7 @@ export default {
 						color: @color-text-l;
 						font-size: @font-size-medium;
 						&.current {
-							color: @color-text;
+							color: #31c27c;
 						}
 					}
 				}
@@ -674,7 +677,8 @@ export default {
 		z-index: 180;
 		width: 100%;
 		height: 60px;
-		background: @color-highlight-background;
+		background-repeat: no-repeat;
+		background-size: cover;
 		&.mini-enter-active,
 		&.mini-leave-active {
 			transition: all 0.4s;
