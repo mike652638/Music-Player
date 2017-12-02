@@ -1,55 +1,57 @@
 <template>
  <transition name="slide">
-  <music-list :bgImage="bgImage" :title="title" />
+  <music-list :bgImage="bgImage" :title="title" :songs="songs" :rank="rank"/>
  </transition>
 </template>
 <script>
 import MusicList from "components/MusicList"
 import { mapGetters } from 'vuex'
-import { getSongList } from 'api/recommend'
+import { getMusicList } from 'api/rank'
 import { ERR_OK } from 'api/config'
+import { createSong } from "common/js/song"
 export default {
+  name: 'TopList',
   data() {
     return {
+      songs: [],
+      rank: true
     }
   },
   created() {
-    this._getSongList()
+    this._getMusicList()
   },
   computed: {
     title() {
-      return this.disc.dissname
+      return this.topList.topTitle
     },
     bgImage() {
-      return this.disc.imgurl
+      if (this.songs.length) {
+        return this.songs[0].image
+      }
+      return this.topList.picUrl
     },
     ...mapGetters([
-      'disc'
+      'topList'
     ])
   },
   methods: {
-    _getSongList() {
-      if (!this.disc.dissid) {
-        this.$router.push('/recommend')
-        return
+    _getMusicList() {
+      if (!this.topList.id) {
+        this.$router.push('/rank')
+        return 
       }
-      getSongList(this.disc.dissid, {
-        param: 'jsonpCallback',
-      }).then((res) => {
+      getMusicList(this.topList.id).then((res) => {
         if (res.code === ERR_OK) {
-          console.info(`需要代理`)
-          setTimeout(() => {
-            this.$router.push('/recommend')
-          }, 1000)
-          return
+          this.songs = this._normalizeSongs(res.songlist)
         }
       })
     },
     _normalizeSongs(list) {
       let ret = []
-      list.forEach((musicData) => {
-        if (musicData.songid && musicData.albummid) {
-          ret.push(createSong(musicData))
+      list.forEach((item) => {
+        let { data } = item
+        if (data.songid && data.albummid) {
+          ret.push(createSong(data))
         }
       })
       return ret

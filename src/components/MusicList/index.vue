@@ -16,7 +16,7 @@
   <div class="bg-layer" ref="bgLayer">
   </div>
   <Scroll class="scroll-wrap" ref="Scroll" :listen-scroll="true" :probe-type="3" @scroll="scroll">
-   <song-list :songs="songs" @select="selectItem" />
+   <song-list :songs="songs" :rank="rank" @select="selectItem" />
   </Scroll>
   <div class="load-wrap">
    <loading :show="showLoading" />
@@ -49,6 +49,10 @@ export default {
     title: {
       type: String,
       default: ''
+    },
+    rank: {
+      type: Boolean,
+      default: true
     }
   },
   data() {

@@ -236,6 +236,10 @@ export default {
 		},
 		error() {
 			this.songReady = true
+			clearTimeout(this.timer)
+			this.timer = setTimeout(() => {
+				this.next()
+			}, 1000);
 		},
 		updatetime(e) {
 			this.currentTime = e.target.currentTime
@@ -404,17 +408,17 @@ export default {
 	watch: {
 		currentSong(newSong, oldSong) {
 			if (!newSong.id) {
-          return
-        }
-        if (newSong.id === oldSong.id) {
-          return
-        }
-        if (this.currentLyric) {
-          this.currentLyric.stop()
-          this.currentTime = 0
-          this.playingLyric = ''
-          this.currentLineNum = 0
-        }
+				return
+			}
+			if (newSong.id === oldSong.id) {
+				return
+			}
+			if (this.currentLyric) {
+				this.currentLyric.stop()
+				this.currentTime = 0
+				this.playingLyric = ''
+				this.currentLineNum = 0
+			}
 			clearTimeout(this.timer)
 			this.timer = setTimeout(() => {
 				this.$refs.audio.play()
@@ -696,7 +700,9 @@ export default {
 			justify-content: center;
 			flex: 1;
 			line-height: 20px;
+			text-overflow: ellipsis;
 			overflow: hidden;
+			white-space: nowrap;
 			.name {
 				margin-bottom: 2px;
 				font-size: @font-size-medium;
