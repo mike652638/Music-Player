@@ -65,7 +65,7 @@ export default {
 		outline: none;
 		background: #f4f4f4;
 		color: #000;
-		font-size: @font-size-medium;
+		font-size: 16px;
 		&::placeholder {
 			color: grey;
 		}
