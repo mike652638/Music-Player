@@ -1,42 +1,42 @@
 <template>
- <div class="search-box">
-  <i class="icon-search"></i>
-  <input type="text" class="box" v-model="query" ref="queryRef" :placeholder="placeholder">
-  <i class="icon-dismiss" @click="clear" v-show="query"></i>
- </div>
+	<div class="search-box">
+		<i class="icon-search"></i>
+		<input type="text" class="box" v-model="query" ref="queryRef" :placeholder="placeholder">
+		<i class="icon-dismiss" @click="clear" v-show="query"></i>
+	</div>
 </template>
 
 <script>
 
 export default {
-  components: {},
-  data() {
-    return {
-      query: ''
-    }
-  },
-  props: {
-    placeholder: {
-      type: String,
-      default: '搜索歌曲、歌手'
-    }
-  },
-  methods: {
-    clear() {
-      this.query = ''
+	components: {},
+	data() {
+		return {
+			query: ''
+		}
+	},
+	props: {
+		placeholder: {
+			type: String,
+			default: '搜索歌曲、歌手'
+		}
+	},
+	methods: {
+		clear() {
+			this.query = ''
 		},
 		setQuery(query) {
 			this.query = query
 		}
-  },
-  computed: {},
-  created() {
-    this.$watch('query', (newQuery) => {
-      this.$emit('query', newQuery)
-    })
-  },
-  mounted() { },
-  destroyed() { }
+	},
+	computed: {},
+	created() {
+		this.$watch('query', (newQuery) => {
+			this.$emit('query', newQuery)
+		})
+	},
+	mounted() { },
+	destroyed() { }
 }
 </script>
 

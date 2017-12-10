@@ -4,7 +4,7 @@
    <search-box ref="search" @query="query"></search-box>
   </div>
   <div class="suggest-wrap" v-show="queryData">
-   <Suggest :query="queryData" @select=""/>
+   <Suggest :query="queryData"/>
   </div>
   <div class="hot-search-wrap" v-show="!queryData">
    <p class="title">热门搜索</p>
