@@ -71,7 +71,7 @@
 			</div>
 		</transition>
 		<transition name="min">
-			<div @click="open" v-show="!fullScreen" class="mini-player" :style="bgStyle">
+			<div @click="open" v-show="!fullScreen" class="mini-player">
 				<div class="icon">
 					<img :src="bgImg" width="40" height="40">
 				</div>
@@ -677,6 +677,7 @@ export default {
 		z-index: 180;
 		width: 100%;
 		height: 60px;
+		background: gray;
 		background-repeat: no-repeat;
 		background-size: cover;
 		&.mini-enter-active,

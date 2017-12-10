@@ -1,4 +1,4 @@
-# 移动端音乐 WebApp
+# QQ音乐 WebApp
 
 [项目演示地址 :](https://forzeny.github.io/Music-Player/dist/#/recommend)
 
