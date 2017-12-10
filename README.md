@@ -1,4 +1,4 @@
-# QQ音乐 WebApp
+# QQ 音乐 WebApp
 
 [项目演示地址 :](https://forzeny.github.io/Music-Player/dist/#/recommend)
 
@@ -42,8 +42,8 @@
 * [x] /singer/:id 歌手详情页 , 局部滚动，视差，音乐播放器有的功能都有（迷你播放
 		器使 用了 svg 模拟播放进度，播放器核心为 audio 标签，详情查看 mdn 文档，原
 		生 touch 事件处理歌词和头像左右滑动）
-
 - [x] /rank/:id 排行页
+- [x] /search 搜索，搜索结果，热门搜索，结果播放
 
 ## 调试工具
 
