@@ -9,7 +9,11 @@
 					<p class="text" v-html="getDisplayName(item)"></p>
 				</div>
 			</li>
+			<li class="result" v-show="!result.length">无结果</li>
 		</ul>
+		<div class="loading-wrap">
+			<Loading :show="loading" />
+		</div>
 	</Scroll>
 </template>
 
@@ -21,6 +25,7 @@ import { createSong } from 'common/js/song'
 import Singer from 'common/js/singer'
 import Scroll from 'containers/Scroll'
 import { playlistMixin } from 'common/js/mixin'
+import Loading from 'containers/Loading'
 const TYPE_SINGER = 'singer'
 
 export default {
@@ -29,7 +34,8 @@ export default {
 		return {
 			page: 1,
 			perpage: 20,
-			result: []
+			result: [],
+			loading: false
 		}
 	},
 	props: {
@@ -47,7 +53,6 @@ export default {
 			!val ? '' : this.search()
 		}
 	},
-	filters: {},
 	methods: {
 		...mapMutations({
 			setSinger: 'SET_SINGER'
@@ -56,8 +61,10 @@ export default {
 			'insertSong'
 		]),
 		search() {
+			this.loading = true
 			search(this.query, this.page, this.showSinger, this.perpage).then((res) => {
 				if (res.code === ERR_OK) {
+					this.loading = false
 					this.result = this.sloveResult(res.data)
 				}
 			})
@@ -101,10 +108,10 @@ export default {
 					id: item.singermid,
 					name: item.singername
 				})
+				this.setSinger(singer)
 				this.$router.push({
 					path: `/search/${singer.id}`
 				})
-				this.setSinger(singer)
 			} else {
 				this.insertSong(item)
 			}
@@ -118,7 +125,8 @@ export default {
 	},
 	computed: {},
 	components: {
-		Scroll
+		Scroll,
+		Loading
 	}
 }
 </script>
@@ -154,6 +162,10 @@ export default {
 			font-size: @font-size-medium;
 			color: @color-text-d;
 			overflow: hidden;
+		}
+		.result {
+			text-align: center;
+			padding: 20px;
 		}
 	}
 	.no-result-wrapper {

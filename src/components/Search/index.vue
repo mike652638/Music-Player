@@ -4,7 +4,7 @@
    <search-box ref="search" @query="query"></search-box>
   </div>
   <div class="suggest-wrap" v-show="queryData">
-   <Suggest :query="queryData"/>
+   <Suggest :query="queryData" />
   </div>
   <div class="hot-search-wrap" v-show="!queryData">
    <p class="title">热门搜索</p>
@@ -12,6 +12,7 @@
     <li @click="addQuery(i.k)" class="item" v-for="i in hotkey" :key="i.id">{{i.k}}</li>
    </ul>
   </div>
+  <router-view></router-view>
  </div>
 </template>
 <script>

@@ -43,11 +43,11 @@ export default {
         config.singetDetailOpts
       ).then(res => {
         if (res.code === config.ERR_OK) {
-          this.songs = this._normalizeSongs(res.data.list);
+          this.songs = this._normalizeSongs(res.data.list)
         } else {
-          console.log(`歌手详情失败, 返回歌手列表哦`);
+          console.log(`歌手详情失败, 返回歌手列表哦`)
         }
-      });
+      })
     },
     _normalizeSongs(list) {
       let ret = []
@@ -63,7 +63,7 @@ export default {
   components: {
     MusicList
   }
-};
+}
 </script>
 <style lang="less" scoped>
 .singer-detail {

@@ -1,9 +1,8 @@
 {
-  "name": "QQ Music",
+  "name": "Music-Player",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "forzeny <4661042@qq.com>",
-  "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "npm run dev",
