@@ -54,12 +54,8 @@ export default {
 </script>
 <style lang="less" scoped>
 .search {
-	position: fixed;
 	overflow: hidden;
 	top: 59px;
-	left: 0;
-	right: 0;
-	bottom: 0;
 	.hot-search-wrap {
 		margin: 10px;
 		.title {
