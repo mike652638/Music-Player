@@ -1,7 +1,7 @@
 <template>
 	<Scroll :data="result" class="suggest-wrap" ref="scrollWrap">
 		<ul class="suggest-list">
-			<li @click="selectItem(item)" class="suggest-item" v-for="item in result" :key="item.id">
+			<li @click="selectItem(item)" class="suggest-item" v-for="item in result" :key="item.id" v-show="!loading">
 				<div class="icon">
 					<i :class="getIconCls(item)"></i>
 				</div>
