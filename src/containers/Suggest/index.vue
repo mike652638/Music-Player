@@ -9,7 +9,7 @@
 					<p class="text" v-html="getDisplayName(item)"></p>
 				</div>
 			</li>
-			<li class="result" v-show="!result.length">无结果</li>
+			<li class="result" v-show="!result.length && !loading">无结果</li>
 		</ul>
 		<div class="loading-wrap">
 			<Loading :show="loading" />
