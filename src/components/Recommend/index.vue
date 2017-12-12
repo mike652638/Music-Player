@@ -119,7 +119,10 @@ export default {
 		left: 0;
 		right: 0;
 		bottom: 0;
-	}
+  }
+  .slider-wrap {
+    height: 168px;
+  }
 	.recommend-list {
 		.list-wrap {
 			.title {
