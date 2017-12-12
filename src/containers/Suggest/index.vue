@@ -61,10 +61,10 @@ export default {
 			'insertSong'
 		]),
 		search() {
-			this.loading = true
+			this.loading = !this.loading
 			search(this.query, this.page, this.showSinger, this.perpage).then((res) => {
 				if (res.code === ERR_OK) {
-					this.loading = false
+					this.loading = !this.loading
 					this.result = this.sloveResult(res.data)
 				}
 			})
