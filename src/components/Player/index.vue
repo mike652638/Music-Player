@@ -73,7 +73,7 @@
 		<transition name="min">
 			<div @click="open" v-show="!fullScreen" class="mini-player">
 				<div class="background">
-					<img :src="bgImg" alt="">
+					<!-- <img :src="bgImg" alt=""> -->
 				</div>
 				<div class="icon">
 					<img :src="bgImg" width="40" height="40">
@@ -680,18 +680,19 @@ export default {
 		z-index: 180;
 		width: 100%;
 		height: 60px;
+		background: #fff;
 		background-repeat: no-repeat;
 		background-size: cover;
-		.background {
-			z-index: -1;
-			position: absolute;
-			width: 100%;
-			height: 60px;
-			filter: blur(20px);
-			img {
-				width: 100%;
-			}
-		}
+		// .background {
+		// 	z-index: -1;
+		// 	position: absolute;
+		// 	width: 100%;
+		// 	height: 60px;
+		// 	filter: blur(20px);
+		// 	img {
+		// 		width: 100%;
+		// 	}
+		// }
 		&.mini-enter-active,
 		&.mini-leave-active {
 			transition: all 0.4s;
@@ -726,11 +727,11 @@ export default {
 			.name {
 				margin-bottom: 2px;
 				font-size: @font-size-medium;
-				color: @color-text;
+				color: #000;
 			}
 			.desc {
 				font-size: @font-size-small;
-				color: @color-text-d;
+				color: grey;
 			}
 		}
 		.control {
