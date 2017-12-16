@@ -1,7 +1,7 @@
 <template>
-	<Scroll :data="result" class="suggest-wrap" ref="scrollWrap">
+	<Scroll :data="result" class="suggest-wrap" ref="scrollWrap" :pullUp="pullUp" @scrollToEnd="searchMoreData">
 		<ul class="suggest-list">
-			<li @click="selectItem(item)" class="suggest-item" v-for="item in result" :key="item.id" v-show="!loading">
+			<li @click="selectItem(item)" class="suggest-item" v-for="item in result" :key="item.id">
 				<div class="icon">
 					<i :class="getIconCls(item)"></i>
 				</div>
@@ -10,10 +10,10 @@
 				</div>
 			</li>
 			<li class="result" v-show="!result.length && !loading">无结果</li>
+			<li class="loading-wrap">
+				<Loading :show="loadMore" :title="`加载更多`"/>
+			</li>
 		</ul>
-		<div class="loading-wrap">
-			<Loading :show="loading" />
-		</div>
 	</Scroll>
 </template>
 
@@ -33,9 +33,12 @@ export default {
 	data() {
 		return {
 			page: 1,
-			perpage: 20,
+			perpage: 10,
 			result: [],
-			loading: false
+			loading: false,
+			pullUp: true,
+			loadMore: true,
+			loadEnd: true
 		}
 	},
 	props: {
@@ -50,6 +53,7 @@ export default {
 	},
 	watch: {
 		query(val) {
+			this.resetQuery()
 			!val ? '' : this.search()
 		}
 	},
@@ -61,13 +65,28 @@ export default {
 			'insertSong'
 		]),
 		search() {
-			this.loading = !this.loading
+			this.loading = true
+			this.loadMore = false
 			search(this.query, this.page, this.showSinger, this.perpage).then((res) => {
 				if (res.code === ERR_OK) {
-					this.loading = !this.loading
-					this.result = this.sloveResult(res.data)
+					this.loading = false
+					if (!this.sloveResult(res.data).length) {
+						this.loadEnd = false
+					}
+					this.result = [...this.result, ...this.sloveResult(res.data)]
+					this.loadMore = true
+					this.page++
 				}
 			})
+		},
+		searchMoreData() {
+			if (this.loadMore && this.loadEnd) {
+				this.search()
+			}
+		},
+		resetQuery() {
+			this.result = []
+			this.page = 1
 		},
 		sloveResult(data) {
 			let ret = []
@@ -121,7 +140,7 @@ export default {
 			const bottom = playList.length > 0 ? '60px' : ''
 			this.$refs.scrollWrap.$el.style.bottom = bottom
 			this.$refs.scrollWrap.refresh()
-		},
+		}
 	},
 	computed: {},
 	components: {

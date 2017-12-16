@@ -1,7 +1,7 @@
 <template>
- <div class="scroll-wrap" ref="wrapper">
-  <slot></slot>
- </div>
+  <div class="scroll-wrap" ref="wrapper">
+    <slot></slot>
+  </div>
 </template>
 <script>
 import BScroll from 'better-scroll'
@@ -23,6 +23,10 @@ export default {
     probeType: {
       type: Number,
       default: 2
+    },
+    pullUp: {
+      type: Boolean,
+      default: false
     }
   },
   mounted() {
@@ -40,9 +44,15 @@ export default {
         probeType: this.probeType,
       })
       if (this.listenScroll) {
-        let _this = this
         this.scroll.on('scroll', (pos) => {
-          _this.$emit('scroll', pos)
+          this.$emit('scroll', pos)
+        })
+      }
+      if (this.pullUp) {
+        this.scroll.on('scrollEnd', () => {
+          if (this.scroll.y <= this.scroll.maxScrollY + 50) {
+            this.$emit('scrollToEnd')
+          }
         })
       }
     },

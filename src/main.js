@@ -9,7 +9,7 @@ import Vuex from 'vuex'
 import store from './store'
 import 'common/less/index.less'
 
-import vConsole from 'vconsole'
+// import vConsole from 'vconsole'
 
 Vue.use(vueLazyLoad, {
 	loading: require('common/img/default.jpeg')
@@ -24,7 +24,5 @@ new Vue({
 	el: '#app',
 	router,
 	store,
-	// template: '<App/>',
-	// components: { App },
 	render: h => h(App)
 })

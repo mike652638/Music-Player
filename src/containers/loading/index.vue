@@ -1,8 +1,8 @@
 <template>
- <div class="loading" v-if="show">
+ <div class="loading" v-show="show">
   <div class="loading-wrap">
    <img src="./img/loading.gif" alt="" height="30px;">
-   <div class="info">玩命加载中...</div>
+   <div class="info">{{title}}</div>
   </div>
  </div>
 </template>
@@ -13,19 +13,19 @@ export default {
     show: {
       type: Boolean,
       default: true
-    }
+		},
+		title: {
+			type:String,
+			default: `玩命加载中...`
+		}
   }
 }
 </script>
 <style lang="less" scoped>
 .loading {
+	margin: 10px;
 	.loading-wrap {
-		z-index: 10000000;
-		top: 50%;
-		left: 50%;
-		transform: translateY(-50%);
-		transform: translateX(-50%);
-		position: absolute;
+		width: 100%;
 		text-align: center;
 		.info {
 			font-size: 12px;
