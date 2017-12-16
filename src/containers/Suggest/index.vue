@@ -9,7 +9,7 @@
 					<p class="text" v-html="getDisplayName(item)"></p>
 				</div>
 			</li>
-			<li class="result" v-show="!result.length && !loading">无结果</li>
+			<!-- <li class="result" v-show="!result.length">无结果</li> -->
 			<li class="loading-wrap">
 				<Loading :show="loadMore" :title="`加载更多`"/>
 			</li>
@@ -35,9 +35,8 @@ export default {
 			page: 1,
 			perpage: 10,
 			result: [],
-			loading: false,
 			pullUp: true,
-			loadMore: true,
+			loadMore: false,
 			loadEnd: true
 		}
 	},
@@ -65,22 +64,20 @@ export default {
 			'insertSong'
 		]),
 		search() {
-			this.loading = true
-			this.loadMore = false
+			this.loadMore = true
 			search(this.query, this.page, this.showSinger, this.perpage).then((res) => {
 				if (res.code === ERR_OK) {
-					this.loading = false
 					if (!this.sloveResult(res.data).length) {
 						this.loadEnd = false
 					}
 					this.result = [...this.result, ...this.sloveResult(res.data)]
-					this.loadMore = true
+					this.loadMore = false
 					this.page++
 				}
 			})
 		},
 		searchMoreData() {
-			if (this.loadMore && this.loadEnd) {
+			if (!this.loadMore && this.loadEnd) {
 				this.search()
 			}
 		},
@@ -185,6 +182,10 @@ export default {
 		.result {
 			text-align: center;
 			padding: 20px;
+		}
+		.loading-wrap {
+			height: 50px;
+			margin-bottom: 20px;
 		}
 	}
 	.no-result-wrapper {
