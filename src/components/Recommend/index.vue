@@ -1,39 +1,39 @@
 <template>
- <div class="recommend">
-  <scroll ref="scrollWrap" class="scroll-wrapper" :data="songList">
-   <div>
-    <div class="slider-wrap" v-if="picData.length">
-     <slider>
-      <div class="pic-list" v-for="i in picData" :key="i.id">
-       <a :href="i.linkUrl">
-        <img class="needsclick" @load="loadImage" :src="i.picUrl" alt="">
-       </a>
+  <div class="recommend">
+    <scroll ref="scrollWrap" class="scroll-wrapper" :data="songList">
+      <div>
+        <div class="slider-wrap" v-if="picData.length">
+          <slider>
+            <div class="pic-list" v-for="i in picData" :key="i.id">
+              <a :href="i.linkUrl">
+                <img class="needsclick" @load="loadImage" :src="i.picUrl" alt="">
+              </a>
+            </div>
+          </slider>
+        </div>
+        <div class="recommend-list">
+          <div class="list-wrap">
+            <h1 class="title">热门歌单推荐</h1>
+            <ul class="content">
+              <li @click="selectItem(i)" class="content-item" v-for="i in songList" :key="i.id">
+                <div class="list-pic">
+                  <img v-lazy="i.imgurl" alt="" width="60" height="60">
+                </div>
+                <div class="list-content">
+                  <h2 class="name">{{i.creator.name}}</h2>
+                  <p class="dissname">{{i.dissname}}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="content-loading-wrap">
+            <loading :show="!songList.length" />
+          </div>
+        </div>
       </div>
-     </slider>
-    </div>
-    <div class="recommend-list">
-     <div class="list-wrap">
-      <h1 class="title">热门歌单推荐</h1>
-      <ul class="content">
-       <li @click="selectItem(i)" class="content-item" v-for="i in songList" :key="i.id">
-        <div class="list-pic">
-         <img v-lazy="i.imgurl" alt="" width="60" height="60">
-        </div>
-        <div class="list-content">
-         <h2 class="name">{{i.creator.name}}</h2>
-         <p class="dissname">{{i.dissname}}</p>
-        </div>
-       </li>
-      </ul>
-     </div>
-    </div>
-   </div>
-  </scroll>
-  <div class="content-loading-wrap">
-   <loading :show="!songList.length" />
+    </scroll>
+    <router-view></router-view>
   </div>
-  <router-view></router-view>
- </div>
 </template>
 <script>
 import { getRecommend, getMusicList } from 'api/recommend'
@@ -119,10 +119,10 @@ export default {
 		left: 0;
 		right: 0;
 		bottom: 0;
-  }
-  .slider-wrap {
-    height: 168px;
-  }
+	}
+	.slider-wrap {
+		height: 168px;
+	}
 	.recommend-list {
 		.list-wrap {
 			.title {
