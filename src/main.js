@@ -9,6 +9,13 @@ import Vuex from 'vuex'
 import store from './store'
 import 'common/less/index.less'
 
+// hack for global nextTick
+function noop() {
+}
+
+window.MessageChannel = noop
+window.setImmediate = noop
+
 console.log(Vue.version)
 // import vConsole from 'vconsole'
 
