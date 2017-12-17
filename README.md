@@ -1,6 +1,6 @@
 # QQ 音乐 WebApp
 
-[项目演示地址 :](https://forzeny.github.io/Music-Player/dist/#/recommend)
+[项目演示地址](https://forzeny.github.io/Music-Player/dist/#/recommend)
 
 ## 耗时
 
@@ -62,6 +62,6 @@ QQ 音乐
 
 ```bash
 $ git clone hhttps://github.com/forzeny/Music-Player.git
-$ npm install
-$ npm run dev
+$ yarn install
+$ yarn run dev
 ```
