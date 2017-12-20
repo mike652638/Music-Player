@@ -1,14 +1,41 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Recommend from 'components/Recommend'
-import Singer from 'components/Singer'
-import Rank from 'components/Rank'
-import Search from 'components/Search'
-import SingerDetail from 'components/SingerDetail'
-import Disc from 'components/Disc'
-import TopList from 'components/TopList'
-
+const Singer = (resolve) => {
+  import('components/Singer').then((module) => {
+    resolve(module)
+  })
+}
+const Rank = (resolve) => {
+  import('components/Rank').then((module) => {
+    resolve(module)
+  })
+}
+const Search = (resolve) => {
+  import('components/Search').then((module) => {
+    resolve(module)
+  })
+}
+const SingerDetail = (resolve) => {
+  import('components/SingerDetail').then((module) => {
+    resolve(module)
+  })
+}
+const Disc = (resolve) => {
+  import('components/Disc').then((module) => {
+    resolve(module)
+  })
+}
+const TopList = (resolve) => {
+  import('components/TopList').then((module) => {
+    resolve(module)
+  })
+}
+const Recommend = (resolve) => {
+  import('components/Recommend').then((module) => {
+    resolve(module)
+  })
+}
 Vue.use(Router)
 
 export default new Router({
