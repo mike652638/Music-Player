@@ -22,13 +22,14 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import '~@/common/less/const.less';
 .loading {
 	margin: 10px;
 	.loading-wrap {
 		width: 100%;
 		text-align: center;
 		.info {
-			font-size: 12px;
+			font-size: @font-size-medium ;
 		}
 	}
 }
