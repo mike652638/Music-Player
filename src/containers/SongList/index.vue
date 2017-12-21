@@ -63,6 +63,7 @@ export default {
 	padding: 20px 30px;
 	.item {
 		font-size: @font-size-medium;
+		margin: 20px 0;
 		&.rank-wrap {
 			display: flex;
 			align-items: center;
