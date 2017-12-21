@@ -17,6 +17,8 @@
 * vue-router
 * vuex
 * vue-lazyload
+* lib-flexbile
+* px2rem
 * better-scroll
 * less
 * ES6
@@ -49,8 +51,6 @@
 QQ 音乐
 
 ## 注意事项
-
-* 使用 vue mixin 适配 min 播放器占位导致滚动高度问题
 
 ## 预览
 
