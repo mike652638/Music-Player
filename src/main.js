@@ -8,9 +8,8 @@ import vueLazyLoad from 'vue-lazyload'
 import Vuex from 'vuex'
 import store from './store'
 import 'common/less/index.less'
-
+import 'lib-flexible'
 import vConsole from 'vconsole'
-
 Vue.use(vueLazyLoad, {
 	loading: require('common/img/default.jpeg')
 })
