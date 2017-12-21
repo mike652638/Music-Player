@@ -26,8 +26,8 @@ export default {
 @import '~@/common/less/const.less';
 .my-tab {
 	display: flex;
-	height: 44px;
-	line-height: 44px;
+	height: @marin-top-size;
+	line-height: @marin-top-size;
 	margin-top: 15px;
 	font-size: @font-size-medium;
 	.tab-item {

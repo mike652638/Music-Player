@@ -159,13 +159,13 @@ export default {
 		.icon-back {
 			display: block;
 			padding: 10px;
-			font-size: 22px;
+			font-size: 40px;
 			color: #31c27c;
 		}
 	}
 	.title {
 		position: absolute;
-		top: 15px;
+		top: 25px;
 		left: 10%;
 		z-index: 121;
 		width: 80%;
@@ -174,7 +174,7 @@ export default {
 		white-space: nowrap;
 		text-align: center;
 		line-height: 40px;
-		font-size: 18px;
+		font-size: @font-size-medium;
 		color: #fff;
 	}
 	.bg-image {
@@ -190,7 +190,7 @@ export default {
 			width: 100%;
 			.play {
 				box-sizing: border-box;
-				width: 135px;
+				width: 250px;
 				padding: 7px 0;
 				margin: 0 auto;
 				text-align: center;
@@ -207,7 +207,7 @@ export default {
 				.text {
 					display: inline-block;
 					vertical-align: middle;
-					font-size: @font-size-small;
+					font-size: @font-size-medium;
 				}
 			}
 		}

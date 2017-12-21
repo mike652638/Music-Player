@@ -17,7 +17,7 @@
             <ul class="content">
               <li @click="selectItem(i)" class="content-item" v-for="i in songList" :key="i.id">
                 <div class="list-pic">
-                  <img v-lazy="i.imgurl" alt="" width="60" height="60">
+                  <img v-lazy="i.imgurl" alt="">
                 </div>
                 <div class="list-content">
                   <h2 class="name">{{i.creator.name}}</h2>
@@ -110,18 +110,16 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import '~@/common/less/const.less';
 .recommend {
 	.scroll-wrapper {
 		background: #fff;
 		position: fixed;
 		overflow: hidden;
-		top: 59px;
+		top: @marin-top-size;
 		left: 0;
 		right: 0;
 		bottom: 0;
-	}
-	.slider-wrap {
-		height: 168px;
 	}
 	.recommend-list {
 		.list-wrap {
@@ -129,7 +127,7 @@ export default {
 				height: 65px;
 				line-height: 65px;
 				text-align: center;
-				font-size: 14px;
+				font-size: @font-size-medium ;
 				color: #31c27c;
 			}
 			.content {
@@ -137,9 +135,12 @@ export default {
 					padding: 0 20px 20px 20px;
 					display: flex;
 					.list-pic {
-						flex: 0 0 60px;
-						width: 60px;
-						padding-right: 20px;
+            width: 150px;
+            padding-right: 20px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
 					}
 					.list-content {
 						flex: 1;
@@ -147,14 +148,14 @@ export default {
 						flex-direction: column;
 						justify-content: center;
 						.name {
-							line-height: 20px;
-							font-size: 14px;
-							margin-bottom: 10px;
+							// line-height: 20px;
+							font-size: 30px;
+							margin-bottom: 30px;
 							color: #000;
 						}
 						.dissname {
-							line-height: 20px;
-							font-size: 14px;
+							// line-height: 20px;
+							font-size: 25px;
 							color: #000;
 						}
 					}

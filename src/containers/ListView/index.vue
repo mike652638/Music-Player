@@ -1,25 +1,25 @@
 <template>
- <div class="list-view">
-  <scroll ref="scrollWrap" class="scoroll-wrapper" :data="data" :listenScroll="true" :probeType="3" @scroll="scroll">
-   <ul class="singer-wrap">
-    <ul v-show="i.items.length>0" class="item" v-for="(i, index) in data" :key="i.id" ref="scrollItem">
-     <h2 class="title">{{i.title}}</h2>
-     <li @click="selectItem(j)" class="item-wrap" v-for="j in i.items" :key="j.id">
-      <img class="avatar" v-lazy="j.avatar" alt="" width="50" height="50" />
-      <p class="name">{{j.name}}</p>
-     </li>
-    </ul>
-   </ul>
-  </scroll>
-  <div class="list">
-   <ul class="list-wrap">
-    <li v-show="i.items.length>0" class="item" :class="{'active': current === index}" @touchmove.stop.prevent="touchMove($event, index)" @touchstart="select($event, index)" v-for="(i, index) in data" :key="i.id">{{i.title.substr(0, 1)}}</li>
-   </ul>
+  <div class="list-view">
+    <scroll ref="scrollWrap" class="scoroll-wrapper" :data="data" :listenScroll="true" :probeType="3" @scroll="scroll">
+      <ul class="singer-wrap">
+        <ul v-show="i.items.length>0" class="item" v-for="(i, index) in data" :key="i.id" ref="scrollItem">
+          <h2 class="title">{{i.title}}</h2>
+          <li @click="selectItem(j)" class="item-wrap" v-for="j in i.items" :key="j.id">
+            <img class="avatar" v-lazy="j.avatar" alt=""/>
+            <p class="name">{{j.name}}</p>
+          </li>
+        </ul>
+      </ul>
+    </scroll>
+    <div class="list">
+      <ul class="list-wrap">
+        <li v-show="i.items.length>0" class="item" :class="{'active': current === index}" @touchmove.stop.prevent="touchMove($event, index)" @touchstart="select($event, index)" v-for="(i, index) in data" :key="i.id">{{i.title.substr(0, 1)}}</li>
+      </ul>
+    </div>
+    <div v-show="scrollNegative" class="current">
+      <p class="current-text">{{listArr[current]}}</p>
+    </div>
   </div>
-  <div v-show="scrollNegative" class="current">
-   <p class="current-text">{{listArr[current]}}</p>
-  </div>
- </div>
 </template>
 <script>
 import Scroll from 'containers/Scroll'
@@ -106,9 +106,10 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import '~@/common/less/const.less';
 .list-view {
 	position: fixed;
-	top: 59px;
+	top: @marin-top-size;
 	bottom: 0px;
 	right: 0;
 	left: 0;
@@ -122,7 +123,7 @@ export default {
 					height: 30px;
 					line-height: 30px;
 					padding-left: 20px;
-					font-size: 12px;
+					font-size: @font-size-medium;
 					background: rgba(255, 255, 255, 0.5);
 					color: #333;
 				}
@@ -131,12 +132,14 @@ export default {
 					padding: 20px 0 0 30px;
 					align-items: center;
 					.avatar {
+            width: 100px;
+            height: 100px;
 						border-radius: 50%;
 					}
 					.name {
 						margin-left: 20px;
 						color: #000;
-						font-size: 14px;
+						font-size: @font-size-medium;
 					}
 				}
 			}
@@ -145,8 +148,8 @@ export default {
 	.list {
 		position: absolute;
 		z-index: 30;
-		right: 0;
-		top: 50%;
+    top: 50%;
+    right: 10px;
 		-webkit-transform: translateY(-50%);
 		transform: translateY(-50%);
 		width: 20px;
@@ -155,10 +158,11 @@ export default {
 		text-align: center;
 		font-family: Helvetica;
 		.item {
-			padding: 3px;
+      width: 100%;
+			padding-right: 10px;
 			line-height: 1;
 			color: #000;
-			font-size: 12px;
+			font-size: @font-size-medium;
 			&.active {
 				color: #31c27c;
 			}
@@ -173,7 +177,7 @@ export default {
 			height: 30px;
 			line-height: 30px;
 			padding-left: 20px;
-			font-size: 12px;
+			font-size: @font-size-medium;
 			background: rgba(255, 255, 255, 0.5);
 			color: #333;
 		}

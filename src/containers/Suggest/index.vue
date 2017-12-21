@@ -153,7 +153,7 @@ export default {
 .suggest-wrap {
 	position: fixed;
 	overflow: hidden;
-	top: 100px;
+	top: @marin-top-size + 90;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -166,10 +166,10 @@ export default {
 			padding: 20px 0;
 		}
 		.icon {
-			flex: 0 0 30px;
-			width: 30px;
+			width: 50px;
+			line-height: 1.5cm;
+			font-size: @font-size-medium;			
 			[class^='icon-'] {
-				font-size: 14px;
 				color: @color-text-d;
 			}
 		}

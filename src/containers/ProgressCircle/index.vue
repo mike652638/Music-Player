@@ -1,8 +1,8 @@
 <template>
  <div class="my-progress-circle">
   <svg :width="radius" :height="radius" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
-   <circle class="progress-background" cx="50" cy="50" r="50" fill="transparent" />
-   <circle class="progress-bar" cx="50" cy="50" r="50" fill="transparent" :stroke-dasharray="dasharray" :stroke-dashoffset="dashoffset" />
+   <circle class="progress-background" cx="60" cy="60" r="60" fill="transparent" />
+   <circle class="progress-bar" cx="60" cy="60" r="60" fill="transparent" :stroke-dasharray="dasharray" :stroke-dashoffset="dashoffset" />
   </svg>
   <slot></slot>
  </div>

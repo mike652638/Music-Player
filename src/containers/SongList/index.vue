@@ -58,11 +58,11 @@ export default {
 </script>
 <style lang="less" scoped>
 @import '~common/less/mymixin.less';
+@import '~@/common/less/const.less';
 .song-list {
 	padding: 20px 30px;
 	.item {
-		height: 64px;
-		font-size: 14px;
+		font-size: @font-size-medium;
 		&.rank-wrap {
 			display: flex;
 			align-items: center;
@@ -102,13 +102,14 @@ export default {
 				overflow: hidden;
 				white-space: nowrap;
 				color: #000;
-				font-size: 16px;
+				font-size: @font-size-medium;
 			}
 			.desc {
 				text-overflow: ellipsis;
 				overflow: hidden;
 				white-space: nowrap;
-				margin-top: 4px;
+				margin: 20px 0;
+				font-size: @font-size-small;
 				color: grey;
 			}
 		}
