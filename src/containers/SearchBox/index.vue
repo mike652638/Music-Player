@@ -54,16 +54,16 @@ export default {
 	background: white;
 	border-radius: 6px;
 	.icon-search {
-		font-size: @font-size-medium;
+		font-size: @font-size-large;
 		color: @color-background;
 	}
 	.box {
 		flex: 1;
 		margin: 0 5px;
-		line-height: 18px;
 		border: 0;
 		outline: none;
 		background: #f4f4f4;
+		line-height: 1.5;
 		color: #000;
 		font-size: @font-size-medium;
 		&::placeholder {

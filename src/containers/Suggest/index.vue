@@ -10,9 +10,7 @@
 				</div>
 			</li>
 			<!-- <li class="result" v-show="!result.length">无结果</li> -->
-			<li class="loading-wrap">
-				<Loading :show="loadMore" :title="`加载更多`"/>
-			</li>
+			<Loading :show="loadMore" :title="`加载更多`" />
 		</ul>
 	</Scroll>
 </template>
@@ -33,10 +31,10 @@ export default {
 	data() {
 		return {
 			page: 1,
-			perpage: 10,
+			perpage: 20,
 			result: [],
 			pullUp: true,
-			loadMore: false,
+			loadMore: true,
 			loadEnd: true
 		}
 	},
@@ -64,22 +62,17 @@ export default {
 			'insertSong'
 		]),
 		search() {
-			this.loadMore = true
 			search(this.query, this.page, this.showSinger, this.perpage).then((res) => {
 				if (res.code === ERR_OK) {
 					if (!this.sloveResult(res.data).length) {
-						this.loadEnd = false
 					}
 					this.result = [...this.result, ...this.sloveResult(res.data)]
-					this.loadMore = false
 					this.page++
 				}
 			})
 		},
 		searchMoreData() {
-			if (!this.loadMore && this.loadEnd) {
-				this.search()
-			}
+			this.search()
 		},
 		resetQuery() {
 			this.result = []
@@ -135,7 +128,7 @@ export default {
 		},
 		handlePlayList(playList) {
 			const dom = document.getElementsByClassName('mini-player')[0]
-      const height = getComputedStyle(dom)['height']
+			const height = getComputedStyle(dom)['height']
 			const bottom = playList.length > 0 ? height : ''
 			this.$refs.scrollWrap.$el.style.bottom = bottom
 			this.$refs.scrollWrap.refresh()
@@ -170,7 +163,7 @@ export default {
 		.icon {
 			width: 50px;
 			line-height: 1.5cm;
-			font-size: @font-size-medium;			
+			font-size: @font-size-medium;
 			[class^='icon-'] {
 				color: @color-text-d;
 			}
