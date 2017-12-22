@@ -84,7 +84,7 @@
 				</div>
 				<div class="control">
 					<progress-circle :percent="percent" :radius="radius">
-						<i ref="playMin" @click.stop="togglePlay" :class="playing ? 'icon-pause-mini' : 'icon-play-mini'" class="icon-mini" ></i>
+						<i ref="playMin" @click.stop="togglePlay" :class="playing ? 'icon-pause-mini' : 'icon-play-mini'" class="icon-mini"></i>
 					</progress-circle>
 				</div>
 				<div class="control">
@@ -287,8 +287,7 @@ export default {
 				animation,
 				presets: {
 					duration: 400,
-					easing: 'linear',
-					delay: 100
+					easing: 'linear'
 				}
 			})
 			animations.runAnimation(this.$refs.cdWrapper, 'move', done)
@@ -298,7 +297,7 @@ export default {
 			this.$refs.cdWrapper.style.animation = ''
 		},
 		leave(el, done) {
-			this.$refs.cdWrapper.style.transition = 'all 0.4s ease'
+			this.$refs.cdWrapper.style.transition = 'all 0.4s'
 			const { x, y, scale } = this._getPosAndScale()
 			this.$refs.cdWrapper.style[transform] = `translate3d(${x}px, ${y}px, 0) scale(${scale})`
 			this.$refs.cdWrapper.addEventListener('transitionend', done)
@@ -385,7 +384,7 @@ export default {
 			this.$refs.lyricList.$el.style[transform] = `translate3d(${offsetWidth}px, 0, 0)`
 			this.$refs.lyricList.$el.style[transitionDuration] = `0ms`
 			this.$refs.middleL.style.opacity = 1 - this.touch.percent
-			this.$refs.middleL.style[transitionDuration] = `300ms`
+			this.$refs.middleL.style[transitionDuration] = `0`
 		},
 		touchEnd() {
 			this.touch.init = false
@@ -665,12 +664,21 @@ export default {
 		}
 		&.normal-enter-active,
 		&.normal-leave-active {
-			transition: all 0.3s;
+			transition: all 0.4s;
+			.top,
+			.bottom {
+				transition: all 0.4s cubic-bezier(0.86, 0.18, 0.82, 1.32);
+			}
 		}
 		&.normal-enter,
 		&.normal-leave-to {
 			opacity: 0;
-			transform: translate3d(0, 100%, 0);
+			.top {
+				transform: translate3d(0, -100px, 0);
+			}
+			.bottom {
+				transform: translate3d(0, 100px, 0);
+			}
 		}
 	}
 	.mini-player {
@@ -681,7 +689,7 @@ export default {
 		bottom: 0;
 		z-index: 180;
 		width: 100%;
-		height: 150px;/*no*/
+		height: 150px; /*no*/
 		background: #fff;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -737,7 +745,7 @@ export default {
 			}
 		}
 		.control {
-			width: 80px;/*no*/
+			width: 80px; /*no*/
 			padding: 0 10px;
 			position: relative;
 			.icon-play-mini,
@@ -747,7 +755,7 @@ export default {
 				color: #31c27c;
 			}
 			.icon-mini {
-				font-size: 80px;/*no*/
+				font-size: 80px; /*no*/
 				position: absolute;
 				left: 0;
 				top: 48%;
