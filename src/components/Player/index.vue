@@ -83,8 +83,8 @@
 					<p class="desc" v-html="currentSong.singer"></p>
 				</div>
 				<div class="control">
-					<progress-circle :percent="percent" :radius="50">
-						<i @click.stop="togglePlay" :class="playing ? 'icon-pause-mini' : 'icon-play-mini'" class="icon-mini"></i>
+					<progress-circle :percent="percent" :radius="radius">
+						<i ref="playMin" @click.stop="togglePlay" :class="playing ? 'icon-pause-mini' : 'icon-play-mini'" class="icon-mini" ></i>
 					</progress-circle>
 				</div>
 				<div class="control">
@@ -119,7 +119,8 @@ export default {
 			currentLyric: null,
 			currentLineNum: 0,
 			currentShow: 'cd',
-			playLyric: '暂无歌词'
+			playLyric: '暂无歌词',
+			radius: 80
 		}
 	},
 	created() {
@@ -680,7 +681,7 @@ export default {
 		bottom: 0;
 		z-index: 180;
 		width: 100%;
-		height: 100px;
+		height: 150px;/*no*/
 		background: #fff;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -736,7 +737,7 @@ export default {
 			}
 		}
 		.control {
-			width: 80px;
+			width: 80px;/*no*/
 			padding: 0 10px;
 			position: relative;
 			.icon-play-mini,
@@ -746,10 +747,11 @@ export default {
 				color: #31c27c;
 			}
 			.icon-mini {
-				font-size: @font-size-large;
+				font-size: 80px;/*no*/
 				position: absolute;
 				left: 0;
-				top: 0;
+				top: 48%;
+				transform: translateY(-50%);
 			}
 		}
 	}

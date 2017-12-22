@@ -9,12 +9,15 @@ import Vuex from 'vuex'
 import store from './store'
 import 'common/less/index.less'
 import 'lib-flexible'
+import * as _ from 'lodash'
 // import vConsole from 'vconsole'
 Vue.use(vueLazyLoad, {
 	loading: require('common/img/default.jpeg')
 })
 Vue.use(Vuex)
-
+window.addEventListener('resize', _.debounce(function () {
+	location.reload()
+}, 500))
 fastclick.attach(document.body)
 
 Vue.config.productionTip = false
