@@ -1,7 +1,7 @@
 <template>
  <div class="loading" v-show="show">
   <div class="loading-wrap">
-   <img src="./img/loading.gif" alt="" height="30px;">
+   <img src="./img/loading.gif">
    <div class="info">{{title}}</div>
   </div>
  </div>
@@ -22,13 +22,18 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import '~@/common/less/const.less';
 .loading {
 	margin: 10px;
 	.loading-wrap {
 		width: 100%;
 		text-align: center;
+		img {
+			width: 50px;
+			height: 50px;
+		}
 		.info {
-			font-size: 12px;
+			font-size: @font-size-medium ;
 		}
 	}
 }

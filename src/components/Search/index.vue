@@ -1,19 +1,19 @@
 <template>
- <div class="search">
-  <div class="search-box-wrap">
-   <search-box ref="search" @query="query"></search-box>
+  <div class="search">
+    <div class="search-box-wrap">
+      <search-box ref="search" @query="query"></search-box>
+    </div>
+    <div class="suggest-wrap" v-show="queryData">
+      <Suggest :query="queryData" />
+    </div>
+    <div class="hot-search-wrap" v-show="!queryData">
+      <p class="title">热门搜索</p>
+      <ul class="hot-key">
+        <li @click="addQuery(i.k)" class="item" v-for="i in hotkey" :key="i.id">{{i.k}}</li>
+      </ul>
+    </div>
+    <router-view></router-view>
   </div>
-  <div class="suggest-wrap" v-show="queryData">
-   <Suggest :query="queryData" />
-  </div>
-  <div class="hot-search-wrap" v-show="!queryData">
-   <p class="title">热门搜索</p>
-   <ul class="hot-key">
-    <li @click="addQuery(i.k)" class="item" v-for="i in hotkey" :key="i.id">{{i.k}}</li>
-   </ul>
-  </div>
-  <router-view></router-view>
- </div>
 </template>
 <script>
 import SearchBox from 'containers/SearchBox'
@@ -53,21 +53,22 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import '~common/less/const.less';
 .search {
 	overflow: hidden;
-	top: 59px;
+	top: @marin-top-size;
 	.hot-search-wrap {
 		margin: 10px;
 		.title {
 			color: rgba(0, 0, 0, 0.6);
-			font-size: 15px;
+			font-size: @font-size-medium;
 		}
 		.hot-key {
 			.item {
-				font-size: 12px;
+				font-size: @font-size-medium;
 				display: inline-block;
-				padding: 5px;
-				margin: 5px;
+				padding: 10px;
+				margin: 10px;
 				background: white;
 				border-radius: 5px;
 			}

@@ -76,15 +76,15 @@
 					<!-- <img :src="bgImg" alt=""> -->
 				</div>
 				<div class="icon">
-					<img :src="bgImg" width="40" height="40">
+					<img :src="bgImg">
 				</div>
 				<div class="text">
 					<p class="name" v-html="currentSong.name"></p>
 					<p class="desc" v-html="currentSong.singer"></p>
 				</div>
 				<div class="control">
-					<progress-circle :percent="percent" :radius="32">
-						<i @click.stop="togglePlay" :class="playing ? 'icon-pause-mini' : 'icon-play-mini'" class="icon-mini"></i>
+					<progress-circle :percent="percent" :radius="radius">
+						<i ref="playMin" @click.stop="togglePlay" :class="playing ? 'icon-pause-mini' : 'icon-play-mini'" class="icon-mini" ></i>
 					</progress-circle>
 				</div>
 				<div class="control">
@@ -119,7 +119,8 @@ export default {
 			currentLyric: null,
 			currentLineNum: 0,
 			currentShow: 'cd',
-			playLyric: '暂无歌词'
+			playLyric: '暂无歌词',
+			radius: 80
 		}
 	},
 	created() {
@@ -471,7 +472,7 @@ export default {
 		}
 		.top {
 			position: relative;
-			top: 15px;
+			top: 50px;
 			.back {
 				position: absolute;
 				top: 0;
@@ -479,8 +480,8 @@ export default {
 				z-index: 50;
 				.icon-back {
 					display: block;
-					padding: 9px;
-					font-size: 22px;
+					padding: 10px;
+					font-size: 40px;
 					color: #31c27c;
 					-webkit-transform: rotate(-90deg);
 					transform: rotate(-90deg);
@@ -495,21 +496,21 @@ export default {
 				text-overflow: ellipsis;
 				overflow: hidden;
 				white-space: nowrap;
-				font-size: 18px;
+				font-size: @font-size-medium;
 				color: #fff;
 			}
 			.subtitle {
 				line-height: 20px;
 				text-align: center;
-				font-size: 14px;
+				font-size: @font-size-medium;
 				color: #fff;
 			}
 		}
 		.middle {
 			position: fixed;
 			width: 100%;
-			top: 80px;
-			bottom: 170px;
+			top: @marin-top-size + 40;
+			bottom: 350px;
 			white-space: nowrap;
 			font-size: 0;
 			.middle-l {
@@ -522,7 +523,7 @@ export default {
 				.cd-wrapper {
 					position: absolute;
 					left: 10%;
-					top: 0;
+					top: 80px;
 					width: 80%;
 					height: 100%;
 					.cd {
@@ -550,12 +551,11 @@ export default {
 				}
 				.playing-lyric-wrapper {
 					width: 80%;
-					margin: 30px auto 0 auto;
+					margin: 150px auto 0 auto;
 					overflow: hidden;
 					text-align: center;
 					.playing-lyric {
-						height: 20px;
-						line-height: 20px;
+						line-height: 2.5;
 						font-size: @font-size-medium;
 						color: @color-text-l;
 					}
@@ -573,7 +573,7 @@ export default {
 					overflow: hidden;
 					text-align: center;
 					.text {
-						line-height: 32px;
+						line-height: 2;
 						color: @color-text-l;
 						font-size: @font-size-medium;
 						&.current {
@@ -610,20 +610,20 @@ export default {
 				align-items: center;
 				width: 80%;
 				margin: 0px auto;
-				padding: 10px 0;
+				padding: 40px 0;
 				.time {
 					color: @color-text;
-					font-size: @font-size-small;
+					font-size: @font-size-medium-x;
 					flex: 0 0 30px;
 					line-height: 30px;
-					width: 30px;
+					width: 70px;
 					&.time-l {
 						text-align: left;
-						margin-right: 5px;
+						margin-right: 15px;
 					}
 					&.time-r {
 						text-align: right;
-						margin-left: 5px;
+						margin-left: 15px;
 					}
 				}
 				.progress-bar-wrapper {
@@ -633,6 +633,8 @@ export default {
 			.operators {
 				display: flex;
 				align-items: center;
+				font-size: @font-size-large;
+				margin-bottom: 50px;
 				.icon {
 					flex: 1;
 					color: #31c27c;
@@ -640,7 +642,7 @@ export default {
 						color: #31c27c;
 					}
 					i {
-						font-size: 30px;
+						font-size: @font-size-large;
 					}
 				}
 				.i-left {
@@ -650,7 +652,7 @@ export default {
 					padding: 0 20px;
 					text-align: center;
 					i {
-						font-size: 40px;
+						font-size: @font-size-large;
 					}
 				}
 				.i-right {
@@ -679,7 +681,7 @@ export default {
 		bottom: 0;
 		z-index: 180;
 		width: 100%;
-		height: 60px;
+		height: 150px;/*no*/
 		background: #fff;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -702,11 +704,12 @@ export default {
 			opacity: 0;
 		}
 		.icon {
-			flex: 0 0 40px;
-			width: 40px;
+			width: 80px;
 			padding: 0 10px 0 20px;
 			img {
 				border-radius: 50%;
+				width: 60px;
+				height: 60px;
 				&.play {
 					animation: rotate 10s linear infinite;
 				}
@@ -720,7 +723,6 @@ export default {
 			flex-direction: column;
 			justify-content: center;
 			flex: 1;
-			line-height: 20px;
 			text-overflow: ellipsis;
 			overflow: hidden;
 			white-space: nowrap;
@@ -730,26 +732,26 @@ export default {
 				color: #000;
 			}
 			.desc {
-				font-size: @font-size-small;
+				font-size: @font-size-medium-x;
 				color: grey;
 			}
 		}
 		.control {
-			flex: 0 0 30px;
-			width: 30px;
+			width: 80px;/*no*/
 			padding: 0 10px;
 			position: relative;
 			.icon-play-mini,
 			.icon-pause-mini,
 			.icon-playlist {
-				font-size: 30px;
+				font-size: @font-size-large;
 				color: #31c27c;
 			}
 			.icon-mini {
-				font-size: 32px;
+				font-size: 80px;/*no*/
 				position: absolute;
 				left: 0;
-				top: 0;
+				top: 48%;
+				transform: translateY(-50%);
 			}
 		}
 	}

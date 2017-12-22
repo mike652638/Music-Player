@@ -134,7 +134,9 @@ export default {
 			this.$emit('select', item)
 		},
 		handlePlayList(playList) {
-			const bottom = playList.length > 0 ? '60px' : ''
+			const dom = document.getElementsByClassName('mini-player')[0]
+      const height = getComputedStyle(dom)['height']
+			const bottom = playList.length > 0 ? height : ''
 			this.$refs.scrollWrap.$el.style.bottom = bottom
 			this.$refs.scrollWrap.refresh()
 		}
@@ -153,7 +155,7 @@ export default {
 .suggest-wrap {
 	position: fixed;
 	overflow: hidden;
-	top: 100px;
+	top: @marin-top-size + 90;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -166,10 +168,10 @@ export default {
 			padding: 20px 0;
 		}
 		.icon {
-			flex: 0 0 30px;
-			width: 30px;
+			width: 50px;
+			line-height: 1.5cm;
+			font-size: @font-size-medium;			
 			[class^='icon-'] {
-				font-size: 14px;
 				color: @color-text-d;
 			}
 		}

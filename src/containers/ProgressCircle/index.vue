@@ -1,8 +1,8 @@
 <template>
  <div class="my-progress-circle">
-  <svg :width="radius" :height="radius" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
-   <circle class="progress-background" cx="50" cy="50" r="50" fill="transparent" />
-   <circle class="progress-bar" cx="50" cy="50" r="50" fill="transparent" :stroke-dasharray="dasharray" :stroke-dashoffset="dashoffset" />
+  <svg :width="radius" :height="radius"  version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <circle class="progress-background" :cx="radius/2" :cy="radius/2" :r="radius/2" fill="transparent" />
+   <circle class="progress-bar" :cx="radius/2" :cy="radius/2" :r="radius/2" fill="transparent" :stroke-dasharray="dasharray" :stroke-dashoffset="dashoffset" />
   </svg>
   <slot></slot>
  </div>
@@ -45,7 +45,7 @@ export default {
 .my-progress-circle {
 	position: relative;
 	circle {
-		stroke-width: 8px;
+		stroke-width: 8px;/*no*/
 		transform-origin: center;
 		&.progress-background {
 			transform: scale(0.9);
