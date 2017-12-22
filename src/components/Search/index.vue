@@ -64,9 +64,10 @@ export default {
 			font-size: @font-size-medium;
 		}
 		.hot-key {
+      display: flex;
+      flex-wrap: wrap;
 			.item {
 				font-size: @font-size-medium;
-				display: inline-block;
 				padding: 10px;
 				margin: 10px;
 				background: white;
