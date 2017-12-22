@@ -51,7 +51,9 @@ export default {
     loadImg() {
     },
     handlePlayList(playList) {
-      const bottom = playList.length > 0 ? '60px' : ''
+      const dom = document.getElementsByClassName('mini-player')[0]
+      const height = getComputedStyle(dom)['height']
+      const bottom = playList.length > 0 ? height : ''
       this.$refs.rankRef.style.bottom = bottom
       this.$refs.scroll.refresh()
     },
@@ -111,6 +113,7 @@ export default {
 				color: #000;
 				font-size: @font-size-medium;
 				.song {
+          .no-wrap;
 					line-height: 2;
 					.singername {
 						color: #000;

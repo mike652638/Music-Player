@@ -61,7 +61,9 @@ export default {
   },
   methods: {
     handlePlayList(playList) {
-      const bottom = playList.length > 0 ? '60px' : ''
+      const dom = document.getElementsByClassName('mini-player')[0]
+      const height = getComputedStyle(dom)['height']
+      const bottom = playList.length > 0 ? height : ''
       this.$refs.scrollWrap.$el.style.bottom = bottom
       this.$refs.scrollWrap.refresh()
     },
