@@ -56,7 +56,11 @@ export default {
 @import '~common/less/const.less';
 .search {
 	overflow: hidden;
-	top: @marin-top-size;
+  top: @marin-top-size;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;;
 	.hot-search-wrap {
 		margin: 10px;
 		.title {
