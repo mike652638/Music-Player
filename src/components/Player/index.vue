@@ -522,7 +522,7 @@ export default {
 				.cd-wrapper {
 					position: absolute;
 					left: 10%;
-					top: 80px;
+					top: 0;
 					width: 80%;
 					height: 100%;
 					.cd {
@@ -550,7 +550,7 @@ export default {
 				}
 				.playing-lyric-wrapper {
 					width: 80%;
-					margin: 150px auto 0 auto;
+					margin: 10px auto 0 auto;
 					overflow: hidden;
 					text-align: center;
 					.playing-lyric {
