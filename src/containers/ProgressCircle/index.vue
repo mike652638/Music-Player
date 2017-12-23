@@ -1,11 +1,11 @@
 <template>
- <div class="my-progress-circle">
-  <svg :width="radius" :height="radius"  version="1.1" xmlns="http://www.w3.org/2000/svg">
-   <circle class="progress-background" :cx="radius/2" :cy="radius/2" :r="radius/2" fill="transparent" />
-   <circle class="progress-bar" :cx="radius/2" :cy="radius/2" :r="radius/2" fill="transparent" :stroke-dasharray="dasharray" :stroke-dashoffset="dashoffset" />
-  </svg>
-  <slot></slot>
- </div>
+  <div class="my-progress-circle">
+    <svg :width="radius" :height="radius" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <circle class="progress-background" :cx="radius/2" :cy="radius/2" :r="radius/2" fill="transparent" />
+      <circle class="progress-bar" :cx="radius/2" :cy="radius/2" :r="radius/2" fill="transparent" :stroke-dasharray="dasharray" :stroke-dashoffset="dashoffset" />
+    </svg>
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -45,15 +45,15 @@ export default {
 .my-progress-circle {
 	position: relative;
 	circle {
-		stroke-width: 8px;/*no*/
+		stroke-width: 8px; /*no*/
 		transform-origin: center;
 		&.progress-background {
 			transform: scale(0.9);
-			stroke: #000;
+			stroke: #fff;
 		}
 		&.progress-bar {
 			transform: scale(0.9) rotate(-90deg);
-			stroke: #fff;
+			stroke: #31c27c;
 		}
 	}
 }
