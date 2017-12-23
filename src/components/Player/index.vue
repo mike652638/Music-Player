@@ -695,7 +695,7 @@ export default {
 		bottom: 0;
 		z-index: 180;
 		width: 100%;
-		height: 150px; /*no*/
+		height: 100px; /*px*/
 		background: #fff;
 		background-repeat: no-repeat;
 		background-size: cover;
