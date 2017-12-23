@@ -666,6 +666,7 @@ export default {
 		&.normal-leave-active {
 			transition: all 0.4s;
 			.top,
+			.background,
 			.bottom {
 				transition: all 0.4s cubic-bezier(0.86, 0.18, 0.82, 1.32);
 			}
@@ -678,6 +679,9 @@ export default {
 			}
 			.bottom {
 				transform: translate3d(0, 100px, 0);
+			}
+			.background {
+				opacity: 0;
 			}
 		}
 	}
@@ -718,12 +722,12 @@ export default {
 				border-radius: 50%;
 				width: 60px;
 				height: 60px;
-				&.play {
-					animation: rotate 10s linear infinite;
-				}
-				&.pause {
-					animation-play-state: paused;
-				}
+			}
+			&.play {
+				animation: rotate 10s linear infinite;
+			}
+			&.pause {
+				animation-play-state: paused;
 			}
 		}
 		.text {
