@@ -60,7 +60,7 @@ export default {
 @import '~common/less/mymixin.less';
 @import '~@/common/less/const.less';
 .song-list {
-	padding: 20px 30px;
+	padding: 20px 60px;
 	.item {
 		font-size: @font-size-medium;
 		margin: 20px 0;

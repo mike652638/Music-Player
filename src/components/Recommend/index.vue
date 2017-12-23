@@ -133,12 +133,13 @@ export default {
 				color: #31c27c;
 			}
 			.content {
+        padding: 0 20px;
 				.content-item {
 					padding: 0 20px 20px 20px;
 					display: flex;
 					.list-pic {
-            width: 150px;
-            padding-right: 20px;
+            width: 120px;
+            padding-right: 50px;
             img {
               width: 100%;
               height: 100%;
