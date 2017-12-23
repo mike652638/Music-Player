@@ -481,7 +481,7 @@ export default {
 		}
 		.top {
 			position: relative;
-			top: 50px;
+			top: 20px;
 			.back {
 				position: absolute;
 				top: 0;
@@ -596,7 +596,7 @@ export default {
 		}
 		.bottom {
 			position: absolute;
-			bottom: 50px;
+			bottom: 30px;
 			width: 100%;
 			.dot-wrapper {
 				text-align: center;
@@ -645,7 +645,6 @@ export default {
 				display: flex;
 				align-items: center;
 				font-size: @font-size-large;
-				margin-bottom: 50px;
 				.icon {
 					flex: 1;
 					color: #31c27c;
@@ -705,7 +704,7 @@ export default {
 		bottom: 0;
 		z-index: 180;
 		width: 100%;
-		height: 100px; /*px*/
+		height: 100px; /*no*/
 		background: #fff;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -728,12 +727,12 @@ export default {
 			opacity: 0;
 		}
 		.icon {
-			width: 80px;
+			width: 80px;/*no*/
 			padding: 0 10px 0 20px;
 			img {
 				border-radius: 50%;
-				width: 60px;
-				height: 60px;
+				width: 100%;
+				height: 100%;
 			}
 			&.play {
 				animation: rotate 10s linear infinite;
@@ -752,11 +751,11 @@ export default {
 			white-space: nowrap;
 			.name {
 				margin-bottom: 2px;
-				font-size: @font-size-medium;
+				font-size: @font-size-medium;/*no*/
 				color: #000;
 			}
 			.desc {
-				font-size: @font-size-medium-x;
+				font-size: @font-size-medium-x;/*no*/
 				color: grey;
 			}
 		}
@@ -767,7 +766,7 @@ export default {
 			.icon-play-mini,
 			.icon-pause-mini,
 			.icon-playlist {
-				font-size: @font-size-large;
+				font-size: 80px; /*no*/
 				color: #31c27c;
 			}
 			.icon-mini {
