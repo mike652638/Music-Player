@@ -15,7 +15,7 @@
 				<div class="middle" @touchstart.prevent="touchStart" @touchmove.prevent="touchMove" @touchend.prevent="touchEnd">
 					<div class="middle-l" ref="middleL">
 						<div class="cd-wrapper" ref="cdWrapper">
-							<div class="cd">
+							<div class="cd play" :class="{pause: !playing}">
 								<img class="image" :src="bgImg">
 							</div>
 						</div>
@@ -767,6 +767,14 @@ export default {
 				top: 48%;
 				transform: translateY(-50%);
 			}
+		}
+	}
+	@keyframes rotate {
+		0% {
+			transform: rotate(0);
+		}
+		100% {
+			transform: rotate(360deg);
 		}
 	}
 }
