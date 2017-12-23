@@ -52,6 +52,7 @@ QQ 音乐
 
 ## 注意事项
 
+- animation-play-state: paused ios 不支持[解决方案](https://segmentfault.com/q/1010000009884033/a-1020000009892091)
 ## 预览
 
 ```bash

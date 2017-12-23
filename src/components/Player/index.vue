@@ -15,8 +15,8 @@
 				<div class="middle" @touchstart.prevent="touchStart" @touchmove.prevent="touchMove" @touchend.prevent="touchEnd">
 					<div class="middle-l" ref="middleL">
 						<div class="cd-wrapper" ref="cdWrapper">
-							<div class="cd play" :class="{pause: !playing}">
-								<img class="image" :src="bgImg">
+							<div ref="cdWrapPlay" class="cd">
+								<img ref="imageWrap" class="image" :src="bgImg">
 							</div>
 						</div>
 						<div class="playing-lyric-wrapper">
@@ -197,6 +197,15 @@ export default {
 		},
 		togglePlay() {
 			this.setPlayState(!this.playing)
+			const cTransform = getComputedStyle(this.$refs.cdWrapPlay).transform
+			const iTransform = getComputedStyle(this.$refs.imageWrap).transform
+			console.log(cTransform, iTransform)
+			if (!this.playing) {
+				this.$refs.cdWrapPlay.style.transform = cTransform === 'none'
+					? iTransform
+					: iTransform.concat(' ', cTransform)
+				this.$refs.imageWrap.classList.remove('play')
+			}
 			if (this.currentLyric) {
 				this.currentLyric.togglePlay()
 			}
@@ -439,6 +448,7 @@ export default {
 				let audio = this.$refs.audio
 				newPlay ? audio.play() : audio.pause()
 			})
+			newPlay ? this.$refs.imageWrap.classList.add('play') : ''
 		}
 	},
 	components: {
@@ -533,12 +543,12 @@ export default {
 						box-sizing: border-box;
 						border: 10px solid rgba(255, 255, 255, 0.1);
 						border-radius: 50%;
-						&.play {
+						.play {
 							animation: rotate 20s linear infinite;
 						}
-						&.pause {
-							animation-play-state: paused;
-							-webkit-animation-play-state: paused;
+						.pause {
+							// animation: none !important;
+							// animation-play-state: paused;
 						}
 						.image {
 							position: absolute;
@@ -729,7 +739,7 @@ export default {
 				animation: rotate 10s linear infinite;
 			}
 			&.pause {
-				animation-play-state: paused;
+				// animation-play-state: paused;
 			}
 		}
 		.text {
