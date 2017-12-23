@@ -25,11 +25,14 @@ export default {
 <style lang="less" scoped>
 @import '~@/common/less/const.less';
 .my-tab {
+	position: fixed;
 	display: flex;
+	width: 100%;
 	height: @marin-top-size;
 	line-height: @marin-top-size;
 	margin-top: 15px;
 	font-size: @font-size-medium;
+	justify-content: space-between;
 	.tab-item {
 		flex: 1;
 		text-align: center;
