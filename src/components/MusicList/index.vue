@@ -31,7 +31,7 @@ import { prefixStyle } from 'common/js/dom'
 import { mapActions } from 'vuex'
 import { playlistMixin } from 'common/js/mixin'
 let transform = prefixStyle('transform')
-const RESERVE_HEIGHT = 55
+const RESERVE_HEIGHT = 100
 export default {
   name: "MusicList",
   mixins: [playlistMixin],
@@ -193,7 +193,7 @@ export default {
 			.play {
 				box-sizing: border-box;
 				width: 250px;
-				padding: 7px 0;
+				padding: 15px 0;
 				margin: 0 auto;
 				text-align: center;
 				border: 1px solid #31c27c;
@@ -214,7 +214,7 @@ export default {
 			}
 		}
 		&.active {
-			padding-top: 15%;
+			padding-top: 10%;
 		}
 		.filter {
 			position: absolute;
