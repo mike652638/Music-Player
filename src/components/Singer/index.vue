@@ -108,6 +108,12 @@ export default {
 } 
 </script>
 <style lang="less" scoped>
+@import '~@/common/less/const.less';
 .singer {
+  position: fixed;
+	top: @marin-top-size;
+	bottom: 0px;
+	right: 0;
+	left: 0;
 }
 </style>

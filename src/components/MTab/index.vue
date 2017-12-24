@@ -30,7 +30,7 @@ export default {
 	width: 100%;
 	height: @marin-top-size;
 	line-height: @marin-top-size;
-	margin-top: 15px;
+	// margin-top: 15px;
 	font-size: @font-size-medium;
 	justify-content: space-between;
 	.tab-item {

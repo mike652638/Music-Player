@@ -108,8 +108,8 @@ export default {
 <style lang="less" scoped>
 @import '~@/common/less/const.less';
 .list-view {
-	position: fixed;
-	top: @marin-top-size;
+	position: absolute;
+	top: 0;
 	bottom: 0px;
 	right: 0;
 	left: 0;
