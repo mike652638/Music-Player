@@ -10,6 +10,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "amfe-flexible": "^2.2.1",
     "axios": "^0.16.1",
     "babel-runtime": "^6.0.0",
     "better-scroll": "^0.1.15",

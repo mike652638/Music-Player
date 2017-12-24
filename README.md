@@ -31,7 +31,8 @@
 * jsonp
 
 * flex
-* lib-flexbile
+* ~~~lib-flexbile~~~ amfe-flexible
+
 * px2rem
 
 ## 组件

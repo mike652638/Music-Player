@@ -1,4 +1,5 @@
 // 防止es6语法不支持
+import 'amfe-flexible'
 import 'babel-polyfill'
 import Vue from 'vue'
 import App from './App'
@@ -8,7 +9,6 @@ import vueLazyLoad from 'vue-lazyload'
 import Vuex from 'vuex'
 import store from './store'
 import 'common/less/index.less'
-import 'lib-flexible'
 import * as _ from 'lodash'
 // import vConsole from 'vconsole'
 Vue.use(vueLazyLoad, {
