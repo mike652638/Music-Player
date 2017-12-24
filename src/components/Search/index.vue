@@ -4,7 +4,7 @@
       <search-box ref="search" @query="query"></search-box>
     </div>
     <div class="suggest-wrap" v-show="queryData">
-      <Suggest :query="queryData" />
+      <Suggest :query="queryData" @listScroll="blurInput"/>
     </div>
     <div class="hot-search-wrap" v-show="!queryData">
       <p class="title">热门搜索</p>
@@ -44,6 +44,9 @@ export default {
     },
     query(query) {
       this.queryData = query
+    },
+    blurInput() {
+      this.$refs.search.blur()
     }
   },
   components: {

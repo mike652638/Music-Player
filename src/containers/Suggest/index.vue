@@ -1,5 +1,5 @@
 <template>
-	<Scroll :data="result" class="suggest-wrap" ref="scrollWrap" :pullUp="pullUp" @scrollToEnd="searchMoreData">
+	<Scroll :data="result" class="suggest-wrap" ref="scrollWrap" :pullUp="pullUp" @scrollToEnd="searchMoreData" :beforeScroll="beforeScroll" @beforeScroll="listScroll">
 		<ul class="suggest-list">
 			<li @click="selectItem(item)" class="suggest-item" v-for="item in result" :key="item.id">
 				<div class="icon">
@@ -35,7 +35,8 @@ export default {
 			result: [],
 			pullUp: true,
 			loadMore: true,
-			loadEnd: true
+			loadEnd: true,
+			beforeScroll: true
 		}
 	},
 	props: {
@@ -132,6 +133,9 @@ export default {
 			const bottom = playList.length > 0 ? height : ''
 			this.$refs.scrollWrap.$el.style.bottom = bottom
 			this.$refs.scrollWrap.refresh()
+		},
+		listScroll() {
+			this.$emit('listScroll')
 		}
 	},
 	computed: {},
