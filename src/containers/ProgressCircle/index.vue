@@ -9,52 +9,57 @@
 </template>
 
 <script>
-export default {
-  name: 'progress-circle',
-  data() {
-    return {
-      dasharray: 314
-    }
-  },
-  props: {
-    percent: {
-      type: Number,
-      default: 0
+  export default {
+    name: 'progress-circle',
+    data() {
+      return {
+        dasharray: 314
+      }
     },
-    radius: {
-      type: Number,
-      default: 32
-    }
-  },
-  watch: {},
-  filters: {},
-  methods: {},
-  computed: {
-    dashoffset() {
-      return (1 - this.percent) * this.dasharray
-    }
-  },
-  created() { },
-  mounted() { },
-  destroyed() { }
-}
+    props: {
+      percent: {
+        type: Number,
+        default: 0
+      },
+      radius: {
+        type: Number,
+        default: 32
+      }
+    },
+    watch: {},
+    filters: {},
+    methods: {},
+    computed: {
+      dashoffset() {
+        return (1 - this.percent) * this.dasharray
+      }
+    },
+    created() { },
+    mounted() { },
+    destroyed() { }
+  }
 </script>
 
 <style lang="less" scoped>
-@import '~@/common/less/const.less';
-.my-progress-circle {
-	position: relative;
-	circle {
-		stroke-width: 2px; /*no*/
-		transform-origin: center;
-		&.progress-background {
-			transform: scale(0.9);
-			stroke: #fff;
-		}
-		&.progress-bar {
-			transform: scale(0.9) rotate(-90deg);
-			stroke: #31c27c;
-		}
-	}
-}
+  @import '~@/common/less/const.less';
+  .my-progress-circle {
+  	position: relative;
+  	svg {
+  		position: absolute;
+      top: 0;
+      transform: translateY(-50%);
+  	}
+  	circle {
+  		stroke-width: 2px; /*no*/
+  		transform-origin: center;
+  		&.progress-background {
+  			transform: scale(0.9);
+  			stroke: #fff;
+  		}
+  		&.progress-bar {
+  			transform: scale(0.9) rotate(-90deg);
+  			stroke: #31c27c;
+  		}
+  	}
+  }
 </style>
