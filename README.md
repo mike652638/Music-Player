@@ -1,5 +1,10 @@
 # QQ 音乐 WebApp
 
+## 介绍
+该项目来源[HuangYi](https://github.com/ustbhuangyi)，并在基础上改造为QQ音乐UI和多端同构的适配方式
+
+旨在学习巩固Vue开发经验，移动端踩坑，并对原理学习有一定的帮助
+
 [项目演示地址](https://forzeny.github.io/Music-Player/dist/#/recommend)
 
 ## 耗时
@@ -25,6 +30,7 @@
 * axios
 * jsonp
 
+* flex
 * lib-flexbile
 * px2rem
 
@@ -36,9 +42,9 @@
 
 ## 已完成部分
 
-* [x] /recommand 推荐页：轮播图，推荐歌单列表，loading 组件，图片懒加载（使用better-scroll处理局部滚动和轮播图,vue-lazyload 处理懒加载）
-* [x] /singer 歌手页列表：歌手列表展示，左右联动，快速入口，类似通讯录（使用	better-scroll处理局部滚动,使用原生touch事件处理右侧姓氏滑动）
-* [x] /singer/:id 歌手详情页 , 局部滚动，视差，音乐播放器有的功能都有（迷你播放器使 用了 svg 模拟播放进度，播放器核心为 audio 标签，详情查看 mdn 文档，原生 touch 事件处理歌词和头像左右滑动）
+* [x] /recommand 推荐页：轮播图，推荐歌单列表，loading 组件
+* [x] /singer 歌手页列表：歌手列表展示，左右联动，快速入口，类似通讯录
+* [x] /singer/:id 歌手详情页 , 局部滚动，视差，音乐播放器有的功能都有
 * [x] /rank/:id 排行页
 * [x] /search 搜索，搜索结果，热门搜索，结果播放
 
