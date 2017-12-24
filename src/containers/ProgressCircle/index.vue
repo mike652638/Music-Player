@@ -50,7 +50,7 @@
       transform: translateY(-50%);
   	}
   	circle {
-  		stroke-width: 2px; /*no*/
+  		stroke-width: 3px; /*no*/
   		transform-origin: center;
   		&.progress-background {
   			transform: scale(0.9);
