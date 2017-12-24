@@ -13,7 +13,7 @@
     name: 'progress-circle',
     data() {
       return {
-        dasharray: 314
+        dasharray: 94.2
       }
     },
     props: {
@@ -31,6 +31,7 @@
     methods: {},
     computed: {
       dashoffset() {
+        console.log((1 - this.percent) * this.dasharray)
         return (1 - this.percent) * this.dasharray
       }
     },
@@ -46,18 +47,19 @@
   	position: relative;
   	svg {
   		position: absolute;
-      top: 0;
-      transform: translateY(-50%);
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
   	}
   	circle {
-  		stroke-width: 3px; /*no*/
+  		// stroke-width: 2px; /*no*/
   		transform-origin: center;
   		&.progress-background {
-  			transform: scale(0.9);
-  			stroke: #fff;
+  			transform: scale(0.8);
+  			stroke: #e6e6e6;
   		}
   		&.progress-bar {
-  			transform: scale(0.9) rotate(-90deg);
+  			transform: scale(0.8) rotate(-90deg);
   			stroke: #31c27c;
   		}
   	}
