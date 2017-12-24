@@ -45,7 +45,7 @@ export default {
 .my-progress-circle {
 	position: relative;
 	circle {
-		stroke-width: 8px; /*no*/
+		stroke-width: 2px; /*no*/
 		transform-origin: center;
 		&.progress-background {
 			transform: scale(0.9);
