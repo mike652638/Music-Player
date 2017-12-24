@@ -7,7 +7,7 @@
 </template>
 
 <script>
-
+import _ from 'lodash'
 export default {
 	components: {},
 	data() {
@@ -31,9 +31,9 @@ export default {
 	},
 	computed: {},
 	created() {
-		this.$watch('query', (newQuery) => {
+		this.$watch('query', _.debounce(function (newQuery) {
 			this.$emit('query', newQuery)
-		})
+		}, 500))
 	},
 	mounted() { },
 	destroyed() { }
