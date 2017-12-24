@@ -4,7 +4,7 @@
 
 该项目来源[HuangYi](https://github.com/ustbhuangyi)，并在基础上改造为 QQ 音乐 UI 和多端同构的适配方式
 
-旨在学习巩固 Vue 开发经验，移动端踩坑，并对原理学习有一定的帮助
+旨在学习巩固 Vue 开发经验，移动端踩坑，多端适配，可使用Cordova打包。。。
 
 [项目演示地址](https://forzeny.github.io/Music-Player/dist/#/recommend)
 
@@ -19,7 +19,7 @@
 
 ## 技术栈
 
-* Vue
+* Vue @2.3.3
 * vue-router
 * vuex
 * vue-lazyload
@@ -30,10 +30,7 @@
 * svg
 * axios
 * jsonp
-
-* flex
-* ~~~lib-flexbile~~~ amfe-flexible
-
+* ~~~lib-flexbile~~~ amfe-flexible@2.0
 * px2rem
 
 ## 组件
@@ -61,8 +58,8 @@ QQ 音乐
 
 ## 注意事项
 
-* animation-play-state: paused ios 不支持[解决方案](https://segmentfault.com/q/1010000009884033/a-1020000009892091)
-* min-player [进度条](https://codepen.io/xgad/post/svg-radial-progress-meters)
+* animation-play-state: paused ios 不支持[解决方案](https://codepen.io/HaoyCn/pen/BZZrLd)
+* min-player [进度条实现](https://codepen.io/xgad/post/svg-radial-progress-meters)
 
 ## 预览
 
