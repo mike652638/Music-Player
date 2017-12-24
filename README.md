@@ -17,15 +17,16 @@
 * vue-router
 * vuex
 * vue-lazyload
-* lib-flexbile
-* px2rem
 * better-scroll
 * less
 * ES6
 * Express
-* jsonp
 * svg
 * axios
+* jsonp
+
+* lib-flexbile
+* px2rem
 
 ## 组件
 
