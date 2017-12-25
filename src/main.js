@@ -1,6 +1,6 @@
 // 防止es6语法不支持
-import 'amfe-flexible'
 import 'babel-polyfill'
+import 'amfe-flexible'
 import Vue from 'vue'
 import App from './App'
 import router from './router'

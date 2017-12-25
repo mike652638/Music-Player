@@ -31,7 +31,6 @@
     methods: {},
     computed: {
       dashoffset() {
-        console.log((1 - this.percent) * this.dasharray)
         return (1 - this.percent) * this.dasharray
       }
     },

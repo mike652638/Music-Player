@@ -199,7 +199,6 @@
 				this.setPlayState(!this.playing)
 				const cTransform = getComputedStyle(this.$refs.cdWrapPlay).transform
 				const iTransform = getComputedStyle(this.$refs.imageWrap).transform
-				console.log(cTransform, iTransform)
 				if (!this.playing) {
 					this.$refs.cdWrapPlay.style.transform = cTransform === 'none'
 						? iTransform
