@@ -166,7 +166,7 @@ export default {
 		}
 		.icon {
 			width: 50px;
-			line-height: 1.5cm;
+			line-height: 1.5;
 			font-size: @font-size-medium;
 			[class^='icon-'] {
 				color: @color-text-d;

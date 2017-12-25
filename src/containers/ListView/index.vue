@@ -147,7 +147,7 @@ export default {
 	}
 	.list {
 		position: absolute;
-		z-index: 30;
+		// z-index: 30;
     top: 50%;
     right: 10px;
 		-webkit-transform: translateY(-50%);
