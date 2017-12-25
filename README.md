@@ -19,7 +19,7 @@
 
 ## 技术栈
 
-* Vue @2.3.3
+* Vue@2.3.3
 * vue-router
 * vuex
 * vue-lazyload
@@ -27,7 +27,7 @@
 * less
 * ES6
 * Express
-* svg
+* svg (<circle>)
 * axios
 * jsonp
 * ~~~lib-flexbile~~~ amfe-flexible@2.0
