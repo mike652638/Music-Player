@@ -1,27 +1,25 @@
 <template>
- <div class="music-list">
-  <div class="back" @click="goBack">
-   <i class="icon-back"></i>
-  </div>
-  <h2 class="title">{{title}}</h2>
-  <div ref="bgImage" class="bg-image" :class="{'active': topFixed}" :style="bgStyle">
-   <div ref="playRef" v-show="!topFixed" class="play-wrapper">
-    <div class="play" @click="playSongs">
-     <i class="icon-play"></i>
-     <span class="text">随机播放全部</span>
+  <div class="music-list">
+    <div class="back" @click="goBack">
+      <i class="icon-back"></i>
     </div>
-   </div>
-   <div class="filter"></div>
+    <h2 class="title">{{title}}</h2>
+    <div ref="bgImage" class="bg-image" :class="{'active': topFixed}" :style="bgStyle">
+      <div ref="playRef" v-show="!topFixed" class="play-wrapper">
+        <div class="play" @click="playSongs">
+          <i class="icon-play"></i>
+          <span class="text">随机播放全部</span>
+        </div>
+      </div>
+      <div class="filter"></div>
+    </div>
+    <loading :show="showLoading" />
+    <div class="bg-layer" ref="bgLayer">
+    </div>
+    <Scroll class="scroll-wrap" ref="Scroll" :listen-scroll="true" :probe-type="3" @scroll="scroll">
+      <song-list :songs="songs" :rank="rank" @select="selectItem" />
+    </Scroll>
   </div>
-  <div class="bg-layer" ref="bgLayer">
-  </div>
-  <Scroll class="scroll-wrap" ref="Scroll" :listen-scroll="true" :probe-type="3" @scroll="scroll">
-   <song-list :songs="songs" :rank="rank" @select="selectItem" />
-  </Scroll>
-  <div class="load-wrap">
-   <loading :show="showLoading" />
-  </div>
- </div>
 </template>
 <script>
 import Scroll from "containers/Scroll"
@@ -98,11 +96,13 @@ export default {
     }
   },
   watch: {
-    songs() {
-      this.$nextTick(() => {
-        this.$refs.Scroll.refresh()
-        this.showLoading = false
-      })
+    songs(val) {
+      if (val.length) {
+        this.$nextTick(() => {
+          this.$refs.Scroll.refresh()
+          this.showLoading = false
+        })
+      }
     },
     scrollY(newY) {
       if (newY > 0) {
