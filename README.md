@@ -38,13 +38,9 @@
 * jsonp
 * ~~~lib-flexbile~~~ amfe-flexible@2.0
 * px2rem
-
-### 插件
-
 * vue-lazyload
 * better-scroll
 
-### 部署
 
 * Vultr
 * PM2
