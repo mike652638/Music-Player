@@ -1,12 +1,18 @@
 # QQ 音乐 WebApp
 
+![Progress](http://progressed.io/bar/80?title=completed)
+
 ## 介绍
 
 该项目来源[HuangYi](https://github.com/ustbhuangyi)，并在基础上改造为 QQ 音乐 UI 和多端同构的适配方式
 
 旨在学习巩固 Vue 开发经验，移动端踩坑，多端适配，可使用Cordova打包。。。
 
-[项目演示地址](https://forzeny.github.io/Music-Player/dist/#/recommend)
+托管于VPS PM2 部署 Nginx 代理
+
+[演示地址](http://45.77.79.163/Music)
+
+[备用：项目演示地址 GitHub Pages](https://forzeny.github.io/Music-Player/dist/#/recommend)
 
 ## 耗时
 
@@ -17,21 +23,27 @@
 * macOS High Sierra
 * vscode
 
-## 技术栈
+## 相关
 
-* Vue@2.3.3
-* vue-router
-* vuex
+
+* Vue @2.3.3 vue-router vuex
 * vue-lazyload
 * better-scroll
 * less
 * ES6
 * Express
-* svg (<circle>)
+* svg
 * axios
 * jsonp
 * ~~~lib-flexbile~~~ amfe-flexible@2.0
 * px2rem
+* vue-lazyload
+* better-scroll
+
+
+* Vultr
+* PM2
+* Nginx
 
 ## 组件
 
@@ -61,7 +73,7 @@ QQ 音乐
 * animation-play-state: paused ios 不支持[解决方案](https://codepen.io/HaoyCn/pen/BZZrLd)
 * min-player [进度条实现](https://codepen.io/xgad/post/svg-radial-progress-meters)
 
-## 预览
+## 本地预览
 
 ```bash
 git clone hhttps://github.com/forzeny/Music-Player.git
