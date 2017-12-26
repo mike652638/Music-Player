@@ -114,8 +114,8 @@ export default {
         this.$refs.bgImage.style.zIndex = 0
       }
       let translateHeight = -newY;
-      if (translateHeight > this.imageHeight - RESERVE_HEIGHT) {
-        translateHeight = this.imageHeight - RESERVE_HEIGHT
+      if (translateHeight > this.height) {
+        translateHeight = this.height
         this.$refs.bgImage.style.zIndex = 111
         this.topFixed = true
       } else {
@@ -127,6 +127,7 @@ export default {
   },
   mounted() {
     this.imageHeight = this.$refs.bgImage.clientHeight;
+    this.height = this.imageHeight * 0.9
     this.$refs.Scroll.$el.style.top = `${this.imageHeight}px`;
   },
   components: {
