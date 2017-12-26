@@ -10,7 +10,7 @@
 
 托管于VPS PM2 部署 Nginx 代理
 
-[演示地址](http://45.77.79.163/#/recommend)
+[演示地址](http://45.77.79.163/Music)
 
 [备用：项目演示地址 GitHub Pages](https://forzeny.github.io/Music-Player/dist/#/recommend)
 
