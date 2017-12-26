@@ -23,9 +23,8 @@
 * macOS High Sierra
 * vscode
 
-## 相关技术栈
+## 相关
 
-### 技术
 
 * Vue @2.3.3 vue-router vuex
 * vue-lazyload
