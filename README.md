@@ -1,6 +1,6 @@
 # QQ 音乐 WebApp
 
-http://progressed.io/bar/80?title=completed
+![Progress](http://progressed.io/bar/80?title=completed)
 
 ## 介绍
 
