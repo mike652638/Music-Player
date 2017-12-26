@@ -28,6 +28,8 @@ http://progressed.io/bar/80?title=completed
 ### 技术
 
 * Vue @2.3.3 vue-router vuex
+* vue-lazyload
+* better-scroll
 * less
 * ES6
 * Express
