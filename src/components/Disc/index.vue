@@ -1,16 +1,18 @@
 <template>
- <transition name="slide">
-  <music-list :bgImage="bgImage" :title="title" />
- </transition>
+  <transition name="slide">
+    <music-list :bgImage="bgImage" :title="title" :songs="songs" />
+  </transition>
 </template>
 <script>
 import MusicList from "components/MusicList"
 import { mapGetters } from 'vuex'
 import { getSongList } from 'api/recommend'
 import { ERR_OK } from 'api/config'
+import { createSong } from "common/js/song"
 export default {
   data() {
     return {
+      songs: []
     }
   },
   created() {
@@ -33,15 +35,10 @@ export default {
         this.$router.push('/recommend')
         return
       }
-      getSongList(this.disc.dissid, {
-        param: 'jsonpCallback',
+      getSongList('api/getDisc',this.disc.dissid, {
       }).then((res) => {
-        if (res.code === ERR_OK) {
-          console.info(`需要代理`)
-          setTimeout(() => {
-            this.$router.push('/recommend')
-          }, 1000)
-          return
+        if (res.data.code === ERR_OK) {
+          this.songs = this._normalizeSongs(res.data.cdlist[0].songlist)
         }
       })
     },
