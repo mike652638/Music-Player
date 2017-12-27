@@ -12,7 +12,7 @@
 
 [演示地址](http://45.77.79.163/Music)
 
-[备用：项目演示地址 GitHub Pages](https://forzeny.github.io/Music-Player/dist/#/recommend)
+[备用：项目演示地址 GitHub Pages](https://forzeny.github.io/Music-Player/music/#/recommend)
 
 ## 耗时
 
