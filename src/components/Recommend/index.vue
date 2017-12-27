@@ -2,8 +2,8 @@
   <div class="recommend">
     <scroll ref="scrollWrap" class="scroll-wrapper" :data="songList">
       <div>
-        <div class="slider-wrap" v-if="picData.length">
-          <slider>
+        <div class="slider-wrap">
+          <slider v-if="picData.length">
             <div class="pic-list" v-for="i in picData" :key="i.id">
               <a :href="i.linkUrl">
                 <img class="needsclick" @load="loadImage" :src="i.picUrl" alt="">
@@ -14,7 +14,7 @@
         <div class="recommend-list">
           <div class="list-wrap">
             <h1 class="title">热门歌单推荐</h1>
-            <ul class="content">
+            <ul class="content" ref="content">
               <li @click="selectItem(i)" class="content-item" v-for="i in songList" :key="i.id">
                 <div class="list-pic">
                   <img v-lazy="i.imgurl" alt="">
