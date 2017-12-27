@@ -6,7 +6,7 @@
           <slider v-if="picData.length">
             <div class="pic-list" v-for="i in picData" :key="i.id">
               <a :href="i.linkUrl">
-                <img class="needsclick" @load="loadImage" :src="i.picUrl" alt="">
+                <img @load="loadImage" :src="i.picUrl" alt="">
               </a>
             </div>
           </slider>
