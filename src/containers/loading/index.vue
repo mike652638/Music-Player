@@ -24,6 +24,8 @@ export default {
 <style lang="less" scoped>
 @import '~@/common/less/const.less';
 .loading {
+	position: relative;
+	z-index: 121212;
 	margin: 10px;
 	.loading-wrap {
 		width: 100%;

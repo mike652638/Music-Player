@@ -9,8 +9,7 @@ export function getMusicList(url, data, opts) {
 		params: data
 	})
 }
-export function getSongList(disstid, opt) {
-	const url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_tag_conf.fcg'
+export function getSongList(url, disstid, opt) {
 	const data = Object.assign({}, commonParams, {
 		disstid,
 		type: 1,
@@ -22,6 +21,7 @@ export function getSongList(disstid, opt) {
 		needNewCode: 0,
 		format: 'jsonp'
 	})
-
-	return jsonp(url, data, opt)
+	return axios.get(url, {
+		params: data
+	})
 }

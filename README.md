@@ -23,9 +23,8 @@
 * macOS High Sierra
 * vscode
 
-## 相关技术栈
+## 相关
 
-### 技术
 
 * Vue @2.3.3 vue-router vuex
 * vue-lazyload
@@ -73,7 +72,7 @@ QQ 音乐
 
 * animation-play-state: paused ios 不支持[解决方案](https://codepen.io/HaoyCn/pen/BZZrLd)
 * min-player [进度条实现](https://codepen.io/xgad/post/svg-radial-progress-meters)
-
+* vue@2.5+  [ios 不能播放问题](https://github.com/DDFE/DDFE-blog/issues/24)
 ## 本地预览
 
 ```bash
