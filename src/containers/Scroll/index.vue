@@ -77,9 +77,12 @@
     },
     watch: {
       data(val) {
-        setTimeout(() => {
+        this.$nextTick(() => {
           this.refresh()
-        }, 1000)
+        })
+        // setTimeout(() => {
+        //   this.refresh()
+        // }, 1000)
       }
     }
   }
