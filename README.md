@@ -85,8 +85,7 @@ $ yarn run dev
 
 * iphoneX 真机
 
-<img src="./static/WechatIMG505.png" width="40%">
-<img src="./static/WechatIMG506.png" width="40%">
+<img src="./static/WechatIMG505.png" width="40%"><img src="./static/WechatIMG506.png" width="40%">
 
 * iphone7 Plus 模拟器
 
