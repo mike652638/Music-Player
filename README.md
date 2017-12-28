@@ -4,9 +4,9 @@
 
 ## 介绍
 
-该项目来源[HuangYi](https://github.com/ustbhuangyi)，并在基础上改造为 QQ 音乐 UI 和多端同构
+该项目来源[HuangYi](https://github.com/ustbhuangyi)，并在基础上改造为 QQ 音乐 UI 和多端同构，并使用Cordova打包，运行在iphone真机上，结尾有我的一些截图。
 
-旨在学习巩固 Vue 开发经验，移动端踩坑，多端适配，可使用Cordova打包，运行在iphone真机上。。。
+因为自己一直想搞移动端所以衍生了一些列的学习欲望，同时也为巩固Vue开发经验
 
 
 托管于VPS PM2 部署 Nginx 代理
@@ -82,8 +82,8 @@ $ cd Music-Player
 $ yarn install
 $ yarn run dev
 ```
-![iphoneX 真机](./static/WechatIMG505.png =414)
-![iphoneX 真机](./static/WechatIMG506.png =414)
-![iphone7 Plus 模拟器](./static/WechatIMG508.png =414)
+![iphoneX 真机](./static/WechatIMG505.png)
+![iphoneX 真机](./static/WechatIMG506.png)
+![iphone7 Plus 模拟器](./static/WechatIMG508.png)
 
-![适配iphone 系列，X的刘海暂未处理](./static/WechatIMG507.jpeg =414)
+![适配iphone 系列，X的刘海暂未处理](./static/WechatIMG507.jpeg)
