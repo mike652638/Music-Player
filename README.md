@@ -82,8 +82,18 @@ $ cd Music-Player
 $ yarn install
 $ yarn run dev
 ```
-![iphoneX 真机](./static/WechatIMG505.png)
-![iphoneX 真机](./static/WechatIMG506.png)
-![iphone7 Plus 模拟器](./static/WechatIMG508.png)
+## 设备
+
+* iphoneX真机
+
+  <img src="./static/WechatIMG505.png" width="20%">
+  <img src="./static/WechatIMG506.png" width="20%">
+  <img src="./static/WechatIMG506.png" width="20%">
+  
+* iphone7 Plus 模拟器
+
+  <img src="./static/WechatIMG508.png" width="20%">
+  
+* 适配列表
 
 ![适配iphone 系列，X的刘海暂未处理](./static/WechatIMG507.jpeg)
