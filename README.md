@@ -4,12 +4,11 @@
 
 ## 介绍
 
-该项目来源[HuangYi](https://github.com/ustbhuangyi)，并在基础上改造为 QQ 音乐 UI 和多端同构，并使用Cordova打包，运行在iphone真机上，结尾有我的一些截图。
+该项目来源[HuangYi](https://github.com/ustbhuangyi)，并在基础上改造为 QQ 音乐 UI 和多端同构，并使用 Cordova 打包，运行在 iphone 真机上，结尾有我的一些截图。
 
-因为自己一直想搞移动端所以衍生了一些列的学习欲望，同时也为巩固Vue开发经验
+因为自己一直想搞移动端所以衍生了一系列的学习欲望，同时也为巩固 Vue 开发经验
 
-
-托管于VPS PM2 部署 Nginx 代理
+数据来源QQ音乐JSONP，部分接口存在http header的限制所以用到了node，托管于VPS，PM2 部署，Nginx代理，
 
 [演示地址](http://45.77.79.163/Music)
 
@@ -26,7 +25,6 @@
 
 ## 相关
 
-
 * Vue @2.3.3 vue-router vuex
 * vue-lazyload
 * better-scroll
@@ -40,7 +38,6 @@
 * px2rem
 * vue-lazyload
 * better-scroll
-
 
 * Vultr
 * PM2
@@ -65,15 +62,12 @@
 * vConsole
 * Charles
 
-## 数据来源
-
-QQ 音乐
-
 ## 注意事项
 
 * animation-play-state: paused ios 不支持[解决方案](https://codepen.io/HaoyCn/pen/BZZrLd)
 * min-player [进度条实现](https://codepen.io/xgad/post/svg-radial-progress-meters)
 * vue@2.5+  [ios 不能播放问题](https://github.com/DDFE/DDFE-blog/issues/24)
+
 ## 本地预览
 
 ```bash
@@ -82,17 +76,26 @@ $ cd Music-Player
 $ yarn install
 $ yarn run dev
 ```
-## 设备
 
-* iphoneX真机
+## 适配
 
-  <img src="./static/WechatIMG505.png" width="40%">
-  <img src="./static/WechatIMG506.png" width="40%">
-  
+适配这部分主要是IOS的Safari浏览器和微信webview，打包后软件兼容性，和样式上的问题，此应用未调用设备API
+
+### IOS 适配
+
+* iphoneX 真机
+
+<img src="./static/WechatIMG505.png" width="40%">
+<img src="./static/WechatIMG506.png" width="40%">
+
 * iphone7 Plus 模拟器
 
-  <img src="./static/WechatIMG508.png">
-  
-* 适配列表
+<img src="./static/WechatIMG508.png">
+
+* 适配列表中iPhone，iPad系列，X 的刘海暂未处理
 
 ![适配iphone 系列，X的刘海暂未处理](./static/WechatIMG507.jpeg)
+
+### Andriod 适配
+
+试了下腾讯的[weTest](http://wetest.qq.com/product/cloudphone?from=default_automail_new) 没后文
