@@ -118,13 +118,10 @@
   		background: #fff;
   		position: fixed;
   		overflow: hidden;
-  		top: @marin-top-size;
+  		top: @marin-top-size;/*no*/
   		left: 0;
   		right: 0;
   		bottom: 0;
-  		.slider-wrap {
-  			height: 172px; /*no*/
-  		}
   		.recommend-list {
   			.list-wrap {
   				.title {

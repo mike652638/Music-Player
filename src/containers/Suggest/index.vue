@@ -152,7 +152,7 @@ export default {
 .suggest-wrap {
 	position: fixed;
 	overflow: hidden;
-	top: @marin-top-size + 90;
+	top: @marin-top-size + 40;/*no*/
 	left: 0;
 	right: 0;
 	bottom: 0;

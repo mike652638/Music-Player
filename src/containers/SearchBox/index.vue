@@ -53,7 +53,7 @@ export default {
 	box-sizing: border-box;
 	width: 100%;
 	padding: 0 20px;
-	height: 80px;
+	height: 40px; /*no*/
 	background: white;
 	border-radius: 6px;
 	.icon-search {

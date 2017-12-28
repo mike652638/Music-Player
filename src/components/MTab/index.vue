@@ -28,8 +28,8 @@ export default {
 	position: fixed;
 	display: flex;
 	width: 100%;
-	height: @marin-top-size;
-	line-height: @marin-top-size;
+	height: @marin-top-size;/*no*/
+	line-height: @marin-top-size;/*no*/
 	// margin-top: 15px;
 	font-size: @font-size-medium;
 	justify-content: space-between;

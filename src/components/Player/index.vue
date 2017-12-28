@@ -517,7 +517,7 @@
 			.middle {
 				position: fixed;
 				width: 100%;
-				top: @marin-top-size + 40;
+				top: @marin-top-size + 40;/*no*/
 				bottom: 350px;
 				white-space: nowrap;
 				font-size: 0;
