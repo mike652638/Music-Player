@@ -79,7 +79,9 @@ $ yarn run dev
 
 ## 适配
 
-适配这部分主要是IOS的Safari浏览器和微信webview，打包后软件兼容性，和样式上的问题，此应用未调用设备API
+适配这部分主要是IOS的Safari浏览器和微信webview以及打包后兼容性，和样式上的问题，此应用未调用设备API
+
+以下图片为打包后软件运行图，不能后台播放需要IOSER帮助，真机上动画流畅
 
 ### IOS 适配
 
@@ -97,4 +99,4 @@ $ yarn run dev
 
 ### Andriod 适配
 
-试了下腾讯的[weTest](http://wetest.qq.com/product/cloudphone?from=default_automail_new) 没后文
+试了下腾讯的[weTest](http://wetest.qq.com/product/cloudphone?from=default_automail_new) 收费，没继续用
