@@ -28,8 +28,8 @@ export default {
 	position: fixed;
 	display: flex;
 	width: 100%;
-	height: @marin-top-size;/*no*/
-	line-height: @marin-top-size;/*no*/
+	height: @marin-top-size;
+	line-height: @marin-top-size;
 	font-size: @font-size-medium;
 	justify-content: space-between;
 	.tab-item {

@@ -53,11 +53,11 @@ export default {
 	box-sizing: border-box;
 	width: 100%;
 	padding: 0 20px;
-	height: 40px; /*no*/
+	height: 60px; 
 	background: white;
 	border-radius: 6px;
 	.icon-search {
-		font-size: @font-size-large;
+		font-size: 40px;
 		color: @color-background;
 	}
 	.box {
@@ -66,15 +66,15 @@ export default {
 		border: 0;
 		outline: none;
 		background: #f4f4f4;
-		line-height: 1.5;
+		line-height: 1;
 		color: #000;
-		font-size: @font-size-medium;
+		font-size: 30px;
 		&::placeholder {
 			color: grey;
 		}
 	}
 	.icon-dismiss {
-		font-size: @font-size-medium;
+		font-size: 20px;
 		color: @color-background;
 	}
 }

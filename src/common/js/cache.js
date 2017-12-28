@@ -6,7 +6,7 @@ const SEARCH_MAX_LENGTH = 15
 function insertArray(arr, val, compare, maxlen) {
   const index = arr.findIndex(compare)
   if (!index) {
-    return arr
+    return
   }
   if (index > 0) {
     arr.splice(index, 1)
@@ -18,11 +18,12 @@ function insertArray(arr, val, compare, maxlen) {
 }
 export function saveSearch(query) {
   let searchs = storage.get(SEARCH_KEY, [])
+  console.log(searchs)
   insertArray(
     searchs,
     query,
     item => {
-      return (item = query)
+      return (item === query)
     },
     SEARCH_MAX_LENGTH
   )

@@ -66,4 +66,5 @@ export const insertSong = function({ commit, state }, song) {
 
 export const saveSearchHistory = function({ commit, state }, query) {
   commit(types.SET_SEARCH_HISTORY, saveSearch(query))
+  
 }

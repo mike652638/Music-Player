@@ -78,7 +78,7 @@ export default {
 .rank {
 	position: fixed;
 	width: 100%;
-	top: @marin-top-size;/*no*/
+	top: @marin-top-size;
 	bottom: 0;
 	.toplist {
 		height: 100%;

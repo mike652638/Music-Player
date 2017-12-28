@@ -85,15 +85,15 @@ $ yarn run dev
 
 ### IOS 适配
 
-* iphoneX 真机
+* iphoneX 真机截图 上下有留白
 
 <img src="./static/WechatIMG505.png" width="40%"><img src="./static/WechatIMG506.png" width="40%">
 
-* iphone7 Plus 模拟器
+* iphone7 Plus 模拟器正常
 
 <img src="./static/WechatIMG508.png">
 
-* 适配列表中iPhone，iPad系列，X 的刘海暂未处理
+* 适配列表中iPhone，iPad系列，其中X有留白
 
 ![适配iphone 系列，X的刘海暂未处理](./static/WechatIMG507.jpeg)
 

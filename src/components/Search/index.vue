@@ -68,7 +68,7 @@ export default {
 @import '~common/less/const.less';
 .search {
 	overflow: hidden;
-	top: @marin-top-size; /*no*/
+	top: @marin-top-size;
 	left: 0;
 	bottom: 0;
 	right: 0;
