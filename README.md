@@ -87,7 +87,7 @@ $ yarn run dev
 
 * iphoneX 真机截图 上下有留白
 
-<img src="./static/WechatIMG505.png" width="40%"><img src="./static/WechatIMG506.png" width="40%">
+<img src="./static/WechatIMG505.png" width="50%"><img src="./static/WechatIMG506.png" width="50%">
 
 * iphone7 Plus 模拟器正常
 
