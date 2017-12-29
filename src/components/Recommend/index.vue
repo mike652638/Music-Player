@@ -55,10 +55,6 @@
         songList: [],
       }
     },
-    created() {
-      this.getRecommendPic()
-      this.getRecommendMusicList()
-    },
     methods: {
       handlePlayList(playList) {
         const dom = document.getElementsByClassName('mini-player')[0]
@@ -66,25 +62,6 @@
         const bottom = playList.length > 0 ? height : ''
         this.$refs.scrollWrap.$el.style.bottom = bottom
         this.$refs.scrollWrap.refresh()
-      },
-      getRecommendPic() {
-        getRecommend(config.recommendUrl, config.commonParam, config.recommendCptions).then((res) => {
-          if (res.code === config.ERR_OK) {
-            this.picData = res.data.slider
-          }
-        })
-      },
-      getRecommendMusicList() {
-        getMusicList(config.musicListUrl, config.musicListParam).then((res) => {
-          if (res.data.code === config.ERR_OK) {
-            this.songList = res.data.data.list
-          }
-        }).catch((error) => {
-          console.log('代理失败，请求假数据')
-          setTimeout(() => {
-            this.songList = require('../../../static/recommand.json').data.list
-          }, 2000)
-        })
       },
       loadImage() {
         if (!this.checkLoad) {
@@ -102,6 +79,23 @@
       },
       ...mapMutations({
         setDisc: 'SET_DISC'
+      })
+    },
+    preFetch() {
+      getRecommend(config.recommendUrl, config.commonParam, config.recommendCptions).then((res) => {
+        if (res.code === config.ERR_OK) {
+          this.picData = res.data.slider
+        }
+      })
+      getMusicList(config.musicListUrl, config.musicListParam).then((res) => {
+        if (res.data.code === config.ERR_OK) {
+          this.songList = res.data.data.list
+        }
+      }).catch((error) => {
+        console.log('代理失败，请求假数据')
+        setTimeout(() => {
+          this.songList = require('../../../static/recommand.json').data.list
+        }, 2000)
       })
     },
     components: {
