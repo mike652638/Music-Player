@@ -25,23 +25,19 @@
 
 ## 相关
 
-* Vue @2.3.3 vue-router vuex
-* vue-lazyload
-* better-scroll
+* Vue @2.3.3, vue-router, vuex, axios
 * less
 * ES6
 * Express
-* svg
-* axios
-* jsonp
-* ~~~lib-flexbile~~~ amfe-flexible@2.0
-* px2rem
-* vue-lazyload
-* better-scroll
+* ~~~lib-flexbile~~~ amfe-flexible@2.0,  px2rem
 
-* Vultr
-* PM2
-* Nginx
+* Vultr PM2 Nginx
+
+## 分支
+
+* master
+* lib-flex
+* ssr
 
 ## 组件
 
@@ -56,6 +52,7 @@
 * [x] /singer/:id 歌手详情页 , 局部滚动，视差，音乐播放器有的功能都有
 * [x] /rank/:id 排行页
 * [x] /search 搜索，搜索结果，热门搜索，结果播放
+* [ ] 用户中心页，搜索历史页 
 
 ## 调试工具
 
