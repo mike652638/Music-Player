@@ -4,7 +4,7 @@
 
 ## 介绍
 
-该项目来源[HuangYi](https://github.com/ustbhuangyi)，并在基础上改造为 QQ 音乐 UI 和多端同构，并使用 Cordova 打包，运行在 iphone 真机上，结尾有我的一些截图。
+该项目来源[HuangYi](https://github.com/ustbhuangyi)，并在基础上改造为 QQ 音乐 UI 和多端同构，并打包成IOS，运行在 iphone 真机上，结尾有我的一些截图。
 
 因为自己一直想搞移动端所以衍生了一系列的学习欲望，同时也为巩固 Vue 开发经验
 
