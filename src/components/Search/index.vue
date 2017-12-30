@@ -12,6 +12,15 @@
         <ul class="hot-key">
           <li @click="addQuery(i.k)" class="item" v-for="i in hotkey" :key="i.id">{{i.k}}</li>
         </ul>
+        <div class="search-history" v-show="searchHistory.length">
+          <h1 class="title">
+            <span class="text">搜索历史</span>
+            <span class="clear">
+              <i class="icon-clear" @click="clearAll"></i>
+            </span>
+          </h1>
+          <search-list :searches="searchHistory" @select="addQuery" @delete="deleteItem"></search-list>
+        </div>
       </div>
     </div>
     <router-view></router-view>
@@ -19,10 +28,11 @@
 </template>
 <script>
 import SearchBox from 'containers/SearchBox'
+import SearchList from 'containers/SearchList'
 import Suggest from 'containers/Suggest'
 import { getHotKey } from 'api/search'
 import { ERR_OK } from 'api/config'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'search',
   data() {
@@ -34,9 +44,16 @@ export default {
   created() {
     this._getHotKey()
   },
+  computed: {
+    ...mapGetters([
+      'searchHistory'
+    ])
+  },
   methods: {
     ...mapActions({
-      setSearchHistory: 'saveSearchHistory'
+      setSearchHistory: 'saveSearchHistory',
+      deleteSearchHistory: 'deleteSearchHistory',
+      clearSearchHistory: 'clearSearchHistory'
     }),
     _getHotKey() {
       getHotKey().then((res) => {
@@ -56,11 +73,18 @@ export default {
     },
     saveSearch() {
       this.setSearchHistory(this.queryData)
+    },
+    deleteItem(item) {
+      this.deleteSearchHistory(item)
+    },
+    clearAll() {
+      this.clearSearchHistory()
     }
   },
   components: {
     SearchBox,
-    Suggest
+    Suggest,
+    SearchList
   }
 }
 </script>
@@ -74,7 +98,7 @@ export default {
 	right: 0;
 	position: fixed;
 	.hot-search-wrap {
-		margin: 10px;
+		margin: 30px 10px;
 		.title {
 			color: rgba(0, 0, 0, 0.6);
 			font-size: @font-size-medium;
@@ -88,6 +112,26 @@ export default {
 				margin: 10px;
 				background: white;
 				border-radius: 5px;
+			}
+		}
+	}
+	.search-history {
+		position: relative;
+		margin: 20px;
+		.title {
+			display: flex;
+			align-items: center;
+			height: 40px;
+			font-size: @font-size-medium;
+			color: #000;
+			.text {
+				flex: 1;
+			}
+			.clear {
+				.icon-clear {
+					font-size: @font-size-medium;
+					color: @color-text-d;
+				}
 			}
 		}
 	}

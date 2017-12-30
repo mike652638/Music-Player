@@ -10,6 +10,7 @@ import Vuex from 'vuex'
 import store from './store'
 import 'common/less/index.less'
 import * as _ from 'lodash'
+console.log(Vue.version, Vuex.version)
 // import vConsole from 'vconsole'
 Vue.use(vueLazyLoad, {
 	loading: require('common/img/default.jpeg')
