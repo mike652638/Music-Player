@@ -43,7 +43,7 @@ export default {
 		display: flex;
 		align-items: center;
 		margin: 10px 0;
-		height: 40px;
+		height: 50px;
 		overflow: hidden;
 		&.list-enter-active,
 		&.list-leave-active {

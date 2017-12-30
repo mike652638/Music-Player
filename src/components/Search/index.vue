@@ -5,34 +5,39 @@
         <search-box ref="search" @query="query"></search-box>
       </div>
       <div class="suggest-wrap" v-show="queryData">
-        <Suggest :query="queryData" @select="saveSearch" @listScroll="blurInput" />
+        <Suggest :query="queryData" @listScroll="blurInput" />
       </div>
-      <div class="hot-search-wrap" v-show="!queryData">
-        <p class="title">热门搜索</p>
-        <ul class="hot-key">
-          <li @click="addQuery(i.k)" class="item" v-for="i in hotkey" :key="i.id">{{i.k}}</li>
-        </ul>
-        <div class="search-history" v-show="searchHistory.length">
-          <h1 class="title">
-            <span class="text">搜索历史</span>
-            <span class="clear">
-              <i class="icon-clear" @click="clearAll"></i>
-            </span>
-          </h1>
-          <search-list :searches="searchHistory" @select="addQuery" @delete="deleteItem"></search-list>
+      <scroll :data="scrollData" class="scroll-box">
+        <div class="hot-search-wrap" v-show="!queryData">
+          <p class="title">热门搜索</p>
+          <ul class="hot-key">
+            <li @click.stop="addQuery(i.k)" class="item" v-for="i in hotkey" :key="i.id">{{i.k}}</li>
+          </ul>
+          <div class="search-history" v-show="searchHistory.length">
+            <h1 class="title">
+              <span class="text">搜索历史</span>
+              <span class="clear">
+                <i class="icon-clear" @click="showConfirm"></i>
+              </span>
+            </h1>
+            <search-list :searches="searchHistory" @select="addQuery" @delete="deleteItem"></search-list>
+          </div>
         </div>
-      </div>
+      </scroll>
     </div>
+    <confirm ref="confirmRef" @confirm="confirm" @cancel="cancel"></confirm>
     <router-view></router-view>
   </div>
 </template>
 <script>
 import SearchBox from 'containers/SearchBox'
 import SearchList from 'containers/SearchList'
+import Confirm from 'containers/Confirm'
 import Suggest from 'containers/Suggest'
 import { getHotKey } from 'api/search'
 import { ERR_OK } from 'api/config'
 import { mapActions, mapGetters } from 'vuex'
+import Scroll from 'containers/Scroll'
 export default {
   name: 'search',
   data() {
@@ -47,7 +52,10 @@ export default {
   computed: {
     ...mapGetters([
       'searchHistory'
-    ])
+    ]),
+    scrollData() {
+      return [...this.hotkey, ...this.searchHistory]
+    }
   },
   methods: {
     ...mapActions({
@@ -67,24 +75,39 @@ export default {
     },
     query(query) {
       this.queryData = query
+      this.saveSearch(query.trim())
     },
     blurInput() {
       this.$refs.search.blur()
     },
-    saveSearch() {
-      this.setSearchHistory(this.queryData)
+    saveSearch(query) {
+      if(!query) {
+        return
+      }
+      this.setSearchHistory(query)
     },
     deleteItem(item) {
       this.deleteSearchHistory(item)
     },
     clearAll() {
       this.clearSearchHistory()
+    },
+    showConfirm() {
+      this.$refs.confirmRef.show()
+    },
+    confirm() {
+      this.clearAll()
+    },
+    cancel() {
+      this.$refs.confirmRef.hide()
     }
   },
   components: {
     SearchBox,
     Suggest,
-    SearchList
+    SearchList,
+    Confirm,
+    Scroll
   }
 }
 </script>
@@ -97,6 +120,12 @@ export default {
 	bottom: 0;
 	right: 0;
 	position: fixed;
+	.scroll-box {
+    overflow: hidden;
+		position: fixed;
+    top: @marin-top-size + 60;
+    bottom: 0;
+	}
 	.hot-search-wrap {
 		margin: 30px 10px;
 		.title {
