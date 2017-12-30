@@ -14,7 +14,7 @@
             <li @click.stop="addQuery(i.k)" class="item" v-for="i in hotkey" :key="i.id">{{i.k}}</li>
           </ul>
           <div class="search-history" v-show="searchHistory.length">
-            <h1 class="title">
+            <h1 class="search-history-title">
               <span class="text">搜索历史</span>
               <span class="clear">
                 <i class="icon-clear" @click="showConfirm"></i>
@@ -162,7 +162,7 @@ export default {
 	.search-history {
 		position: relative;
 		margin: 20px;
-		.title {
+		.search-history-title {
 			display: flex;
 			align-items: center;
 			height: 40px;
