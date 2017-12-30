@@ -86,13 +86,14 @@ $ yarn run dev
 
 <img src="./static/WechatIMG505.png" width="50%"><img src="./static/WechatIMG506.png" width="50%">
 
-* iphone7 Plus 模拟器正常
-
-<img src="./static/WechatIMG508.png">
-
-* 适配列表中iPhone，iPad系列，其中X有留白
+* IOS系列模拟器正常
 
 ![适配iphone 系列，X的刘海暂未处理](./static/WechatIMG507.jpeg)
+<img src="./static/WX20171230-154740@2x.png">
+<img src="./static/WX20171230-155034@2x.png">
+<img src="./static/WX20171230-155124@2x.png">
+
+
 
 ### Andriod 适配
 
