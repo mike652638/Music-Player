@@ -74,7 +74,7 @@ export default {
 		}
 	}
 	.icon-dismiss {
-		font-size: 20px;
+		font-size: 30px;
 		color: @color-background;
 	}
 }
