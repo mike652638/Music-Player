@@ -7,7 +7,7 @@
       <div class="suggest-wrap" v-show="queryData">
         <Suggest :query="queryData" @listScroll="blurInput" />
       </div>
-      <scroll :data="scrollData" class="scroll-box">
+      <scroll :data="scrollData" ref="scrollRef" class="scroll-box">
         <div class="hot-search-wrap" v-show="!queryData">
           <p class="title">热门搜索</p>
           <ul class="hot-key">
@@ -38,8 +38,11 @@ import { getHotKey } from 'api/search'
 import { ERR_OK } from 'api/config'
 import { mapActions, mapGetters } from 'vuex'
 import Scroll from 'containers/Scroll'
+import { playlistMixin } from 'common/js/mixin'
+
 export default {
   name: 'search',
+  mixins: [playlistMixin],
   data() {
     return {
       hotkey: [],
@@ -76,12 +79,15 @@ export default {
     query(query) {
       this.queryData = query
       this.saveSearch(query.trim())
+      this.$nextTick(() => {
+        this.$refs.scrollRef.refresh()
+      })
     },
     blurInput() {
       this.$refs.search.blur()
     },
     saveSearch(query) {
-      if(!query) {
+      if (!query) {
         return
       }
       this.setSearchHistory(query)
@@ -100,6 +106,14 @@ export default {
     },
     cancel() {
       this.$refs.confirmRef.hide()
+    },
+    handlePlayList(playList) {
+      //  const dom = document.getElementsByClassName('mini-player')[0]
+      // const height = getComputedStyle(dom)['height']
+      const height = '50px';
+      const bottom = playList.length > 0 ? height : ''
+      this.$refs.scrollRef.$el.style.bottom = bottom
+      this.$refs.scrollRef.refresh()
     }
   },
   components: {
@@ -121,13 +135,13 @@ export default {
 	right: 0;
 	position: fixed;
 	.scroll-box {
-    overflow: hidden;
+		overflow: hidden;
 		position: fixed;
-    top: @marin-top-size + 60;
-    bottom: 0;
+		top: @marin-top-size + 60;
+		bottom: 0;
 	}
 	.hot-search-wrap {
-		margin: 30px 10px;
+		margin: 0px 10px;
 		.title {
 			color: rgba(0, 0, 0, 0.6);
 			font-size: @font-size-medium;
