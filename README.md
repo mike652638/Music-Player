@@ -36,9 +36,9 @@
 ## 分支
 
 * master
-* lib-flex
-* ssr
-* pre-render
+* lib-flex 添加自适应布局
+* ssr 服务端渲染实现
+* pre-render 预渲染实现
 
 ## 组件
 
