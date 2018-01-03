@@ -36,8 +36,9 @@
 ## 分支
 
 * master
-* lib-flex
-* ssr
+* [ssr](https://ssr.vuejs.org/en/) 服务端渲染实现
+* [lib-flex](https://www.npmjs.com/package/amfe-flexible) 添加自适应布局
+* [pre-render](https://github.com/chrisvfritz/prerender-spa-plugin) 预渲染实现
 
 ## 组件
 
