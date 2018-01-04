@@ -93,6 +93,7 @@
 			</div>
 		</transition>
 		<audio ref="audio" @timeupdate="updatetime" @error="error" @canplay="ready" @ended="end" :src="url"></audio>
+		<play-list></play-list>
 	</div>
 
 </template>
@@ -108,6 +109,7 @@
 	import { shuffle } from 'common/js/util'
 	import { Base64 } from 'js-base64'
 	import Lyric from 'lyric-parser'
+	import PlayList from 'components/PlayList'
 	let transform = prefixStyle('transform')
 	let transitionDuration = prefixStyle('transitionDuration')
 	export default {
@@ -453,7 +455,8 @@
 		components: {
 			Scroll,
 			Process,
-			ProgressCircle
+			ProgressCircle,
+			PlayList
 		}
 	}
 </script>
