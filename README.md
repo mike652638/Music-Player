@@ -36,8 +36,9 @@
 ## 分支
 
 * master
-* lib-flex
-* ssr
+* [lib-flex](https://www.npmjs.com/package/amfe-flexible) 添加自适应布局 merge into master √
+* [ssr](https://ssr.vuejs.org/en/) 服务端渲染实现
+* [pre-render](https://github.com/chrisvfritz/prerender-spa-plugin) 预渲染实现
 
 ## 组件
 
@@ -52,6 +53,7 @@
 * [x] /singer/:id 歌手详情页 , 局部滚动，视差，音乐播放器有的功能都有
 * [x] /rank/:id 排行页
 * [x] /search 搜索，搜索结果，搜索历史，热门搜索，结果播放
+* [ ] 播放列表页
 * [ ] 用户中心页
 
 ## 调试工具
@@ -86,13 +88,14 @@ $ yarn run dev
 
 <img src="./static/WechatIMG505.png" width="50%"><img src="./static/WechatIMG506.png" width="50%">
 
-* iphone7 Plus 模拟器正常
-
-<img src="./static/WechatIMG508.png">
-
-* 适配列表中iPhone，iPad系列，其中X有留白
+* IOS系列模拟器正常
 
 ![适配iphone 系列，X的刘海暂未处理](./static/WechatIMG507.jpeg)
+<img src="./static/WX20171230-154740@2x.png">
+<img src="./static/WX20171230-155034@2x.png">
+<img src="./static/WX20171230-155124@2x.png">
+
+
 
 ### Andriod 适配
 
