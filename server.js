@@ -7,6 +7,7 @@ var port = process.env.PORT || config.build.port
 var app = express()
 
 var apiRoutes = express.Router('./')
+var serveStatic = require('serve-static')
 // apiRoutes.get('/music', function (req, res) {
 
 // })
@@ -67,7 +68,10 @@ apiRoutes.get('/lyric', function (req, res) {
 
 app.use('/api', apiRoutes)
 
-app.use(express.static('./music'))
+var oneYear = 60 * 1000 * 60 * 24 * 365
+
+app.use(express.static('./music',  { maxAge: oneYear }))
+// app.use(express.static('./music/static/js/',))
 
 module.exports = app.listen(port, function (err) {
   if (err) {
