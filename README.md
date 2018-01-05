@@ -78,19 +78,20 @@ $ yarn run dev
 
 ## 改进及优化
 
-* UI QQ音乐
-* 打包优化，分块（根据打包后的[分析报告](https://www.npmjs.com/package/webpack-bundle-analyzer)进行优化）
-* 适配优化（多端同构，自适应布局）
+* QQ音乐UI
+* 适配优化
+* 打包优化
 
 ### 打包
 
+* 分块（根据打包后的[分析报告](https://www.npmjs.com/package/webpack-bundle-analyzer)进行优化）
 * 主要处理vendor，一般都是这部分体积大，相关类库一般不会变化，所以单独打包并加上时间戳辨别文件是否变化，同时把manifest抽离出来，保证manifest变化不影响vendor变化导致缓存失效
 * 采用组件懒加载
 * 部分图片处理为base64编码形式
 
 ### 适配
 
-* 多端同构webApp, native, Hybrid采用 [amfe-flexible@2.x](https://www.npmjs.com/package/amfe-flexible) （相比以前的版本我更倾向于2.x）
+* 多端同构webApp, native, Hybrid采用 [amfe-flexible@2.x](https://www.npmjs.com/package/amfe-flexible) （相比以前的版本我更倾向于2.x）配合px2rem
 
 * IOS的Safari浏览器和微信webview打包前后兼容性问题，此应用未调用设备API
 
