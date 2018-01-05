@@ -82,7 +82,7 @@ $ yarn run dev
 * 适配优化
 * 打包优化
 
-### 打包
+### 打包Hybrid
 
 * 分块：（根据打包后的[分析报告](https://www.npmjs.com/package/webpack-bundle-analyzer)进行优化）
 * 处理vendor：一般都是这部分体积大，相关类库一般不会变化，所以单独打包和其它文件一样加上chunkhash辨别文件是否变化，同时把manifest抽离出来，保证manifest变化不影响vendor变化导致缓存失效,这样默认就是304，现在我通过node把他设置成强缓存了....
@@ -91,7 +91,7 @@ $ yarn run dev
 
 ### 适配
 
-* 多端同构webApp, native, Hybrid采用 [amfe-flexible@2.x](https://www.npmjs.com/package/amfe-flexible) （相比以前的版本我更倾向于2.x）配合px2rem
+* 多端同构webApp, Hybrid采用 [amfe-flexible@2.x](https://www.npmjs.com/package/amfe-flexible) （相比以前的版本我更倾向于2.x）配合px2rem
 
 * IOS的Safari浏览器和微信webview打包前后兼容性问题，此应用未调用设备API
 
