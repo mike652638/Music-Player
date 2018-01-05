@@ -70,6 +70,8 @@ export default class Song {
 }
 
 export function createSong(musicData) {
+  const songmid = musicData.songmid
+  const fileName = `C400${musicData.songmid}.m4a`
   return getKey(songmid, fileName).then(res => {
     if (res.code !== ERR_OK) {
       return
@@ -92,7 +94,7 @@ export function createSong(musicData) {
       // url: `http://dl.stream.qqmusic.qq.com/C400${
       //   musicData.songmid
       // }.m4a?guid=9035189320&vkey=F45CF08E99A296E05513E32A93FB60D08AB5BFC9141579AEE02158FA73B176DB7775B506740ED3940F48B51C15FB40FBB1C20F6DBADE946D&uin=&fromtag=999`
-      url: `http://isure.stream.qqmusic.qq.com/C10${musicData.songid}.m4a?fromtag=32`
+      url: `http://isure.stream.qqmusic.qq.com/C100${musicData.songmid}.m4a?fromtag=32`
 
     })
   })

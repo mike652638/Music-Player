@@ -93,7 +93,7 @@
 			</div>
 		</transition>
 		<audio ref="audio" @timeupdate="updatetime" @error="error" @canplay="ready" @ended="end" :src="url"></audio>
-		<play-list></play-list>
+		<!-- <play-list></play-list> -->
 	</div>
 
 </template>
