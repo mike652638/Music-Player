@@ -85,7 +85,7 @@ $ yarn run dev
 ### 打包
 
 * 分块：根据打包后的[分析报告](https://www.npmjs.com/package/webpack-bundle-analyzer)进行优化
-* 处理vendor：一般都是这部分体积大，相关类库一般不会变化，所以单独打包和其它文件一样加上chunkhash辨别文件是否变化，同时把manifest抽离出来，保证manifest变化不影响vendor变化导致缓存失效,这样默认就是304，现在我通过node把他设置成强缓存了....
+* 处理vendor：一般都是这部分体积大，相关类库一般不会变化，所以单独打包和其它文件一样加上chunkhash辨别文件是否变化，同时把manifest抽离出来，保证manifest变化不影响vendor变化导致缓存失效,这样默认就是304，现在我通过node把他设置成强缓存了....外加gzip
 * 采用路由懒加载
 * 部分图片处理为base64编码形式
 
