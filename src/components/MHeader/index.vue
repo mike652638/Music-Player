@@ -1,13 +1,13 @@
 <template>
- <div class="my-header">
-  <div class="icon"></div>
-  <h1 class="text">Music</h1>
-  <!-- 个人中心 -->
- </div>
+	<div class="my-header">
+		<div class="icon"></div>
+		<h1 class="text">Music</h1>
+		<!-- 个人中心 -->
+	</div>
 </template>
 <script>
 export default {
-  name: 'MHeader'
+	name: 'MHeader'
 }
 </script>
 <style lang="less" scoped>

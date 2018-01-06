@@ -143,7 +143,7 @@ export default {
 	.hot-search-wrap {
 		margin: 0px 10px;
 		.title {
-      margin: 20px 10px;
+			margin: 20px 10px;
 			color: rgba(0, 0, 0, 0.6);
 			font-size: @font-size-medium;
 		}

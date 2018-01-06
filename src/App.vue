@@ -1,12 +1,12 @@
 <template>
- <div id="app">
-  <!-- <m-header></m-header> -->
-  <m-tab></m-tab>
-  <keep-alive>
-   <router-view></router-view>
-  </keep-alive>
-  <player></player>
- </div>
+  <div id="app">
+    <!-- <m-header></m-header> -->
+    <m-tab></m-tab>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
+    <player></player>
+  </div>
 </template>
 
 <script>
@@ -25,10 +25,10 @@ export default {
 
 <style lang="less">
 #app {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
 }
 </style>

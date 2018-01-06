@@ -1,4 +1,3 @@
-// 轮播图
 export const recommendUrl =
 	'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg'
 export const commonParam = {
@@ -12,7 +11,6 @@ export const recommendCptions = {
 	param: 'jsonpCallback'
 }
 
-// 推荐歌单
 export const musicListUrl = '/api/getMusicList'
 export const musicListParam = {
 	rnd: Math.random(),
@@ -30,7 +28,6 @@ export const musicListParam = {
 	ein: 30
 }
 
-// 歌手列表
 export const singerListUrl = 'https://c.y.qq.com/v8/fcg-bin/v8.fcg'
 export const singerListParam = {
 	channel: 'singer',
@@ -54,7 +51,6 @@ export const singetListOpts = {
 	prefix: 'GetSingerListCallback'
 }
 
-// singerDetail
 export const singerDetailUrl =
 	'https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg'
 export const singerDetailParam = {
@@ -79,14 +75,13 @@ export const singetDetailOpts = {
 }
 
 export const commonParams = {
-  g_tk: 1928093487,
-  inCharset: 'utf-8',
-  outCharset: 'utf-8',
-  notice: 0,
-  format: 'jsonp'
+	g_tk: 1928093487,
+	inCharset: 'utf-8',
+	outCharset: 'utf-8',
+	notice: 0,
+	format: 'jsonp'
 }
 export const options = {
-  param: 'jsonpCallback'
+	param: 'jsonpCallback'
 }
-// 成功状态码
 export const ERR_OK = 0

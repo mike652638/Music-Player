@@ -35,7 +35,7 @@ export function loadSearch() {
 
 function deleteItem(arr, compare) {
   const index = arr.findIndex(compare)
-  if(index > -1) {
+  if (index > -1) {
     arr.splice(index, 1)
   }
 }
@@ -45,7 +45,7 @@ export function deleteSearch(query) {
     return item === query
   })
   storage.set(SEARCH_KEY, searchs)
-  return searchs  
+  return searchs
 }
 export function clearSearch() {
   storage.remove(SEARCH_KEY)

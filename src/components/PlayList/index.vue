@@ -171,7 +171,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['sequenceList', 'currentSong', 'mode', 'playList','currentIndex', 'favoriteList']),
+    ...mapGetters(['sequenceList', 'currentSong', 'mode', 'playList', 'currentIndex', 'favoriteList']),
     iconMode() {
       let cls = ''
       if (this.mode === 0) {

@@ -1,12 +1,12 @@
 <template>
- <div class="progress-bar" ref="progressBar" @click="setProcess">
-  <div class="bar-inner">
-   <div class="progress" ref="progress"></div>
-   <div class="progress-btn-wrapper" ref="progressBtn" @touchstart.prevent="processTouchstart" @touchmove.prevent="processTouchmove" @touchend.prevent="processTouchend">
-    <div class="progress-btn"></div>
-   </div>
+  <div class="progress-bar" ref="progressBar" @click="setProcess">
+    <div class="bar-inner">
+      <div class="progress" ref="progress"></div>
+      <div class="progress-btn-wrapper" ref="progressBtn" @touchstart.prevent="processTouchstart" @touchmove.prevent="processTouchmove" @touchend.prevent="processTouchend">
+        <div class="progress-btn"></div>
+      </div>
+    </div>
   </div>
- </div>
 </template>
 
 <script>

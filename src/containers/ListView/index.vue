@@ -5,7 +5,7 @@
         <ul v-show="i.items.length>0" class="item" v-for="(i, index) in data" :key="i.id" ref="scrollItem">
           <h2 class="title">{{i.title}}</h2>
           <li @click="selectItem(j)" class="item-wrap" v-for="j in i.items" :key="j.id">
-            <img class="avatar" v-lazy="j.avatar" alt=""/>
+            <img class="avatar" v-lazy="j.avatar" alt="" />
             <p class="name">{{j.name}}</p>
           </li>
         </ul>
@@ -132,8 +132,8 @@ export default {
 					padding: 20px 0 0 30px;
 					align-items: center;
 					.avatar {
-            width: 100px;
-            height: 100px;
+						width: 100px;
+						height: 100px;
 						border-radius: 50%;
 					}
 					.name {
@@ -148,8 +148,8 @@ export default {
 	.list {
 		position: absolute;
 		// z-index: 30;
-    top: 50%;
-    right: 10px;
+		top: 50%;
+		right: 10px;
 		-webkit-transform: translateY(-50%);
 		transform: translateY(-50%);
 		width: 20px;
@@ -158,7 +158,7 @@ export default {
 		text-align: center;
 		font-family: Helvetica;
 		.item {
-      width: 100%;
+			width: 100%;
 			padding-right: 10px;
 			line-height: 1;
 			color: #000;

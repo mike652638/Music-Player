@@ -1,12 +1,12 @@
 
 export function addClass(el, className) {
-  if (hasClass(el, className)) {
-    return
-  }
+	if (hasClass(el, className)) {
+		return
+	}
 
-  let newClass = el.className.split(' ')
-  newClass.push(className)
-  el.className = newClass.join(' ')
+	let newClass = el.className.split(' ')
+	newClass.push(className)
+	el.className = newClass.join(' ')
 }
 
 function hasClass(el, className) {

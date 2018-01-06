@@ -1,9 +1,9 @@
 <template>
- <div class="singer">
-  <list-view :data="singerList" @selectItem="currentClick" ref="listView" />
-  <loading :show="!singerList.length" />
-  <router-view></router-view>
- </div>
+  <div class="singer">
+    <list-view :data="singerList" @selectItem="currentClick" ref="listView" />
+    <loading :show="!singerList.length" />
+    <router-view></router-view>
+  </div>
 </template>
 <script>
 import { getSingerList } from "api/singer"
@@ -22,7 +22,7 @@ export default {
     return {
       singerList: [],
       current: "热门"
-    } 
+    }
   },
   created() {
     this._getSingerList()
@@ -37,7 +37,7 @@ export default {
         if (res.code === config.ERR_OK) {
           this.singerList = this._normalizeSingerData(res.data.list)
         }
-      }) 
+      })
     },
     _normalizeSingerData(data) {
       let map = {
@@ -45,33 +45,33 @@ export default {
           title: HOT_NAME,
           items: []
         }
-      } 
+      }
       data.map((el, index) => {
         if (index < HOT_LENGTH) {
           let singerInfo = {
             id: el.Fsinger_mid,
             name: el.Fsinger_name,
             avatar: `https://y.gtimg.cn/music/photo_new/T001R300x300M000${el.Fsinger_mid}.jpg?max_age=2592000`
-          } 
+          }
           map.hot.items.push(singerInfo)
         }
-        let key = el.Findex 
+        let key = el.Findex
         if (!map[key]) {
           map[key] = {
             title: key,
             items: []
-          } 
+          }
         } else {
           let singerInfo = {
             id: el.Fsinger_mid,
             name: el.Fsinger_name,
             avatar: `https://y.gtimg.cn/music/photo_new/T001R300x300M000${el.Fsinger_mid}.jpg?max_age=2592000`
-          } 
+          }
           map[key].items.push(singerInfo)
         }
-      }) 
-      let hot = [] 
-      let ret = [] 
+      })
+      let hot = []
+      let ret = []
       for (let key in map) {
         if (map[key].title === HOT_NAME) {
           hot.push(map[key])
@@ -81,14 +81,14 @@ export default {
       }
       ret.sort((a, b) => {
         return a.title.charCodeAt(0) - b.title.charCodeAt(0)
-      }) 
-      return hot.concat(ret) 
+      })
+      return hot.concat(ret)
     },
     currentClick(singer) {
       this.setSinger(singer)
       this.$router.push({
         path: `/singer/${singer.id}`
-      }) 
+      })
     },
     ...mapMutations({
       setSinger: "SET_SINGER"
@@ -110,7 +110,7 @@ export default {
 <style lang="less" scoped>
 @import '~@/common/less/const.less';
 .singer {
-  position: fixed;
+	position: fixed;
 	top: @marin-top-size;
 	bottom: 0px;
 	right: 0;

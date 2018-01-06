@@ -2,44 +2,44 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const Singer = (resolve) => {
-  import('components/Singer').then((module) => {
-    resolve(module)
-  })
+	import('components/Singer').then((module) => {
+		resolve(module)
+	})
 }
 const Rank = (resolve) => {
-  import('components/Rank').then((module) => {
-    resolve(module)
-  })
+	import('components/Rank').then((module) => {
+		resolve(module)
+	})
 }
 const Search = (resolve) => {
-  import('components/Search').then((module) => {
-    resolve(module)
-  })
+	import('components/Search').then((module) => {
+		resolve(module)
+	})
 }
 const SingerDetail = (resolve) => {
-  import('components/SingerDetail').then((module) => {
-    resolve(module)
-  })
+	import('components/SingerDetail').then((module) => {
+		resolve(module)
+	})
 }
 const Disc = (resolve) => {
-  import('components/Disc').then((module) => {
-    resolve(module)
-  })
+	import('components/Disc').then((module) => {
+		resolve(module)
+	})
 }
 const TopList = (resolve) => {
-  import('components/TopList').then((module) => {
-    resolve(module)
-  })
+	import('components/TopList').then((module) => {
+		resolve(module)
+	})
 }
 const Recommend = (resolve) => {
-  import('components/Recommend').then((module) => {
-    resolve(module)
-  })
+	import('components/Recommend').then((module) => {
+		resolve(module)
+	})
 }
 const NotFound = (resolve) => {
-  import('containers/NotFound').then((module) => {
-    resolve(module)
-  })
+	import('containers/NotFound').then((module) => {
+		resolve(module)
+	})
 }
 Vue.use(Router)
 

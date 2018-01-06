@@ -1,24 +1,24 @@
 <template>
- <div class="rank" ref="rankRef">
-  <scroll :data="toplist" class="toplist" ref="scroll">
-   <ul>
-    <li class="item" v-for="item in toplist" @click="selectItem(item)" :key="item.id">
-     <div class="icon">
-      <img v-lazy="item.picUrl" @load="loadImg">
-     </div>
-     <ul class="songlist">
-      <li class="song" v-for="(song, index) in item.songList" :key="song.id">
-       <span>{{ index + 1 }}</span>
-       <span>{{ song.songname }}</span>
-       <span class="singername"> - {{ song.singername }}</span>
-      </li>
-     </ul>
-    </li>
-   </ul>
-  </scroll>
-  <loading :show="!toplist.length" />
-  <router-view></router-view>
- </div>
+  <div class="rank" ref="rankRef">
+    <scroll :data="toplist" class="toplist" ref="scroll">
+      <ul>
+        <li class="item" v-for="item in toplist" @click="selectItem(item)" :key="item.id">
+          <div class="icon">
+            <img v-lazy="item.picUrl" @load="loadImg">
+          </div>
+          <ul class="songlist">
+            <li class="song" v-for="(song, index) in item.songList" :key="song.id">
+              <span>{{ index + 1 }}</span>
+              <span>{{ song.songname }}</span>
+              <span class="singername"> - {{ song.singername }}</span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </scroll>
+    <loading :show="!toplist.length" />
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
@@ -96,11 +96,11 @@ export default {
 			.icon {
 				flex: 0 0 100px;
 				width: 200px;
-        height: 200px;
-        img {
-          width: 200px;
-          height: 200px;
-        }
+				height: 200px;
+				img {
+					width: 200px;
+					height: 200px;
+				}
 			}
 			.songlist {
 				flex: 1;
@@ -109,11 +109,11 @@ export default {
 				justify-content: center;
 				padding: 0 20px;
 				overflow: hidden;
-				background:#fff;
+				background: #fff;
 				color: #000;
 				font-size: @font-size-medium;
 				.song {
-          .no-wrap;
+					.no-wrap;
 					line-height: 2;
 					.singername {
 						color: #000;
