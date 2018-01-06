@@ -6,7 +6,7 @@
 
 该项目来源[HuangYi](https://github.com/ustbhuangyi), 之前写过他的[eleApp](https://github.com/forzeny/eleApp),后来发现这个音乐App，可惜未开源，还好他的学生把这个项目开源了，所以就有了这个仓库，后面回提到我的一些改进。
 
-17年7月毕业，之前实习接触过React和Ng，毕业后来到的这家公司使用Vue，上手就是维护Vuex项目，但是感觉老项目代码写的不是很好，所以就准备找几个好的项目来学习所以就有了[eleApp](https://github.com/forzeny/eleApp)和本项目
+之前实习接触过React和Ng，毕业后来到的这家公司使用Vue，上手就是维护Vuex项目，当然我要学习不使用vuex的场景，同时老项目代码写的不是很好，所以就准备找几个好的项目来学习所以就有了[eleApp](https://github.com/forzeny/eleApp)和本项目
 
 数据来源QQ音乐JSONP，部分接口存在http header的限制所以用到了node，托管于VPS，PM2 部署，Nginx代理，
 
@@ -87,7 +87,6 @@ $ yarn run dev
 * 分块：根据打包后的[分析报告](https://www.npmjs.com/package/webpack-bundle-analyzer)进行优化
 * 处理vendor：一般都是这部分体积大，相关类库一般不会变化，所以单独打包和其它文件一样加上chunkhash辨别文件是否变化，同时把manifest抽离出来，保证manifest变化不影响vendor变化导致缓存失效,这样默认就是304，现在我通过node把他设置成强缓存了....外加gzip
 * 采用路由懒加载
-* 部分图片处理为base64编码形式
 
 ### 适配
 
