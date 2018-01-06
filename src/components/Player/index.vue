@@ -188,12 +188,7 @@
 				this.resetCurrentIndex(list)
 				this.setPlayList(list)
 			},
-			resetCurrentIndex(list) {
-				let index = list.findIndex((item) => {
-					return item.id == this.currentSong.id
-				})
-				this.setCurrentIndex(index)
-			},
+		
 			back() {
 				this.setFullScreen(false)
 			},
