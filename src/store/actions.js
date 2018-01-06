@@ -100,6 +100,6 @@ export const deleteSong = function ({ commit, state }, song) {
 export const deleteSongList = function ({ commit, state }) {
   commit(types.SET_PLAY_LIST, [])
   commit(types.SET_SEQUENCE_LIST, [])
-  commit(types.SET_CURRENT_INDEX, [])
+  commit(types.SET_CURRENT_INDEX, -1)
   commit(types.SET_PLAYING_STATE, false)
 }
