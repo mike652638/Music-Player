@@ -63,9 +63,9 @@
 						<div class="icon i-right" @click="next">
 							<i class="icon-next"></i>
 						</div>
-						<div class="icon i-right">
+						<!-- <div class="icon i-right">
 							<i class="icon icon-not-favorite"></i>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

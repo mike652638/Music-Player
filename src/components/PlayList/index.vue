@@ -25,13 +25,12 @@
             </li>
           </transition-group>
         </scroll>
-
-        <div class="list-operate">
+        <!-- <div class="list-operate">
           <div @click="showAddSong" class="add">
             <i class="icon-add"></i>
             <span class="text">添加歌曲到队列</span>
           </div>
-        </div>
+        </div> -->
         <div @click="hide" class="list-close">
           <span>关闭</span>
         </div>
@@ -162,7 +161,6 @@ export default {
       // this.setPlayList(newList)
     },
     resetCurrentIndex(list) {
-      console.log()
       let index = list.findIndex((item) => {
         return item.id == this.currentSong.id
       })
@@ -173,7 +171,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['sequenceList', 'currentSong', 'mode', 'playList','currentIndex']),
+    ...mapGetters(['sequenceList', 'currentSong', 'mode', 'playList','currentIndex', 'favoriteList']),
     iconMode() {
       let cls = ''
       if (this.mode === 0) {
