@@ -15,13 +15,10 @@
           <transition-group name="list" tag="ul">
             <li :key="item.id" class="item" ref="listRef" v-for="(item, index) in sequenceList" @click="selectItem(item, index)">
               <i class="current" :class="getCurrentIcon(item)"></i>
-
               <span class="text">{{ item.name }}</span>
-
               <span @click.stop="toggleFavoriteCls(item)" class="like">
                 <i :class="getFavoriteCls(item)"></i>
               </span>
-
               <span @click.stop="deleteOne(item)" class="delete">
                 <i class="icon-delete"></i>
               </span>
@@ -35,7 +32,6 @@
             <span class="text">添加歌曲到队列</span>
           </div>
         </div>
-
         <div @click="hide" class="list-close">
           <span>关闭</span>
         </div>
@@ -45,32 +41,31 @@
   </transition>
 </template>
 <script>
+import { playMode } from 'common/js/config'
 import Scroll from 'containers/Scroll'
 import Confirm from 'containers/Confirm'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { shuffle } from 'common/js/util'
 export default {
   data() {
     return {
-      showFlag: true,
+      showFlag: false,
       refreshDelay: 100
     }
   },
-  watch: {
-    // 切歌后滚动至第一个
-    currentSong(newVal, oldVal) {
-      if (!newVal.id || !oldVal.id) {
-        return
-      }
-
-      if (!this.showFlag || newVal.id === oldVal.id) {
-        return
-      }
-
-      this.scrollToCurrent(newVal)
-    }
-  },
   methods: {
+    ...mapMutations({
+      setCurrentIndex: 'SET_CURRENT_INDEX',
+      setPlayingState: 'SET_PLAYING_STATE',
+      setMode: 'SET_PLAY_MODE',
+      setPlayList: 'SET_PLAY_LIST',
+    }),
+    ...mapActions([
+      'deleteSong',
+      'deleteSongList'
+    ]),
     toggleFavoriteCls(song) {
+      return
       if (this._isFavorite(song)) {
         this.delfavoriteList(song)
       } else {
@@ -78,6 +73,7 @@ export default {
       }
     },
     getFavoriteCls(song) {
+      return
       if (this._isFavorite(song)) {
         return 'icon-favorite'
       } else {
@@ -93,93 +89,91 @@ export default {
     },
     show() {
       this.showFlag = true
-
-      // 延迟计算 better-scroll
-      setTimeout(() => {
+      this.$nextTick(() => {
         this.$refs.scrollRef.refresh()
-      }, 20)
-
-      this.scrollToCurrent(this.currentSong)
+        this.scrollToCurrent(this.currentSong)
+      })
     },
     hide() {
       this.showFlag = false
     },
-    // 当前播放歌曲前面的图标
     getCurrentIcon(item) {
       if (this.currentSong.id === item.id) {
         return 'icon-play'
       }
       return ''
     },
-    // 切歌
     selectItem(item, index) {
-      // 随机播放
       if (this.mode === 2) {
-        index = this.playlist.findIndex((song) => {
+        index = this.playList.findIndex((song) => {
           return song.id === item.id
         })
       }
-
       this.setCurrentIndex(index)
-
-      // 如果是暂停，切歌后自动播放
       this.setPlayingState(true)
     },
-    // 切歌后滚动至第一个
     scrollToCurrent(current) {
       let index = this.sequenceList.findIndex((song) => {
         return song.id === current.id
       })
-
-      this.$refs.scrollRef.scrollToElement(this.$refs.listRef[index], 300)
+      this.$nextTick(() => {
+        this.$refs.scrollRef.scrollToElement(this.$refs.listRef[index], 300)
+      })
     },
-    // 删除图标
     deleteOne(item) {
       this.deleteSong(item)
-      if (!this.playlist.length) {
+      if (!this.playList.length) {
         this.showFlag = false
       }
     },
     showConfirm() {
       this.$refs.confirmRef.show()
     },
-    // confirm 清空对话框
     confirm() {
       this.deleteSongList()
+      this.showFlag = false
     },
     cancel() {
       return
     },
-    // 改变播放模式，实质是修改 playlist
     changeMode() {
       let mode = (this.mode + 1) % 3
       this.setMode(mode)
-
-      let newList = null
-      if (mode === 2) {
-        // 随机播放
-        newList = myArray.shuffle(this.sequenceList)
+      let list = null
+      if (mode === playMode.random) {
+        list = shuffle(this.sequenceList)
+      } else if (mode == playMode.sequence) {
+        list = this.sequenceList
       } else {
-        // 顺序播放、单曲循环
-        newList = this.sequenceList
+        list = [this.sequenceList[this.currentIndex]]
       }
-
-      // 调整当前歌曲的索引
-      let index = newList.findIndex((item) => {
-        return item.id === this.currentSong.id
+      this.resetCurrentIndex(list)
+      this.setPlayList(list)
+      // let newList = null
+      // if (mode === 2) {
+      //   newList = shuffle(this.sequenceList)
+      // } else {
+      //   newList = this.sequenceList
+      // }
+      // let index = newList.findIndex((item) => {
+      //   return item.id === this.currentSong.id
+      // })
+      // this.setCurrentIndex(index)
+      // this.setPlayList(newList)
+    },
+    resetCurrentIndex(list) {
+      console.log()
+      let index = list.findIndex((item) => {
+        return item.id == this.currentSong.id
       })
       this.setCurrentIndex(index)
-      this.setPlayList(newList)
     },
     showAddSong() {
       this.$refs.addSongRef.show()
     }
   },
-  // 过滤器设计目的就是用于简单的文本转换
-  filters: {},
-  // 若要实现更复杂的数据变换，你应该使用计算属性
   computed: {
-    ...mapGetters(['sequenceList', 'currentSong', 'mode', 'playlist', 'favoriteList']),
+    ...mapGetters(['sequenceList', 'currentSong', 'mode', 'playList','currentIndex']),
     iconMode() {
       let cls = ''
       if (this.mode === 0) {
@@ -193,7 +187,6 @@ export default {
       }
       return cls
     },
-    // 播放模式文案
     modeText() {
       let mode = ''
       if (this.mode === 0) {
@@ -206,6 +199,14 @@ export default {
         mode = ''
       }
       return mode
+    }
+  },
+  watch: {
+    currentSong(newSong, oldSong) {
+      if (!this.showFlag || newSong.id === oldSong.id) {
+        return
+      }
+      this.scrollToCurrent(newSong)
     }
   },
   components: {
@@ -249,35 +250,36 @@ export default {
 		background-color: #fff;
 		.list-header {
 			position: relative;
-			padding: 20px 30px 10px 20px;
+			padding: 20px 30px 20px 10px;
 			.title {
 				display: flex;
 				align-items: center;
 				.icon {
-					margin-right: 10px;
-					font-size: 30px;
+					margin-right: 20px;
+					font-size: 40px;
 					color: #31c27c;
 				}
 				.text {
 					flex: 1;
-					font-size: @font-size-medium;
+					font-size: 30px;
 					color: #000;
 				}
 				.clear {
+					font-size: 0;
 					.icon-clear {
-						font-size: @font-size-medium;
+						font-size: 30px;
 						color: #000;
 					}
 				}
 			}
 		}
 		.list-content {
-			max-height: 240px;
+			max-height: 500px;
 			overflow: hidden;
 			.item {
 				display: flex;
 				align-items: center;
-				height: 40px;
+				height: 70px;
 				padding: 0 30px 0 20px;
 				overflow: hidden;
 				&.list-enter-active,
@@ -289,10 +291,10 @@ export default {
 					height: 0;
 				}
 				.current {
-					flex: 0 0 20px;
-					width: 20px;
-					font-size: @font-size-small;
-					color: @color-theme-d;
+					flex: 0 0 40px;
+					width: 40px;
+					font-size: 30px;
+					color: #31c27c;
 				}
 				.text {
 					flex: 1;
@@ -308,32 +310,32 @@ export default {
 					}
 				}
 				.delete {
-					font-size: @font-size-small;
-					color: @color-theme;
+					font-size: 30px;
+					color: #31c27c;
 				}
 			}
 		}
 		.list-operate {
 			.add {
-        display: flex;
-        justify-content: center;
+				display: flex;
+				justify-content: center;
 				align-items: center;
-				padding: 10px 16px;
+				padding: 30px 16px;
 				border: 1px solid @color-text-l;
 				border-radius: 100px;
 				color: #000;
 				.icon-add {
 					margin-right: 15px;
-					font-size: @font-size-small-s;
+					font-size: 30px;
 				}
 				.text {
-					font-size: @font-size-small;
+					font-size: 30px;
 				}
 			}
 		}
 		.list-close {
 			text-align: center;
-			line-height: 2;
+			line-height: 3;
 			background: @color-background;
 			font-size: 30px;
 			color: @color-text-l;

@@ -6,7 +6,7 @@
     <h2 class="title">{{title}}</h2>
     <div ref="bgImage" class="bg-image" :class="{'active': topFixed}" :style="bgStyle">
       <div ref="playRef" v-show="!topFixed" class="play-wrapper">
-        <div class="play" @click="playSongs">
+        <div class="play" @click.stop="playSongs">
           <i class="icon-play"></i>
           <span class="text">随机播放全部</span>
         </div>

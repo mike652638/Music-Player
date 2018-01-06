@@ -87,13 +87,13 @@
 						<i ref="playMin" @click.stop="togglePlay" :class="playing ? 'icon-pause-mini' : 'icon-play-mini'" class="icon-mini"></i>
 					</progress-circle>
 				</div>
-				<div class="control">
+				<div class="control" @click.stop="showPlayList">
 					<i class="icon-playlist"></i>
 				</div>
 			</div>
 		</transition>
 		<audio ref="audio" @timeupdate="updatetime" @error="error" @canplay="ready" @ended="end" :src="url"></audio>
-		<!-- <play-list></play-list> -->
+		<play-list ref="playList"></play-list>
 	</div>
 
 </template>
@@ -171,6 +171,9 @@
 				setPlayMode: 'SET_PLAY_MODE',
 				setPlayList: 'SET_PLAY_LIST'
 			}),
+			showPlayList() {
+				this.$refs.playList.show()
+			},
 			changeMode() {
 				const mode = (this.mode + 1) % 3
 				this.setPlayMode(mode)
