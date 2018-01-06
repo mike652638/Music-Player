@@ -5,21 +5,17 @@ var axios = require('axios')
 var port = process.env.PORT || config.build.port
 
 var app = express()
+var compression = require('compression')
 
 var apiRoutes = express.Router('./')
 var serveStatic = require('serve-static')
-// apiRoutes.get('/music', function (req, res) {
 
-// })
+app.use(compression())
 
 apiRoutes.get('/getDisc', function (req, res) {
   const url = 'http://ustbhuangyi.com/music/api/getCdInfo'
   
   axios.get(url, {
-    // headers: {
-    //   referer: 'https://c.y.qq.com/',
-    //   host: 'c.y.qq.com'
-    // },
     params: req.query
   }).then((response) => {
     res.json(response.data)
@@ -71,7 +67,6 @@ app.use('/api', apiRoutes)
 var oneYear = 60 * 1000 * 60 * 24 * 365
 
 app.use(express.static('./music',  { maxAge: oneYear }))
-// app.use(express.static('./music/static/js/',))
 
 module.exports = app.listen(port, function (err) {
   if (err) {
