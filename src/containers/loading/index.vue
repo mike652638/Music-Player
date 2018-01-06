@@ -1,24 +1,24 @@
 <template>
- <div class="loading" v-show="show">
-  <div class="loading-wrap">
-   <img src="./img/loading.gif">
-   <div class="info">{{title}}</div>
-  </div>
- </div>
+	<div class="loading" v-show="show">
+		<div class="loading-wrap">
+			<img src="./img/loading.gif">
+			<div class="info">{{title}}</div>
+		</div>
+	</div>
 </template>
 <script>
 export default {
-  name: 'loading',
-  props: {
-    show: {
-      type: Boolean,
-      default: true
+	name: 'loading',
+	props: {
+		show: {
+			type: Boolean,
+			default: true
 		},
 		title: {
-			type:String,
+			type: String,
 			default: `玩命加载中...`
 		}
-  }
+	}
 }
 </script>
 <style lang="less" scoped>
@@ -35,7 +35,7 @@ export default {
 			height: 50px;
 		}
 		.info {
-			font-size: @font-size-medium ;
+			font-size: @font-size-medium;
 		}
 	}
 }
