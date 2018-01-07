@@ -112,3 +112,5 @@ $ yarn run dev
 #### Andriod 适配
 
 试了下腾讯的[weTest](http://wetest.qq.com/product/cloudphone?from=default_automail_new) 收费，没继续用
+
+后来发现  GenyMotion
