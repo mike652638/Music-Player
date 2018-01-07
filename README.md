@@ -25,13 +25,13 @@
 
 ## 相关
 
-* Vue @2.3.3, vue-router, vuex, axios
-* less (不太习惯stylus所以我还是继续使用less了)
-* ES6
-* Express
-* ~~~lib-flexbile~~~ amfe-flexible@2.0,  px2rem
+* `Vue` @2.3.3, vue-router, vuex, axios
+* `less` (不太习惯stylus所以我还是继续使用less了)
+* `ES6`
+* `Express`
+* ~~~lib-flexbile~~~ `amfe-flexible@2.0`,  `px2rem`
 
-* Vultr PM2 Nginx
+* `Vultr PM2 Nginx`
 
 ## 分支
 
