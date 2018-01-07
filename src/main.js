@@ -15,9 +15,9 @@ Vue.use(vueLazyLoad, {
 	loading: require('common/img/default.jpeg')
 })
 Vue.use(Vuex)
-// window.addEventListener('resize', _.debounce(function () {
-// 	location.reload()
-// }, 500))
+window.addEventListener('resize', _.debounce(function () {
+	location.reload()
+}, 500))
 fastclick.attach(document.body)
 
 Vue.config.productionTip = false
