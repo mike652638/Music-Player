@@ -31,7 +31,7 @@
 * `Express`
 * ~~~lib-flexbile~~~ `amfe-flexible@2.0`,  `px2rem`
 
-* `Vultr PM2 Nginx`
+* `Vultr/heroku PM2 Nginx`
 
 ## 分支
 
